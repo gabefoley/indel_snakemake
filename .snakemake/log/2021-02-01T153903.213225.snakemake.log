@@ -1,0 +1,35 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	compile_latex
+	1	generate_latex
+	1	generate_output_dict
+	3
+Select jobs to execute...
+
+[Mon Feb  1 15:39:03 2021]
+rule generate_output_dict:
+    input: concatenated_summaries/6_BEP.csv, concatenated_summaries/6_SICP.csv, concatenated_summaries/6_SICML.csv, concatenated_summaries/8_BEP.csv, concatenated_summaries/8_SICP.csv, concatenated_summaries/8_SICML.csv
+    output: output_dicts/output.p
+    jobid: 2
+
+[Mon Feb  1 15:39:08 2021]
+Error in rule generate_output_dict:
+    jobid: 2
+    output: output_dicts/output.p
+
+RuleException:
+CalledProcessError in line 153 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Command 'set -euo pipefail;  /Users/gabefoley/miniconda3_latest/envs/indel_snakemake/bin/python3.9 /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/scripts/tmp0ohtp2q3.generate_output_dict.py' returned non-zero exit status 1.
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2319, in run_wrapper
+  File "/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile", line 153, in __rule_generate_output_dict
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2350, in run_wrapper
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-02-01T153903.213225.snakemake.log

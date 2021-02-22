@@ -1,0 +1,21 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	concat_fasta
+	1
+Select jobs to execute...
+
+[Thu Jan 28 09:44:30 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/5_TRUE_1.fasta, grasp_results/5/5_output_1
+    output: grasp_results/concatenated/5/5_output_1
+    jobid: 0
+    wildcards: taxon=5, rep=1
+
+[Thu Jan 28 09:44:30 2021]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-28T094430.775890.snakemake.log

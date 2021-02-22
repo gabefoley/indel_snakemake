@@ -1,0 +1,67 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	2	create_control_files
+	2	run_indelible
+	4	split_fasta
+	4	split_trees
+	13
+Select jobs to execute...
+
+[Mon Jan 25 11:45:15 2021]
+rule create_control_files:
+    output: indelible/40_control.txt
+    jobid: 3
+    wildcards: taxon=40
+
+[Mon Jan 25 11:45:15 2021]
+Finished job 3.
+1 of 13 steps (8%) done
+Select jobs to execute...
+
+[Mon Jan 25 11:45:15 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/trees.txt, indelible_output/40/40_TRUE.fasta
+    jobid: 2
+    wildcards: taxon=40
+
+[Mon Jan 25 11:45:16 2021]
+Finished job 2.
+2 of 13 steps (15%) done
+Select jobs to execute...
+
+[Mon Jan 25 11:45:16 2021]
+rule split_fasta:
+    input: indelible_output/40/40_TRUE.fasta
+    output: split_fasta/40/40_TRUE_2.fasta, indelible_output/40/cleaned_fasta/40_TRUE_2.fasta
+    jobid: 10
+    wildcards: taxon=40, rep=2
+
+[Mon Jan 25 11:45:16 2021]
+Error in rule split_fasta:
+    jobid: 10
+    output: split_fasta/40/40_TRUE_2.fasta, indelible_output/40/cleaned_fasta/40_TRUE_2.fasta
+
+RuleException:
+URLError in line 33 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+<urlopen error [Errno 21] Is a directory: '/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/split_fasta'>
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2319, in run_wrapper
+  File "/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile", line 33, in __rule_split_fasta
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/urllib/request.py", line 214, in urlopen
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/urllib/request.py", line 517, in open
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/urllib/request.py", line 534, in _open
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/urllib/request.py", line 494, in _call_chain
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/urllib/request.py", line 1477, in file_open
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/urllib/request.py", line 1516, in open_local_file
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2350, in run_wrapper
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-25T114515.229149.snakemake.log

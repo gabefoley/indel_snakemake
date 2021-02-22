@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 59 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Missing input files for rule run_grasp:
+indelible_output/6/cleaned_N0_trees/1.nwk

@@ -1,0 +1,46 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	12	clean_fasta
+	12	concat_fasta
+	2	create_control_files
+	24	run_grasp
+	12	run_indelible
+	12	summarise_indels
+	75
+Select jobs to execute...
+
+[Thu Jan 28 13:13:29 2021]
+rule create_control_files:
+    output: indelible/4_control.txt
+    jobid: 5
+    wildcards: taxon=4
+
+[Thu Jan 28 13:13:29 2021]
+Finished job 5.
+1 of 75 steps (1%) done
+Select jobs to execute...
+
+[Thu Jan 28 13:13:29 2021]
+rule run_indelible:
+    input: indelible/4_control.txt
+    output: indelible_output/4/cleaned_trees/4_tree_2/GRASP_ancestors/GRASP_ancestors.nwk, indelible_output/4/4_TRUE_2/GRASP_ancestors/GRASP_ancestors.fasta
+    jobid: 21
+    wildcards: taxon=4, rep=2/GRASP_ancestors/GRASP_ancestors
+
+Waiting at most 100 seconds for missing files.
+MissingOutputException in line 16 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Job Missing files after 100 seconds:
+indelible_output/4/cleaned_trees/4_tree_2/GRASP_ancestors/GRASP_ancestors.nwk
+indelible_output/4/4_TRUE_2/GRASP_ancestors/GRASP_ancestors.fasta
+This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait.
+Job id: 21 completed successfully, but some output files are missing. 21
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 583, in handle_job_success
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 252, in handle_job_success
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-28T131329.258892.snakemake.log

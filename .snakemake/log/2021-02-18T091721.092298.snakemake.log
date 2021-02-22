@@ -1,0 +1,90 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	2	clean_indelible
+	1	compile_latex
+	2	concat_fasta
+	2	concat_indelible
+	1	concat_indelible_summaries
+	1	concat_summaries
+	1	create_control_files
+	1	generate_latex
+	1	generate_output_dict
+	2	get_indelible_dict
+	2	run_grasp
+	2	run_indelible
+	2	summarise_indelible
+	2	summarise_indels
+	22
+Select jobs to execute...
+
+[Thu Feb 18 09:17:21 2021]
+rule create_control_files:
+    output: indelible/5_control.txt
+    jobid: 8
+    wildcards: taxon=5
+
+[Thu Feb 18 09:17:21 2021]
+Finished job 8.
+1 of 22 steps (5%) done
+Select jobs to execute...
+
+[Thu Feb 18 09:17:21 2021]
+rule run_indelible:
+    input: indelible/5_control.txt
+    output: indelible_output/5/trees/2.nwk, indelible_output/5/5_TRUE_2.fasta, indelible_output/5/5_ANCESTRAL_2.fasta, indelible_output/5/N0_trees/2.nwk
+    jobid: 15
+    wildcards: taxon=5, rep=2
+
+[Thu Feb 18 09:17:22 2021]
+Finished job 15.
+2 of 22 steps (9%) done
+Select jobs to execute...
+
+[Thu Feb 18 09:17:22 2021]
+rule concat_indelible:
+    input: indelible_output/5/5_TRUE_2.fasta, indelible_output/5/5_ANCESTRAL_2.fasta
+    output: indelible_output/5/concatenated/5_2.fasta
+    jobid: 16
+    wildcards: taxon=5, rep=2
+
+[Thu Feb 18 09:17:22 2021]
+Finished job 16.
+3 of 22 steps (14%) done
+Select jobs to execute...
+
+[Thu Feb 18 09:17:22 2021]
+rule clean_indelible:
+    input: indelible_output/5/N0_trees/2.nwk, indelible_output/5/concatenated/5_2.fasta
+    output: indelible_output/5/cleaned_aln/2.fasta, indelible_output/5/concatenated/2.fasta, indelible_output/5/cleaned_trees/2.nwk, indelible_output/5/cleaned_N0_trees/2.nwk, indelible_output/5/cleaned_no_internal_trees/2.nwk
+    jobid: 14
+    wildcards: taxon=5, rep=2
+
+[Thu Feb 18 09:17:23 2021]
+Finished job 14.
+4 of 22 steps (18%) done
+Select jobs to execute...
+
+[Thu Feb 18 09:17:23 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/2.fasta, indelible_output/5/cleaned_N0_trees/2.nwk
+    output: grasp_results/5/SICML/2, grasp_results/5/SICML/2/GRASP_ancestors.fasta, grasp_results/5/SICML/2/GRASP_ancestors.nwk
+    jobid: 13
+    wildcards: taxon=5, method=SICML, rep=2
+
+[Thu Feb 18 09:17:24 2021]
+Error in rule run_grasp:
+    jobid: 13
+    output: grasp_results/5/SICML/2, grasp_results/5/SICML/2/GRASP_ancestors.fasta, grasp_results/5/SICML/2/GRASP_ancestors.nwk
+    shell:
+        grasp -aln indelible_output/5/cleaned_aln/2.fasta -nwk indelible_output/5/cleaned_N0_trees/2.nwk -model LG -out grasp_results/5/SICML/2 -savetree  -indel SICML -inf joint -gap
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job run_grasp since they might be corrupted:
+grasp_results/5/SICML/2, grasp_results/5/SICML/2/GRASP_ancestors.fasta
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-02-18T091721.092298.snakemake.log

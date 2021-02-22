@@ -1,0 +1,16 @@
+# TAXA : ['5', '10', '25', '50']
+
+
+TAXA : ['200']
+
+REPS : 2
+
+GRASP_METHODS : ['SICML', 'BEP']
+
+
+#'BEML', 'PSP'
+# GRASP_METHODS : ['BEP' ]
+
+# GRASP_METHODS : ['PSP']
+
+# GRASP_METHODS : ['BEP']

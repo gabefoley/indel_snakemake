@@ -1,0 +1,2 @@
+name,taxon,method,rep,root_len,ins_acc,del_acc,ins_len,del_len,ins_kl,del_kl
+fastml_parsimony_summaries/5/fastml/1.csv,5,fastMLparsimony,1,200,0.0,0.0,"[2, 1, 1, 2, 1]","[1, 2, 1, 2, 1, 9]",0.0,0.0

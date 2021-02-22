@@ -1,0 +1,79 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	4	clean_fasta
+	2	create_control_files
+	4	remove_cols
+	4	run_indelible
+	4	split_trees
+	19
+Select jobs to execute...
+
+[Sun Jan 24 23:22:52 2021]
+rule create_control_files:
+    output: indelible/40_control.txt
+    jobid: 3
+    wildcards: taxon=40
+
+[Sun Jan 24 23:22:52 2021]
+Finished job 3.
+1 of 19 steps (5%) done
+Select jobs to execute...
+
+[Sun Jan 24 23:22:52 2021]
+rule create_control_files:
+    output: indelible/80_control.txt
+    jobid: 8
+    wildcards: taxon=80
+
+[Sun Jan 24 23:22:53 2021]
+Finished job 8.
+2 of 19 steps (11%) done
+Select jobs to execute...
+
+[Sun Jan 24 23:22:53 2021]
+rule run_indelible:
+    input: indelible/80_control.txt
+    output: indelible_output/80/80_TRUE_2.fasta
+    jobid: 10
+    wildcards: taxon=80, rep=2
+
+[Sun Jan 24 23:22:53 2021]
+Finished job 10.
+3 of 19 steps (16%) done
+Select jobs to execute...
+
+[Sun Jan 24 23:22:53 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_1.fasta
+    jobid: 2
+    wildcards: taxon=40, rep=1
+
+[Sun Jan 24 23:22:53 2021]
+Finished job 2.
+4 of 19 steps (21%) done
+Select jobs to execute...
+
+[Sun Jan 24 23:22:53 2021]
+rule clean_fasta:
+    input: indelible_output/40/40_TRUE_1.fasta
+    output: indelible_output/cleaned_aln/40/40_TRUE_1.fasta
+    jobid: 12
+    wildcards: taxon=40, rep=1
+
+[Sun Jan 24 23:22:53 2021]
+Error in rule clean_fasta:
+    jobid: 12
+    output: indelible_output/cleaned_aln/40/40_TRUE_1.fasta
+    shell:
+        sed 's/*/-/g' indelible_output/40/40_TRUE_1.fasta | indelible_output/cleaned_aln/40/40_TRUE_1.fasta
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-24T232252.304758.snakemake.log

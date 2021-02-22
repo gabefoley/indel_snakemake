@@ -1,0 +1,31 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job counts:
+	count	jobs
+	1	all
+	1	create_control_files
+	4	run_indelible
+	6
+Select jobs to execute...
+
+[Sun Jan 24 21:51:43 2021]
+rule run_indelible:
+    input: indelible/80_control.txt
+    output: indelible_output/80/80_TRUE_2_cols_removed.fasta
+    jobid: 6
+    wildcards: taxon=80, rep=2_cols_removed
+
+Waiting at most 5 seconds for missing files.
+MissingOutputException in line 21 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Job Missing files after 5 seconds:
+indelible_output/80/80_TRUE_2_cols_removed.fasta
+This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait.
+Job id: 6 completed successfully, but some output files are missing. 6
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 583, in handle_job_success
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 252, in handle_job_success
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-24T215143.041879.snakemake.log

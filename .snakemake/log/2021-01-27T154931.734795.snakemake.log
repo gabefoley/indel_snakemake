@@ -1,0 +1,28 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	run_grasp
+	1
+Select jobs to execute...
+
+[Wed Jan 27 15:49:31 2021]
+rule run_grasp:
+    input: indelible_output/40/cleaned_aln/40_TRUE_1.fasta, indelible_output/40/cleaned_trees/40_tree_1.nwk
+    output: grasp_results/40/40_output_1
+    jobid: 0
+    wildcards: taxon=40, rep=1
+
+[Wed Jan 27 15:49:47 2021]
+Error in rule run_grasp:
+    jobid: 0
+    output: grasp_results/40/40_output_1
+    shell:
+        grasp -aln indelible_output/40/cleaned_aln/40_TRUE_1.fasta -nwk indelible_output/40/cleaned_trees/40_tree_1.nwk -model LG -out grasp_results/40/40_output_1 -inf joint
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-27T154931.734795.snakemake.log

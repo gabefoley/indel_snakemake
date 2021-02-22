@@ -1,0 +1,15 @@
+Building DAG of jobs...
+MissingInputException in line 2 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Missing input files for rule all:
+summaries/8_SICP_1.txt
+summaries/4_SICP_1.txt
+summaries/8_SICP_2.txt
+summaries/8_BEP_1.txt
+summaries/4_SICP_2.txt
+summaries/8_SICML_2.txt
+summaries/4_SICML_1.txt
+summaries/4_SICML_2.txt
+summaries/8_BEP_2.txt
+summaries/4_BEP_2.txt
+summaries/8_SICML_1.txt
+summaries/4_BEP_1.txt

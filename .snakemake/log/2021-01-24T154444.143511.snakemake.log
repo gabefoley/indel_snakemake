@@ -1,0 +1,5 @@
+ValueError in line 5 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+expected '}' before end of string
+  File "/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile", line 5, in <module>
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/string.py", line 165, in vformat
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/string.py", line 174, in _vformat

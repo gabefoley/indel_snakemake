@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 32 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Missing input files for rule concat_indelible:
+indelible_output/8/8_ANCESTRAL_1.fasta

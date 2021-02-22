@@ -1,0 +1,100 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	clean_fastml
+	1	clean_indelible
+	1	concat_indelible
+	1	create_control_files
+	1	run_fastml
+	1	run_indelible
+	6
+Select jobs to execute...
+
+[Mon Feb  1 18:54:02 2021]
+rule create_control_files:
+    output: indelible/10_control.txt
+    jobid: 4
+    wildcards: taxon=10
+
+[Mon Feb  1 18:54:02 2021]
+Finished job 4.
+1 of 6 steps (17%) done
+Select jobs to execute...
+
+[Mon Feb  1 18:54:02 2021]
+rule run_indelible:
+    input: indelible/10_control.txt
+    output: indelible_output/10/trees/1.nwk, indelible_output/10/10_TRUE_1.fasta, indelible_output/10/10_ANCESTRAL_1.fasta, indelible_output/10/N0_trees/1.nwk
+    jobid: 3
+    wildcards: taxon=10, rep=1
+
+[Mon Feb  1 18:54:04 2021]
+Finished job 3.
+2 of 6 steps (33%) done
+Select jobs to execute...
+
+[Mon Feb  1 18:54:04 2021]
+rule concat_indelible:
+    input: indelible_output/10/10_TRUE_1.fasta, indelible_output/10/10_ANCESTRAL_1.fasta
+    output: indelible_output/10/concatenated/10_1.fasta
+    jobid: 5
+    wildcards: taxon=10, rep=1
+
+[Mon Feb  1 18:54:04 2021]
+Finished job 5.
+3 of 6 steps (50%) done
+Select jobs to execute...
+
+[Mon Feb  1 18:54:04 2021]
+rule clean_indelible:
+    input: indelible_output/10/N0_trees/1.nwk, indelible_output/10/concatenated/10_1.fasta
+    output: indelible_output/10/cleaned_aln/1.fasta, indelible_output/10/concatenated/1.fasta, indelible_output/10/cleaned_N0_trees/1.nwk, indelible_output/10/cleaned_no_internal_trees/1.nwk
+    jobid: 2
+    wildcards: taxon=10, rep=1
+
+[Mon Feb  1 18:54:05 2021]
+Finished job 2.
+4 of 6 steps (67%) done
+Select jobs to execute...
+
+[Mon Feb  1 18:54:05 2021]
+rule run_fastml:
+    input: indelible_output/10/cleaned_aln/1.fasta, indelible_output/10/cleaned_no_internal_trees/1.nwk
+    output: fastml_results/10/1/seq.joint.txt, fastml_results/10/1/tree.newick.txt, fastml_results/10/1
+    jobid: 1
+    wildcards: taxon=10, rep=1
+
+[Mon Feb  1 18:54:19 2021]
+Finished job 1.
+5 of 6 steps (83%) done
+Select jobs to execute...
+
+[Mon Feb  1 18:54:19 2021]
+rule clean_fastml:
+    input: fastml_results/10/1/seq.joint.txt, fastml_results/10/1/tree.newick.txt
+    output: fastml_results/10/concatenated/1/FastML_ancestors.fasta, fastml_results/10/cleaned_N0_tree/1/tree.nwk
+    jobid: 0
+    wildcards: taxon=10, rep=1
+
+[Mon Feb  1 18:54:21 2021]
+Error in rule clean_fastml:
+    jobid: 0
+    output: fastml_results/10/concatenated/1/FastML_ancestors.fasta, fastml_results/10/cleaned_N0_tree/1/tree.nwk
+
+RuleException:
+CalledProcessError in line 71 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Command 'set -euo pipefail;  /Users/gabefoley/miniconda3_latest/envs/indel_snakemake/bin/python3.9 /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/scripts/tmp5zq7zw4h.clean_fastml.py' returned non-zero exit status 1.
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2319, in run_wrapper
+  File "/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile", line 71, in __rule_clean_fastml
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2350, in run_wrapper
+Removing output files of failed job clean_fastml since they might be corrupted:
+fastml_results/10/concatenated/1/FastML_ancestors.fasta
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-02-01T185402.226896.snakemake.log

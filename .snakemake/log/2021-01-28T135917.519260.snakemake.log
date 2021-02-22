@@ -1,0 +1,10 @@
+Building DAG of jobs...
+InputFunctionException in line 46 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Error:
+  TypeError: list indices must be integers or slices, not str
+Wildcards:
+  taxon=5
+  method=BEP/5_output_1
+  rep=1
+Traceback:
+  File "/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile", line 48, in <lambda>

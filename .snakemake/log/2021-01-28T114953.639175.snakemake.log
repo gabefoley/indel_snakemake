@@ -1,0 +1,4 @@
+Building DAG of jobs...
+WildcardError in line 56 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Wildcards in input files cannot be determined from output files:
+'method'

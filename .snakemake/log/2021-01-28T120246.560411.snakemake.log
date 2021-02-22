@@ -1,0 +1,71 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	4	clean_fasta
+	16	concat_fasta
+	2	create_control_files
+	16	run_grasp
+	4	run_indelible
+	16	summarise_indels
+	59
+Select jobs to execute...
+
+[Thu Jan 28 12:02:46 2021]
+rule create_control_files:
+    output: indelible/8_control.txt
+    jobid: 34
+    wildcards: taxon=8
+
+[Thu Jan 28 12:02:47 2021]
+Finished job 34.
+1 of 59 steps (2%) done
+Select jobs to execute...
+
+[Thu Jan 28 12:02:47 2021]
+rule run_indelible:
+    input: indelible/8_control.txt
+    output: indelible_output/8/cleaned_trees/8_tree_2.nwk, indelible_output/8/8_TRUE_2.fasta
+    jobid: 39
+    wildcards: taxon=8, rep=2
+
+[Thu Jan 28 12:02:47 2021]
+Finished job 39.
+2 of 59 steps (3%) done
+Select jobs to execute...
+
+[Thu Jan 28 12:02:47 2021]
+rule clean_fasta:
+    input: indelible_output/8/8_TRUE_2.fasta
+    output: indelible_output/8/cleaned_aln/8_TRUE_2.fasta
+    jobid: 38
+    wildcards: taxon=8, rep=2
+
+[Thu Jan 28 12:02:47 2021]
+Finished job 38.
+3 of 59 steps (5%) done
+Select jobs to execute...
+
+[Thu Jan 28 12:02:47 2021]
+rule run_grasp:
+    input: indelible_output/8/cleaned_aln/8_TRUE_2.fasta, indelible_output/8/cleaned_trees/8_tree_2.nwk
+    output: grasp_results/8/ancestors/SICP_8_output_2, grasp_results/8/ancestors/SICP_8_output_2/8_output_2.nwk
+    jobid: 51
+    wildcards: taxon=8, method=SICP, rep=2
+
+[Thu Jan 28 12:02:50 2021]
+Error in rule run_grasp:
+    jobid: 51
+    output: grasp_results/8/ancestors/SICP_8_output_2, grasp_results/8/ancestors/SICP_8_output_2/8_output_2.nwk
+    shell:
+        grasp -aln indelible_output/8/cleaned_aln/8_TRUE_2.fasta -nwk indelible_output/8/cleaned_trees/8_tree_2.nwk -model LG -out grasp_results/8/ancestors/SICP_8_output_2  -savetree -indel SICP -inf joint -gap
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job run_grasp since they might be corrupted:
+grasp_results/8/ancestors/SICP_8_output_2
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-28T120246.560411.snakemake.log

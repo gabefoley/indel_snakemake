@@ -1,0 +1,33 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	create_plots
+	1
+Select jobs to execute...
+
+[Fri Jan 29 10:38:31 2021]
+rule create_plots:
+    input: summaries/4/BEP/1.csv, summaries/4/BEP/2.csv, summaries/4/SICP/1.csv, summaries/4/SICP/2.csv, summaries/4/SICML/1.csv, summaries/4/SICML/2.csv, summaries/8/BEP/1.csv, summaries/8/BEP/2.csv, summaries/8/SICP/1.csv, summaries/8/SICP/2.csv, summaries/8/SICML/1.csv, summaries/8/SICML/2.csv
+    output: plots/plot.png
+    jobid: 0
+
+[Fri Jan 29 10:38:32 2021]
+Error in rule create_plots:
+    jobid: 0
+    output: plots/plot.png
+
+RuleException:
+CalledProcessError in line 86 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Command 'set -euo pipefail;  /Users/gabefoley/miniconda3_latest/envs/indel_snakemake/bin/python3.9 /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/scripts/tmpg7tan9ac.create_plots.py' returned non-zero exit status 1.
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2319, in run_wrapper
+  File "/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile", line 86, in __rule_create_plots
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2350, in run_wrapper
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-29T103831.574584.snakemake.log

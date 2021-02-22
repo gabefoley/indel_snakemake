@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	compile_latex
+	1
+Select jobs to execute...
+
+[Mon Feb  1 10:37:58 2021]
+rule compile_latex:
+    input: plots/plot.tex
+    output: plots/plot.pdf
+    jobid: 0
+
+[Mon Feb  1 10:37:59 2021]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-02-01T103758.212018.snakemake.log

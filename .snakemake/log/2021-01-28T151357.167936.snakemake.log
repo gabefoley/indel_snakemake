@@ -1,0 +1,72 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	4	clean_fasta
+	12	concat_fasta
+	2	create_control_files
+	12	run_grasp
+	4	run_indelible
+	12	summarise_indels
+	47
+Select jobs to execute...
+
+[Thu Jan 28 15:13:57 2021]
+rule create_control_files:
+    output: indelible/2_control.txt
+    jobid: 5
+    wildcards: taxon=2
+
+[Thu Jan 28 15:13:57 2021]
+Finished job 5.
+1 of 47 steps (2%) done
+Select jobs to execute...
+
+[Thu Jan 28 15:13:57 2021]
+rule create_control_files:
+    output: indelible/4_control.txt
+    jobid: 28
+    wildcards: taxon=4
+
+[Thu Jan 28 15:13:58 2021]
+Finished job 28.
+2 of 47 steps (4%) done
+Select jobs to execute...
+
+[Thu Jan 28 15:13:58 2021]
+rule run_indelible:
+    input: indelible/4_control.txt
+    output: indelible_output/4/cleaned_trees/1.nwk, indelible_output/4/4_TRUE_1.fasta
+    jobid: 27
+    wildcards: taxon=4, rep=1
+
+[Thu Jan 28 15:13:58 2021]
+Finished job 27.
+3 of 47 steps (6%) done
+Select jobs to execute...
+
+[Thu Jan 28 15:13:58 2021]
+rule clean_fasta:
+    input: indelible_output/4/4_TRUE_1.fasta
+    output: indelible_output/cleaned_aln/4/1.fasta
+    jobid: 26
+    wildcards: taxon=4, rep=1
+
+[Thu Jan 28 15:13:59 2021]
+Finished job 26.
+4 of 47 steps (9%) done
+Select jobs to execute...
+
+[Thu Jan 28 15:13:59 2021]
+rule run_indelible:
+    input: indelible/2_control.txt
+    output: indelible_output/2/cleaned_trees/1.nwk, indelible_output/2/2_TRUE_1.fasta
+    jobid: 4
+    wildcards: taxon=2, rep=1
+
+Waiting at most 100 seconds for missing files.
+Terminating processes on user request, this might take some time.
+Cancelling snakemake on user request.

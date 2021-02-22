@@ -1,0 +1,271 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	15	clean_fastml
+	15	clean_indelible
+	1	compile_latex
+	60	concat_fasta
+	5	concat_fastml_summaries
+	15	concat_indelible
+	5	concat_indelible_summaries
+	20	concat_summaries
+	5	create_control_files
+	1	generate_latex
+	1	generate_output_dict
+	15	get_indelible_dict
+	15	run_fastml
+	60	run_grasp
+	15	run_indelible
+	15	summarise_fastml_indels
+	15	summarise_indelible
+	60	summarise_indels
+	338
+Select jobs to execute...
+
+[Wed Feb  3 10:15:47 2021]
+rule create_control_files:
+    output: indelible/5_control.txt
+    jobid: 8
+    wildcards: taxon=5
+
+[Wed Feb  3 10:15:47 2021]
+Finished job 8.
+1 of 338 steps (0.30%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:15:47 2021]
+rule run_indelible:
+    input: indelible/5_control.txt
+    output: indelible_output/5/trees/3.nwk, indelible_output/5/5_TRUE_3.fasta, indelible_output/5/5_ANCESTRAL_3.fasta, indelible_output/5/N0_trees/3.nwk
+    jobid: 22
+    wildcards: taxon=5, rep=3
+
+[Wed Feb  3 10:15:48 2021]
+Finished job 22.
+2 of 338 steps (0.59%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:15:48 2021]
+rule run_indelible:
+    input: indelible/5_control.txt
+    output: indelible_output/5/trees/2.nwk, indelible_output/5/5_TRUE_2.fasta, indelible_output/5/5_ANCESTRAL_2.fasta, indelible_output/5/N0_trees/2.nwk
+    jobid: 15
+    wildcards: taxon=5, rep=2
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/5/N0_trees/2.nwk', 'indelible_output/5/5_ANCESTRAL_2.fasta', 'indelible_output/5/5_TRUE_2.fasta'}
+[Wed Feb  3 10:15:49 2021]
+Finished job 15.
+3 of 338 steps (0.89%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:15:49 2021]
+rule run_indelible:
+    input: indelible/5_control.txt
+    output: indelible_output/5/trees/1.nwk, indelible_output/5/5_TRUE_1.fasta, indelible_output/5/5_ANCESTRAL_1.fasta, indelible_output/5/N0_trees/1.nwk
+    jobid: 7
+    wildcards: taxon=5, rep=1
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/5/5_ANCESTRAL_1.fasta', 'indelible_output/5/5_TRUE_1.fasta', 'indelible_output/5/N0_trees/1.nwk'}
+[Wed Feb  3 10:15:50 2021]
+Finished job 7.
+4 of 338 steps (1%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:15:50 2021]
+rule concat_indelible:
+    input: indelible_output/5/5_TRUE_1.fasta, indelible_output/5/5_ANCESTRAL_1.fasta
+    output: indelible_output/5/concatenated/5_1.fasta
+    jobid: 9
+    wildcards: taxon=5, rep=1
+
+[Wed Feb  3 10:15:50 2021]
+Finished job 9.
+5 of 338 steps (1%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:15:51 2021]
+rule clean_indelible:
+    input: indelible_output/5/N0_trees/1.nwk, indelible_output/5/concatenated/5_1.fasta
+    output: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/concatenated/1.fasta, indelible_output/5/cleaned_trees/1.nwk, indelible_output/5/cleaned_N0_trees/1.nwk, indelible_output/5/cleaned_no_internal_trees/1.nwk
+    jobid: 6
+    wildcards: taxon=5, rep=1
+
+[Wed Feb  3 10:15:52 2021]
+Finished job 6.
+6 of 338 steps (2%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:15:52 2021]
+rule run_fastml:
+    input: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/cleaned_no_internal_trees/1.nwk
+    output: fastml_results/5/1/seq.joint.txt, fastml_results/5/1/tree.newick.txt, fastml_results/5/1
+    jobid: 271
+    wildcards: taxon=5, rep=1
+
+[Wed Feb  3 10:15:54 2021]
+Finished job 271.
+7 of 338 steps (2%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:15:54 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/cleaned_N0_trees/1.nwk
+    output: grasp_results/5/BEML/1, grasp_results/5/BEML/1/GRASP_ancestors.fasta, grasp_results/5/BEML/1/tree.nwk
+    jobid: 48
+    wildcards: taxon=5, method=BEML, rep=1
+
+[Wed Feb  3 10:15:55 2021]
+Finished job 48.
+8 of 338 steps (2%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:15:55 2021]
+rule concat_indelible:
+    input: indelible_output/5/5_TRUE_2.fasta, indelible_output/5/5_ANCESTRAL_2.fasta
+    output: indelible_output/5/concatenated/5_2.fasta
+    jobid: 16
+    wildcards: taxon=5, rep=2
+
+[Wed Feb  3 10:15:55 2021]
+Finished job 16.
+9 of 338 steps (3%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:15:55 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/cleaned_N0_trees/1.nwk
+    output: grasp_results/5/BEP/1, grasp_results/5/BEP/1/GRASP_ancestors.fasta, grasp_results/5/BEP/1/tree.nwk
+    jobid: 5
+    wildcards: taxon=5, method=BEP, rep=1
+
+[Wed Feb  3 10:15:56 2021]
+Finished job 5.
+10 of 338 steps (3%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:15:56 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/1.fasta, grasp_results/5/BEP/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/BEP/1/GRASP_ancestors.fasta
+    jobid: 10
+    wildcards: taxon=5, method=BEP, rep=1
+
+[Wed Feb  3 10:15:56 2021]
+Finished job 10.
+11 of 338 steps (3%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:15:56 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/cleaned_N0_trees/1.nwk
+    output: grasp_results/5/SICP/1, grasp_results/5/SICP/1/GRASP_ancestors.fasta, grasp_results/5/SICP/1/tree.nwk
+    jobid: 28
+    wildcards: taxon=5, method=SICP, rep=1
+
+[Wed Feb  3 10:15:57 2021]
+Finished job 28.
+12 of 338 steps (4%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:15:57 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/1.fasta, grasp_results/5/SICP/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/SICP/1/GRASP_ancestors.fasta
+    jobid: 29
+    wildcards: taxon=5, method=SICP, rep=1
+
+[Wed Feb  3 10:15:57 2021]
+Finished job 29.
+13 of 338 steps (4%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:15:57 2021]
+rule clean_indelible:
+    input: indelible_output/5/N0_trees/2.nwk, indelible_output/5/concatenated/5_2.fasta
+    output: indelible_output/5/cleaned_aln/2.fasta, indelible_output/5/concatenated/2.fasta, indelible_output/5/cleaned_trees/2.nwk, indelible_output/5/cleaned_N0_trees/2.nwk, indelible_output/5/cleaned_no_internal_trees/2.nwk
+    jobid: 14
+    wildcards: taxon=5, rep=2
+
+[Wed Feb  3 10:15:58 2021]
+Finished job 14.
+14 of 338 steps (4%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:15:58 2021]
+rule create_control_files:
+    output: indelible/50_control.txt
+    jobid: 167
+    wildcards: taxon=50
+
+[Wed Feb  3 10:15:58 2021]
+Finished job 167.
+15 of 338 steps (4%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:15:58 2021]
+rule run_indelible:
+    input: indelible/50_control.txt
+    output: indelible_output/50/trees/1.nwk, indelible_output/50/50_TRUE_1.fasta, indelible_output/50/50_ANCESTRAL_1.fasta, indelible_output/50/N0_trees/1.nwk
+    jobid: 166
+    wildcards: taxon=50, rep=1
+
+[Wed Feb  3 10:15:59 2021]
+Finished job 166.
+16 of 338 steps (5%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:15:59 2021]
+rule run_indelible:
+    input: indelible/50_control.txt
+    output: indelible_output/50/trees/2.nwk, indelible_output/50/50_TRUE_2.fasta, indelible_output/50/50_ANCESTRAL_2.fasta, indelible_output/50/N0_trees/2.nwk
+    jobid: 174
+    wildcards: taxon=50, rep=2
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/50/N0_trees/2.nwk', 'indelible_output/50/50_ANCESTRAL_2.fasta', 'indelible_output/50/50_TRUE_2.fasta'}
+[Wed Feb  3 10:16:00 2021]
+Finished job 174.
+17 of 338 steps (5%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:16:01 2021]
+rule create_control_files:
+    output: indelible/100_control.txt
+    jobid: 220
+    wildcards: taxon=100
+
+[Wed Feb  3 10:16:01 2021]
+Finished job 220.
+18 of 338 steps (5%) done
+Select jobs to execute...
+
+[Wed Feb  3 10:16:01 2021]
+rule run_indelible:
+    input: indelible/100_control.txt
+    output: indelible_output/100/trees/2.nwk, indelible_output/100/100_TRUE_2.fasta, indelible_output/100/100_ANCESTRAL_2.fasta, indelible_output/100/N0_trees/2.nwk
+    jobid: 227
+    wildcards: taxon=100, rep=2
+
+Terminating processes on user request, this might take some time.
+[Wed Feb  3 10:16:02 2021]
+Error in rule run_indelible:
+    jobid: 227
+    output: indelible_output/100/trees/2.nwk, indelible_output/100/100_TRUE_2.fasta, indelible_output/100/100_ANCESTRAL_2.fasta, indelible_output/100/N0_trees/2.nwk
+
+RuleException:
+CalledProcessError in line 26 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Command 'set -euo pipefail;  /Users/gabefoley/miniconda3_latest/envs/indel_snakemake/bin/python3.9 /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/scripts/tmpfdegk_8n.run_indelible.py' died with <Signals.SIGINT: 2>.
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2319, in run_wrapper
+  File "/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile", line 26, in __rule_run_indelible
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2350, in run_wrapper
+Removing output files of failed job run_indelible since they might be corrupted:
+indelible_output/100/trees/2.nwk, indelible_output/100/100_TRUE_2.fasta, indelible_output/100/100_ANCESTRAL_2.fasta, indelible_output/100/N0_trees/2.nwk
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-02-03T101546.750190.snakemake.log

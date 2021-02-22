@@ -1,0 +1,204 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job counts:
+	count	jobs
+	1	all
+	2	create_control_files
+	40	run_indelible
+	43
+Select jobs to execute...
+
+[Sun Jan 24 19:35:04 2021]
+rule create_control_files:
+    output: indelible/40_control.txt
+    jobid: 2
+    wildcards: taxon=40
+
+[Sun Jan 24 19:35:05 2021]
+Finished job 2.
+1 of 43 steps (2%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:35:05 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_10.fasta
+    jobid: 11
+    wildcards: taxon=40, rep=10
+
+[Sun Jan 24 19:35:06 2021]
+Finished job 11.
+2 of 43 steps (5%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:35:06 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_18.fasta
+    jobid: 19
+    wildcards: taxon=40, rep=18
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_18.fasta'}
+[Sun Jan 24 19:35:07 2021]
+Finished job 19.
+3 of 43 steps (7%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:35:07 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_4.fasta
+    jobid: 5
+    wildcards: taxon=40, rep=4
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_4.fasta'}
+[Sun Jan 24 19:35:08 2021]
+Finished job 5.
+4 of 43 steps (9%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:35:08 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_1.fasta
+    jobid: 1
+    wildcards: taxon=40, rep=1
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_1.fasta'}
+[Sun Jan 24 19:35:09 2021]
+Finished job 1.
+5 of 43 steps (12%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:35:09 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_13.fasta
+    jobid: 14
+    wildcards: taxon=40, rep=13
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_13.fasta'}
+[Sun Jan 24 19:35:10 2021]
+Finished job 14.
+6 of 43 steps (14%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:35:10 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_8.fasta
+    jobid: 9
+    wildcards: taxon=40, rep=8
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_8.fasta'}
+[Sun Jan 24 19:35:11 2021]
+Finished job 9.
+7 of 43 steps (16%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:35:11 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_16.fasta
+    jobid: 17
+    wildcards: taxon=40, rep=16
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_16.fasta'}
+[Sun Jan 24 19:35:12 2021]
+Finished job 17.
+8 of 43 steps (19%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:35:12 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_3.fasta
+    jobid: 4
+    wildcards: taxon=40, rep=3
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_3.fasta'}
+[Sun Jan 24 19:35:13 2021]
+Finished job 4.
+9 of 43 steps (21%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:35:13 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_5.fasta
+    jobid: 6
+    wildcards: taxon=40, rep=5
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_5.fasta'}
+[Sun Jan 24 19:35:14 2021]
+Finished job 6.
+10 of 43 steps (23%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:35:14 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_12.fasta
+    jobid: 13
+    wildcards: taxon=40, rep=12
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_12.fasta'}
+[Sun Jan 24 19:35:15 2021]
+Finished job 13.
+11 of 43 steps (26%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:35:15 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_20.fasta
+    jobid: 21
+    wildcards: taxon=40, rep=20
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_20.fasta'}
+[Sun Jan 24 19:35:16 2021]
+Finished job 21.
+12 of 43 steps (28%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:35:16 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_14.fasta
+    jobid: 15
+    wildcards: taxon=40, rep=14
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_14.fasta'}
+[Sun Jan 24 19:35:17 2021]
+Finished job 15.
+13 of 43 steps (30%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:35:17 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_6.fasta
+    jobid: 7
+    wildcards: taxon=40, rep=6
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_6.fasta'}
+Terminating processes on user request, this might take some time.
+[Sun Jan 24 19:35:18 2021]
+Finished job 7.
+14 of 43 steps (33%) done
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-24T193504.821782.snakemake.log

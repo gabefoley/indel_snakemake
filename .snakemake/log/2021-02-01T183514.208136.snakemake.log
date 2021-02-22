@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	clean_fastml
+	1
+Select jobs to execute...
+
+[Mon Feb  1 18:35:14 2021]
+rule clean_fastml:
+    input: fastml_results/10/1/seq.joint.txt, fastml_results/10/1/tree.newick.txt
+    output: fastml_results/concatenated/10/1/FastML_ancestors.fasta, fastml_results/cleaned_tree/10/1/tree.nwk
+    jobid: 0
+    wildcards: taxon=10, rep=1
+
+Waiting at most 100 seconds for missing files.
+Terminating processes on user request, this might take some time.
+Cancelling snakemake on user request.

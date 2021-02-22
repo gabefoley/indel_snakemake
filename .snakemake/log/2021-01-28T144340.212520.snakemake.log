@@ -1,0 +1,28 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	summarise_indels
+	1
+Select jobs to execute...
+
+[Thu Jan 28 14:43:40 2021]
+rule summarise_indels:
+    input: grasp_results/5/BEP/1/tree.nwk, grasp_results/concatenated/5/BEP/1/GRASP_ancestors.fasta
+    output: summaries/5/BEP/1.txt
+    jobid: 0
+    wildcards: taxon=5, method=BEP, rep=1
+
+Waiting at most 100 seconds for missing files.
+MissingOutputException in line 75 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Job Missing files after 100 seconds:
+summaries/5/BEP/1.txt
+This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait.
+Job id: 0 completed successfully, but some output files are missing. 0
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 583, in handle_job_success
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 252, in handle_job_success
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-28T144340.212520.snakemake.log

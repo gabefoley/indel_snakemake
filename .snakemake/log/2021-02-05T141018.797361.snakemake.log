@@ -1,0 +1,64 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	5	clean_fastml_ml
+	5	clean_fastml_parsimony
+	5	clean_indelible
+	1	compile_latex
+	25	concat_fasta
+	5	concat_fastml__ml_summaries
+	5	concat_fastml_summaries
+	5	concat_indelible
+	5	concat_indelible_summaries
+	25	concat_summaries
+	5	create_control_files
+	1	generate_latex
+	1	generate_output_dict
+	5	get_indelible_dict
+	5	run_fastml
+	25	run_grasp
+	5	run_indelible
+	5	summarise_fastml_ml_indels
+	5	summarise_fastml_parsimony_indels
+	5	summarise_indelible
+	25	summarise_indels
+	173
+Select jobs to execute...
+
+[Fri Feb  5 14:10:19 2021]
+rule create_control_files:
+    output: indelible/25_control.txt
+    jobid: 58
+    wildcards: taxon=25
+
+[Fri Feb  5 14:10:19 2021]
+Finished job 58.
+1 of 173 steps (0.58%) done
+Select jobs to execute...
+
+[Fri Feb  5 14:10:19 2021]
+rule run_indelible:
+    input: indelible/25_control.txt
+    output: indelible_output/25/trees/1.nwk, indelible_output/25/25_TRUE_1.fasta, indelible_output/25/25_ANCESTRAL_1.fasta, indelible_output/25/N0_trees/1.nwk
+    jobid: 57
+    wildcards: taxon=25, rep=1
+
+Terminating processes on user request, this might take some time.
+[Fri Feb  5 14:10:20 2021]
+Error in rule run_indelible:
+    jobid: 57
+    output: indelible_output/25/trees/1.nwk, indelible_output/25/25_TRUE_1.fasta, indelible_output/25/25_ANCESTRAL_1.fasta, indelible_output/25/N0_trees/1.nwk
+
+RuleException:
+CalledProcessError in line 26 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Command 'set -euo pipefail;  /Users/gabefoley/miniconda3_latest/envs/indel_snakemake/bin/python3.9 /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/scripts/tmpl1p4bmnw.run_indelible.py' died with <Signals.SIGINT: 2>.
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2319, in run_wrapper
+  File "/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile", line 26, in __rule_run_indelible
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2350, in run_wrapper
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-02-05T141018.797361.snakemake.log

@@ -1,0 +1,26 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job counts:
+	count	jobs
+	1	create_control_files
+	1
+Select jobs to execute...
+
+[Sun Jan 24 16:13:35 2021]
+rule create_control_files:
+    output: run_40, run_80
+    jobid: 0
+
+ImproperOutputException in line 3 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Outputs of incorrect type (directories when expecting files or vice versa). Output directories must be flagged with directory(). for rule create_control_files:
+run_40
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 583, in handle_job_success
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 252, in handle_job_success
+Removing output files of failed job create_control_files since they might be corrupted:
+run_40, run_80
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-24T161335.592391.snakemake.log

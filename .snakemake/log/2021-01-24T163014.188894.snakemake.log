@@ -1,0 +1,28 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job counts:
+	count	jobs
+	1	run_indelible
+	1
+Select jobs to execute...
+
+[Sun Jan 24 16:30:14 2021]
+rule run_indelible:
+    input: run_40/control.txt, run_80/control.txt
+    output: run_40/40_TRUE.phy, run_80/80_TRUE.phy
+    jobid: 0
+
+[Sun Jan 24 16:30:14 2021]
+Error in rule run_indelible:
+    jobid: 0
+    output: run_40/40_TRUE.phy, run_80/80_TRUE.phy
+    shell:
+        run_40/control.txt run_80/control.txt && indelible
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-24T163014.188894.snakemake.log

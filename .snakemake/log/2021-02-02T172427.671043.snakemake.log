@@ -1,0 +1,170 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	clean_fastml
+	1	clean_indelible
+	1	compile_latex
+	1	concat_fasta
+	1	concat_fastml_summaries
+	1	concat_indelible
+	1	concat_indelible_summaries
+	1	concat_summaries
+	1	create_control_files
+	1	generate_latex
+	1	generate_output_dict
+	1	get_indelible_dict
+	1	run_fastml
+	1	run_grasp
+	1	run_indelible
+	1	summarise_fastml_indels
+	1	summarise_indelible
+	1	summarise_indels
+	18
+Select jobs to execute...
+
+[Tue Feb  2 17:24:27 2021]
+rule create_control_files:
+    output: indelible/5_control.txt
+    jobid: 8
+    wildcards: taxon=5
+
+[Tue Feb  2 17:24:28 2021]
+Finished job 8.
+1 of 18 steps (6%) done
+Select jobs to execute...
+
+[Tue Feb  2 17:24:28 2021]
+rule run_indelible:
+    input: indelible/5_control.txt
+    output: indelible_output/5/trees/1.nwk, indelible_output/5/5_TRUE_1.fasta, indelible_output/5/5_ANCESTRAL_1.fasta, indelible_output/5/N0_trees/1.nwk
+    jobid: 7
+    wildcards: taxon=5, rep=1
+
+[Tue Feb  2 17:24:29 2021]
+Finished job 7.
+2 of 18 steps (11%) done
+Select jobs to execute...
+
+[Tue Feb  2 17:24:29 2021]
+rule concat_indelible:
+    input: indelible_output/5/5_TRUE_1.fasta, indelible_output/5/5_ANCESTRAL_1.fasta
+    output: indelible_output/5/concatenated/5_1.fasta
+    jobid: 9
+    wildcards: taxon=5, rep=1
+
+[Tue Feb  2 17:24:29 2021]
+Finished job 9.
+3 of 18 steps (17%) done
+Select jobs to execute...
+
+[Tue Feb  2 17:24:29 2021]
+rule clean_indelible:
+    input: indelible_output/5/N0_trees/1.nwk, indelible_output/5/concatenated/5_1.fasta
+    output: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/concatenated/1.fasta, indelible_output/5/cleaned_trees/1.nwk, indelible_output/5/cleaned_N0_trees/1.nwk, indelible_output/5/cleaned_no_internal_trees/1.nwk
+    jobid: 6
+    wildcards: taxon=5, rep=1
+
+[Tue Feb  2 17:24:30 2021]
+Finished job 6.
+4 of 18 steps (22%) done
+Select jobs to execute...
+
+[Tue Feb  2 17:24:30 2021]
+rule get_indelible_dict:
+    input: indelible_output/5/concatenated/1.fasta, indelible_output/5/cleaned_N0_trees/1.nwk
+    output: indelible_dicts/5/leaves_1.p, indelible_dicts/5/gaps_1.p
+    jobid: 11
+    wildcards: taxon=5, rep=1
+
+[Tue Feb  2 17:24:31 2021]
+Finished job 11.
+5 of 18 steps (28%) done
+Select jobs to execute...
+
+[Tue Feb  2 17:24:31 2021]
+rule run_fastml:
+    input: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/cleaned_no_internal_trees/1.nwk
+    output: fastml_results/5/1/seq.joint.txt, fastml_results/5/1/tree.newick.txt, fastml_results/5/1
+    jobid: 15
+    wildcards: taxon=5, rep=1
+
+[Tue Feb  2 17:24:35 2021]
+Finished job 15.
+6 of 18 steps (33%) done
+Select jobs to execute...
+
+[Tue Feb  2 17:24:35 2021]
+rule summarise_indelible:
+    input: indelible_output/5/cleaned_N0_trees/1.nwk, indelible_output/5/concatenated/1.fasta, indelible_output/5/cleaned_N0_trees/1.nwk, indelible_output/5/concatenated/1.fasta, indelible_dicts/5/leaves_1.p, indelible_dicts/5/gaps_1.p
+    output: indelible_summaries/5/1.csv
+    jobid: 17
+    wildcards: taxon=5, rep=1
+
+[Tue Feb  2 17:24:36 2021]
+Finished job 17.
+7 of 18 steps (39%) done
+Select jobs to execute...
+
+[Tue Feb  2 17:24:36 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/cleaned_N0_trees/1.nwk
+    output: grasp_results/5/BEP/1, grasp_results/5/BEP/1/GRASP_ancestors.fasta, grasp_results/5/BEP/1/tree.nwk
+    jobid: 5
+    wildcards: taxon=5, method=BEP, rep=1
+
+[Tue Feb  2 17:24:37 2021]
+Finished job 5.
+8 of 18 steps (44%) done
+Select jobs to execute...
+
+[Tue Feb  2 17:24:37 2021]
+rule clean_fastml:
+    input: fastml_results/5/1/seq.joint.txt, fastml_results/5/1/tree.newick.txt
+    output: fastml_results/5/concatenated/1/FastML_ancestors.fasta, fastml_results/5/cleaned_N0_trees/1/tree.nwk
+    jobid: 14
+    wildcards: taxon=5, rep=1
+
+[Tue Feb  2 17:24:39 2021]
+Finished job 14.
+9 of 18 steps (50%) done
+Select jobs to execute...
+
+[Tue Feb  2 17:24:39 2021]
+rule concat_indelible_summaries:
+    input: indelible_summaries/5/1.csv
+    output: concatenated_indelible_summaries/5.csv
+    jobid: 16
+    wildcards: taxon=5
+
+[Tue Feb  2 17:24:39 2021]
+Finished job 16.
+10 of 18 steps (56%) done
+Select jobs to execute...
+
+[Tue Feb  2 17:24:39 2021]
+rule summarise_fastml_indels:
+    input: fastml_results/5/concatenated/1/FastML_ancestors.fasta, fastml_results/5/cleaned_N0_trees/1/tree.nwk, indelible_output/5/cleaned_N0_trees/1.nwk, indelible_output/5/concatenated/1.fasta, indelible_dicts/5/leaves_1.p, indelible_dicts/5/gaps_1.p
+    output: fastml_summaries/5/fastml/1.csv
+    jobid: 13
+    wildcards: taxon=5, rep=1
+
+[Tue Feb  2 17:24:40 2021]
+Error in rule summarise_fastml_indels:
+    jobid: 13
+    output: fastml_summaries/5/fastml/1.csv
+
+RuleException:
+CalledProcessError in line 161 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Command 'set -euo pipefail;  /Users/gabefoley/miniconda3_latest/envs/indel_snakemake/bin/python3.9 /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/scripts/tmp8dthtma5.summarise_indels.py' returned non-zero exit status 1.
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2319, in run_wrapper
+  File "/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile", line 161, in __rule_summarise_fastml_indels
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2350, in run_wrapper
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-02-02T172427.671043.snakemake.log

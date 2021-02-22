@@ -1,0 +1,41 @@
+Building DAG of jobs...
+File path grasp_results/4/ancestors/BEP/4_output_1//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/BEP/4_output_1//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/BEP/4_output_1//tree.nwk contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/BEP/4_output_2//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/BEP/4_output_2//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/BEP/4_output_2//tree.nwk contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/SICP/4_output_1//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/SICP/4_output_1//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/SICP/4_output_1//tree.nwk contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/SICP/4_output_2//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/SICP/4_output_2//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/SICP/4_output_2//tree.nwk contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/SICML/4_output_1//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/SICML/4_output_1//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/SICML/4_output_1//tree.nwk contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/SICML/4_output_2//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/SICML/4_output_2//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/4/ancestors/SICML/4_output_2//tree.nwk contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/BEP/8_output_1//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/BEP/8_output_1//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/BEP/8_output_1//tree.nwk contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/BEP/8_output_2//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/BEP/8_output_2//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/BEP/8_output_2//tree.nwk contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/SICP/8_output_1//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/SICP/8_output_1//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/SICP/8_output_1//tree.nwk contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/SICP/8_output_2//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/SICP/8_output_2//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/SICP/8_output_2//tree.nwk contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/SICML/8_output_1//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/SICML/8_output_1//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/SICML/8_output_1//tree.nwk contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/SICML/8_output_2//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/SICML/8_output_2//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path grasp_results/8/ancestors/SICML/8_output_2//tree.nwk contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+ChildIOException:
+File/directory is a child to another output:
+('/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/grasp_results/4/ancestors/BEP/4_output_1', run_grasp)
+('/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/grasp_results/4/ancestors/BEP/4_output_1/GRASP_ancestors.fasta', run_grasp)

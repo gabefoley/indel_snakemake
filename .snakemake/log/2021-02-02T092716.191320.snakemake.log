@@ -1,0 +1,5 @@
+Building DAG of jobs...
+MissingInputException in line 116 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Missing input files for rule get_indelible_dict:
+indelible_output/25/cleaned_tree/1.nwk
+indelible_output/25/cleaned_N0_tree/1.nwk

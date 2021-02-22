@@ -1,0 +1,340 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	2	clean_fasta
+	6	concat_fasta
+	3	concat_summaries
+	1	create_control_files
+	1	create_plots
+	6	run_grasp
+	2	run_indelible
+	6	summarise_indels
+	27
+Select jobs to execute...
+
+[Sun Jan 31 14:20:01 2021]
+rule create_control_files:
+    output: indelible/8_control.txt
+    jobid: 6
+    wildcards: taxon=8
+
+[Sun Jan 31 14:20:01 2021]
+Finished job 6.
+1 of 27 steps (4%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:01 2021]
+rule run_indelible:
+    input: indelible/8_control.txt
+    output: indelible_output/8/cleaned_trees/1.nwk, indelible_output/8/8_TRUE_1.fasta
+    jobid: 5
+    wildcards: taxon=8, rep=1
+
+[Sun Jan 31 14:20:02 2021]
+Finished job 5.
+2 of 27 steps (7%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:02 2021]
+rule clean_fasta:
+    input: indelible_output/8/8_TRUE_1.fasta
+    output: indelible_output/cleaned_aln/8/1.fasta
+    jobid: 4
+    wildcards: taxon=8, rep=1
+
+[Sun Jan 31 14:20:02 2021]
+Finished job 4.
+3 of 27 steps (11%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:02 2021]
+rule run_indelible:
+    input: indelible/8_control.txt
+    output: indelible_output/8/cleaned_trees/2.nwk, indelible_output/8/8_TRUE_2.fasta
+    jobid: 11
+    wildcards: taxon=8, rep=2
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/8/8_TRUE_2.fasta', 'indelible_output/8/cleaned_trees/2.nwk'}
+[Sun Jan 31 14:20:03 2021]
+Finished job 11.
+4 of 27 steps (15%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:03 2021]
+rule clean_fasta:
+    input: indelible_output/8/8_TRUE_2.fasta
+    output: indelible_output/cleaned_aln/8/2.fasta
+    jobid: 10
+    wildcards: taxon=8, rep=2
+
+[Sun Jan 31 14:20:03 2021]
+Finished job 10.
+5 of 27 steps (19%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:03 2021]
+rule run_grasp:
+    input: indelible_output/cleaned_aln/8/2.fasta, indelible_output/8/cleaned_trees/2.nwk
+    output: grasp_results/8/BEP/2, grasp_results/8/BEP/2/GRASP_ancestors.fasta, grasp_results/8/BEP/2/tree.nwk
+    jobid: 9
+    wildcards: taxon=8, method=BEP, rep=2
+
+[Sun Jan 31 14:20:05 2021]
+Finished job 9.
+6 of 27 steps (22%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:05 2021]
+rule run_grasp:
+    input: indelible_output/cleaned_aln/8/1.fasta, indelible_output/8/cleaned_trees/1.nwk
+    output: grasp_results/8/SICP/1, grasp_results/8/SICP/1/GRASP_ancestors.fasta, grasp_results/8/SICP/1/tree.nwk
+    jobid: 15
+    wildcards: taxon=8, method=SICP, rep=1
+
+[Sun Jan 31 14:20:07 2021]
+Finished job 15.
+7 of 27 steps (26%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:07 2021]
+rule concat_fasta:
+    input: indelible_output/cleaned_aln/8/1.fasta, grasp_results/8/SICP/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/8/SICP/1/GRASP_ancestors.fasta
+    jobid: 16
+    wildcards: taxon=8, method=SICP, rep=1
+
+[Sun Jan 31 14:20:07 2021]
+Finished job 16.
+8 of 27 steps (30%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:07 2021]
+rule summarise_indels:
+    input: grasp_results/8/SICP/1/tree.nwk, grasp_results/concatenated/8/SICP/1/GRASP_ancestors.fasta
+    output: summaries/8/SICP/1.csv
+    jobid: 14
+    wildcards: taxon=8, method=SICP, rep=1
+
+[Sun Jan 31 14:20:08 2021]
+Finished job 14.
+9 of 27 steps (33%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:08 2021]
+rule concat_fasta:
+    input: indelible_output/cleaned_aln/8/2.fasta, grasp_results/8/BEP/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/8/BEP/2/GRASP_ancestors.fasta
+    jobid: 12
+    wildcards: taxon=8, method=BEP, rep=2
+
+[Sun Jan 31 14:20:08 2021]
+Finished job 12.
+10 of 27 steps (37%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:08 2021]
+rule run_grasp:
+    input: indelible_output/cleaned_aln/8/2.fasta, indelible_output/8/cleaned_trees/2.nwk
+    output: grasp_results/8/SICML/2, grasp_results/8/SICML/2/GRASP_ancestors.fasta, grasp_results/8/SICML/2/tree.nwk
+    jobid: 25
+    wildcards: taxon=8, method=SICML, rep=2
+
+[Sun Jan 31 14:20:10 2021]
+Finished job 25.
+11 of 27 steps (41%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:10 2021]
+rule concat_fasta:
+    input: indelible_output/cleaned_aln/8/2.fasta, grasp_results/8/SICML/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/8/SICML/2/GRASP_ancestors.fasta
+    jobid: 26
+    wildcards: taxon=8, method=SICML, rep=2
+
+[Sun Jan 31 14:20:10 2021]
+Finished job 26.
+12 of 27 steps (44%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:10 2021]
+rule summarise_indels:
+    input: grasp_results/8/SICML/2/tree.nwk, grasp_results/concatenated/8/SICML/2/GRASP_ancestors.fasta
+    output: summaries/8/SICML/2.csv
+    jobid: 24
+    wildcards: taxon=8, method=SICML, rep=2
+
+[Sun Jan 31 14:20:11 2021]
+Finished job 24.
+13 of 27 steps (48%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:11 2021]
+rule summarise_indels:
+    input: grasp_results/8/BEP/2/tree.nwk, grasp_results/concatenated/8/BEP/2/GRASP_ancestors.fasta
+    output: summaries/8/BEP/2.csv
+    jobid: 8
+    wildcards: taxon=8, method=BEP, rep=2
+
+[Sun Jan 31 14:20:11 2021]
+Finished job 8.
+14 of 27 steps (52%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:11 2021]
+rule run_grasp:
+    input: indelible_output/cleaned_aln/8/1.fasta, indelible_output/8/cleaned_trees/1.nwk
+    output: grasp_results/8/SICML/1, grasp_results/8/SICML/1/GRASP_ancestors.fasta, grasp_results/8/SICML/1/tree.nwk
+    jobid: 22
+    wildcards: taxon=8, method=SICML, rep=1
+
+[Sun Jan 31 14:20:13 2021]
+Finished job 22.
+15 of 27 steps (56%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:13 2021]
+rule concat_fasta:
+    input: indelible_output/cleaned_aln/8/1.fasta, grasp_results/8/SICML/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/8/SICML/1/GRASP_ancestors.fasta
+    jobid: 23
+    wildcards: taxon=8, method=SICML, rep=1
+
+[Sun Jan 31 14:20:13 2021]
+Finished job 23.
+16 of 27 steps (59%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:13 2021]
+rule run_grasp:
+    input: indelible_output/cleaned_aln/8/1.fasta, indelible_output/8/cleaned_trees/1.nwk
+    output: grasp_results/8/BEP/1, grasp_results/8/BEP/1/GRASP_ancestors.fasta, grasp_results/8/BEP/1/tree.nwk
+    jobid: 3
+    wildcards: taxon=8, method=BEP, rep=1
+
+[Sun Jan 31 14:20:15 2021]
+Finished job 3.
+17 of 27 steps (63%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:15 2021]
+rule concat_fasta:
+    input: indelible_output/cleaned_aln/8/1.fasta, grasp_results/8/BEP/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/8/BEP/1/GRASP_ancestors.fasta
+    jobid: 7
+    wildcards: taxon=8, method=BEP, rep=1
+
+[Sun Jan 31 14:20:15 2021]
+Finished job 7.
+18 of 27 steps (67%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:15 2021]
+rule run_grasp:
+    input: indelible_output/cleaned_aln/8/2.fasta, indelible_output/8/cleaned_trees/2.nwk
+    output: grasp_results/8/SICP/2, grasp_results/8/SICP/2/GRASP_ancestors.fasta, grasp_results/8/SICP/2/tree.nwk
+    jobid: 18
+    wildcards: taxon=8, method=SICP, rep=2
+
+[Sun Jan 31 14:20:17 2021]
+Finished job 18.
+19 of 27 steps (70%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:17 2021]
+rule summarise_indels:
+    input: grasp_results/8/SICML/1/tree.nwk, grasp_results/concatenated/8/SICML/1/GRASP_ancestors.fasta
+    output: summaries/8/SICML/1.csv
+    jobid: 21
+    wildcards: taxon=8, method=SICML, rep=1
+
+[Sun Jan 31 14:20:17 2021]
+Finished job 21.
+20 of 27 steps (74%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:17 2021]
+rule summarise_indels:
+    input: grasp_results/8/BEP/1/tree.nwk, grasp_results/concatenated/8/BEP/1/GRASP_ancestors.fasta
+    output: summaries/8/BEP/1.csv
+    jobid: 2
+    wildcards: taxon=8, method=BEP, rep=1
+
+[Sun Jan 31 14:20:18 2021]
+Finished job 2.
+21 of 27 steps (78%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:18 2021]
+rule concat_fasta:
+    input: indelible_output/cleaned_aln/8/2.fasta, grasp_results/8/SICP/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/8/SICP/2/GRASP_ancestors.fasta
+    jobid: 19
+    wildcards: taxon=8, method=SICP, rep=2
+
+[Sun Jan 31 14:20:18 2021]
+Finished job 19.
+22 of 27 steps (81%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:18 2021]
+rule concat_summaries:
+    input: summaries/8/SICML/1.csv, summaries/8/SICML/2.csv
+    output: concatenated_summaries/8_SICML.csv
+    jobid: 20
+    wildcards: taxon=8, method=SICML
+
+[Sun Jan 31 14:20:18 2021]
+Finished job 20.
+23 of 27 steps (85%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:18 2021]
+rule summarise_indels:
+    input: grasp_results/8/SICP/2/tree.nwk, grasp_results/concatenated/8/SICP/2/GRASP_ancestors.fasta
+    output: summaries/8/SICP/2.csv
+    jobid: 17
+    wildcards: taxon=8, method=SICP, rep=2
+
+[Sun Jan 31 14:20:19 2021]
+Finished job 17.
+24 of 27 steps (89%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:19 2021]
+rule concat_summaries:
+    input: summaries/8/BEP/1.csv, summaries/8/BEP/2.csv
+    output: concatenated_summaries/8_BEP.csv
+    jobid: 1
+    wildcards: taxon=8, method=BEP
+
+[Sun Jan 31 14:20:19 2021]
+Finished job 1.
+25 of 27 steps (93%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:19 2021]
+rule concat_summaries:
+    input: summaries/8/SICP/1.csv, summaries/8/SICP/2.csv
+    output: concatenated_summaries/8_SICP.csv
+    jobid: 13
+    wildcards: taxon=8, method=SICP
+
+[Sun Jan 31 14:20:19 2021]
+Finished job 13.
+26 of 27 steps (96%) done
+Select jobs to execute...
+
+[Sun Jan 31 14:20:19 2021]
+rule create_plots:
+    input: concatenated_summaries/8_BEP.csv, concatenated_summaries/8_SICP.csv, concatenated_summaries/8_SICML.csv
+    output: plots/plot.png
+    jobid: 0
+
+[Sun Jan 31 14:20:20 2021]
+Finished job 0.
+27 of 27 steps (100%) done
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-31T142001.409376.snakemake.log

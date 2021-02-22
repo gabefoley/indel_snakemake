@@ -1,0 +1,111 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	3	clean_indelible
+	1	compile_latex
+	12	concat_fasta
+	2	concat_indelible
+	2	concat_indelible_summaries
+	6	concat_summaries
+	1	generate_latex
+	1	generate_output_dict
+	3	get_indelible_dict
+	11	run_grasp
+	4	summarise_indelible
+	12	summarise_indels
+	58
+Select jobs to execute...
+
+[Mon Feb  1 15:51:19 2021]
+rule concat_indelible:
+    input: indelible_output/8/8_TRUE_2.fasta, indelible_output/8/8_ANCESTRAL_2.fasta
+    output: indelible_output/8/concatenated/8_2.fasta
+    jobid: 46
+    wildcards: taxon=8, rep=2
+
+[Mon Feb  1 15:51:19 2021]
+Finished job 46.
+1 of 58 steps (2%) done
+Select jobs to execute...
+
+[Mon Feb  1 15:51:19 2021]
+rule concat_indelible:
+    input: indelible_output/6/6_TRUE_2.fasta, indelible_output/6/6_ANCESTRAL_2.fasta
+    output: indelible_output/6/concatenated/6_2.fasta
+    jobid: 16
+    wildcards: taxon=6, rep=2
+
+[Mon Feb  1 15:51:19 2021]
+Finished job 16.
+2 of 58 steps (3%) done
+Select jobs to execute...
+
+[Mon Feb  1 15:51:19 2021]
+rule clean_indelible:
+    input: indelible_output/6/N0_trees/2.nwk, indelible_output/6/concatenated/6_2.fasta
+    output: indelible_output/6/cleaned_aln/2.fasta, indelible_output/6/concatenated/2.fasta, indelible_output/6/cleaned_N0_trees/2.nwk
+    jobid: 14
+    wildcards: taxon=6, rep=2
+
+[Mon Feb  1 15:51:20 2021]
+Finished job 14.
+3 of 58 steps (5%) done
+Select jobs to execute...
+
+[Mon Feb  1 15:51:20 2021]
+rule run_grasp:
+    input: indelible_output/6/cleaned_aln/2.fasta, indelible_output/6/cleaned_N0_trees/2.nwk
+    output: grasp_results/6/SICML/2, grasp_results/6/SICML/2/GRASP_ancestors.fasta, grasp_results/6/SICML/2/tree.nwk
+    jobid: 31
+    wildcards: taxon=6, method=SICML, rep=2
+
+[Mon Feb  1 15:51:21 2021]
+Finished job 31.
+4 of 58 steps (7%) done
+Select jobs to execute...
+
+[Mon Feb  1 15:51:21 2021]
+rule get_indelible_dict:
+    input: indelible_output/6/concatenated/2.fasta, indelible_output/6/cleaned_N0_trees/2.nwk
+    output: indelible_dicts/6/leaves_2.p, indelible_dicts/6/gaps_2.p
+    jobid: 18
+    wildcards: taxon=6, rep=2
+
+[Mon Feb  1 15:51:23 2021]
+Finished job 18.
+5 of 58 steps (9%) done
+Select jobs to execute...
+
+[Mon Feb  1 15:51:23 2021]
+rule summarise_indelible:
+    input: indelible_output/6/cleaned_N0_trees/2.nwk, indelible_output/6/concatenated/2.fasta, indelible_output/6/cleaned_N0_trees/2.nwk, indelible_output/6/concatenated/2.fasta, indelible_dicts/6/leaves_2.p, indelible_dicts/6/gaps_2.p
+    output: indelible_summaries/6/2.csv
+    jobid: 65
+    wildcards: taxon=6, rep=2
+
+[Mon Feb  1 15:51:23 2021]
+Error in rule summarise_indelible:
+    jobid: 65
+    output: indelible_summaries/6/2.csv
+
+RuleException:
+URLError in line 138 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+<urlopen error [Errno 2] No such file or directory: '/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/scripts/summarise_indelible.py'>
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2319, in run_wrapper
+  File "/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile", line 138, in __rule_summarise_indelible
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/urllib/request.py", line 214, in urlopen
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/urllib/request.py", line 517, in open
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/urllib/request.py", line 534, in _open
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/urllib/request.py", line 494, in _call_chain
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/urllib/request.py", line 1477, in file_open
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/urllib/request.py", line 1516, in open_local_file
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2350, in run_wrapper
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-02-01T155118.856606.snakemake.log

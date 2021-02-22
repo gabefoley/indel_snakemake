@@ -1,0 +1,143 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	4	clean_fastml_ml
+	4	clean_fastml_parsimony
+	2	clean_indelible
+	1	compile_latex
+	20	concat_fasta
+	5	concat_fastml__ml_summaries
+	4	concat_fastml_summaries
+	2	concat_indelible
+	4	concat_indelible_summaries
+	24	concat_summaries
+	1	generate_latex
+	1	generate_output_dict
+	2	get_indelible_dict
+	2	run_fastml
+	19	run_grasp
+	1	run_indelible
+	5	summarise_fastml_ml_indels
+	4	summarise_fastml_parsimony_indels
+	3	summarise_indelible
+	22	summarise_indels
+	130
+Select jobs to execute...
+
+[Fri Feb  5 14:27:53 2021]
+rule clean_fastml_parsimony:
+    input: fastml_results/10/1/seq.marginal_Chars_ParsimonyIndels.txt, fastml_results/10/1/tree.newick.txt
+    output: fastml_results_parsimony/10/concatenated/1/FastML_ancestors.fasta, fastml_results_parsimony/10/cleaned_trees/1/tree.nwk, fastml_results_parsimony/10/cleaned_N0_trees/1/tree.nwk
+    jobid: 134
+    wildcards: taxon=10, rep=1
+
+[Fri Feb  5 14:27:53 2021]
+rule concat_summaries:
+    input: summaries/10/BEML/1.csv
+    output: concatenated_summaries/10_BEML.csv
+    jobid: 45
+    wildcards: taxon=10, method=BEML
+
+[Fri Feb  5 14:27:53 2021]
+Finished job 45.
+1 of 130 steps (0.77%) done
+Select jobs to execute...
+
+[Fri Feb  5 14:27:53 2021]
+rule summarise_indels:
+    input: grasp_results/50/BEP/1/tree.nwk, grasp_results/concatenated/50/BEP/1/GRASP_ancestors.fasta, indelible_output/50/cleaned_N0_trees/1.nwk, indelible_output/50/concatenated/1.fasta, indelible_dicts/50/leaves_1.p, indelible_dicts/50/gaps_1.p
+    output: summaries/50/BEP/1.csv
+    jobid: 79
+    wildcards: taxon=50, method=BEP, rep=1
+
+[Fri Feb  5 14:27:54 2021]
+Finished job 134.
+2 of 130 steps (2%) done
+Select jobs to execute...
+[Fri Feb  5 14:27:54 2021]
+Finished job 79.
+3 of 130 steps (2%) done
+
+[Fri Feb  5 14:27:54 2021]
+rule run_grasp:
+    input: indelible_output/50/cleaned_aln/1.fasta, indelible_output/50/cleaned_N0_trees/1.nwk
+    output: grasp_results/50/PSP/1, grasp_results/50/PSP/1/GRASP_ancestors.fasta, grasp_results/50/PSP/1/tree.nwk
+    jobid: 101
+    wildcards: taxon=50, method=PSP, rep=1
+
+Select jobs to execute...
+
+[Fri Feb  5 14:27:55 2021]
+rule concat_summaries:
+    input: summaries/50/BEP/1.csv
+    output: concatenated_summaries/50_BEP.csv
+    jobid: 78
+    wildcards: taxon=50, method=BEP
+
+[Fri Feb  5 14:27:55 2021]
+Finished job 78.
+4 of 130 steps (3%) done
+Select jobs to execute...
+
+[Fri Feb  5 14:27:55 2021]
+rule clean_fastml_ml:
+    input: fastml_results/10/1/seq.marginal_IndelAndChars.txt, fastml_results/10/1/tree.newick.txt
+    output: fastml_results_ml/10/concatenated/1/FastML_ancestors.fasta, fastml_results_ml/10/cleaned_trees/1/tree.nwk, fastml_results_ml/10/cleaned_N0_trees/1/tree.nwk
+    jobid: 153
+    wildcards: taxon=10, rep=1
+
+[Fri Feb  5 14:27:56 2021]
+Finished job 153.
+5 of 130 steps (4%) done
+Select jobs to execute...
+
+[Fri Feb  5 14:27:56 2021]
+rule summarise_fastml_ml_indels:
+    input: fastml_results_ml/10/concatenated/1/FastML_ancestors.fasta, fastml_results_ml/10/cleaned_N0_trees/1/tree.nwk, indelible_output/10/cleaned_N0_trees/1.nwk, indelible_output/10/concatenated/1.fasta, indelible_dicts/10/leaves_1.p, indelible_dicts/10/gaps_1.p
+    output: fastml_ml_summaries/10/fastml/1.csv
+    jobid: 152
+    wildcards: taxon=10, rep=1
+
+[Fri Feb  5 14:27:58 2021]
+Finished job 152.
+6 of 130 steps (5%) done
+Select jobs to execute...
+
+[Fri Feb  5 14:27:58 2021]
+rule clean_fastml_ml:
+    input: fastml_results/50/1/seq.marginal_IndelAndChars.txt, fastml_results/50/1/tree.newick.txt
+    output: fastml_results_ml/50/concatenated/1/FastML_ancestors.fasta, fastml_results_ml/50/cleaned_trees/1/tree.nwk, fastml_results_ml/50/cleaned_N0_trees/1/tree.nwk
+    jobid: 159
+    wildcards: taxon=50, rep=1
+
+[Fri Feb  5 14:27:59 2021]
+Finished job 159.
+7 of 130 steps (5%) done
+Select jobs to execute...
+
+[Fri Feb  5 14:27:59 2021]
+rule summarise_fastml_ml_indels:
+    input: fastml_results_ml/50/concatenated/1/FastML_ancestors.fasta, fastml_results_ml/50/cleaned_N0_trees/1/tree.nwk, indelible_output/50/cleaned_N0_trees/1.nwk, indelible_output/50/concatenated/1.fasta, indelible_dicts/50/leaves_1.p, indelible_dicts/50/gaps_1.p
+    output: fastml_ml_summaries/50/fastml/1.csv
+    jobid: 158
+    wildcards: taxon=50, rep=1
+
+[Fri Feb  5 14:27:59 2021]
+Error in rule run_grasp:
+    jobid: 101
+    output: grasp_results/50/PSP/1, grasp_results/50/PSP/1/GRASP_ancestors.fasta, grasp_results/50/PSP/1/tree.nwk
+    shell:
+        grasp -aln indelible_output/50/cleaned_aln/1.fasta -nwk indelible_output/50/cleaned_N0_trees/1.nwk -model LG -out grasp_results/50/PSP/1 -savetree grasp_results/50/PSP/1  -indel PSP -inf joint -gap
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job run_grasp since they might be corrupted:
+grasp_results/50/PSP/1
+[Fri Feb  5 14:28:00 2021]
+Finished job 158.
+8 of 130 steps (6%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-02-05T142753.410702.snakemake.log

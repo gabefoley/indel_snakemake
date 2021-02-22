@@ -1,0 +1,42 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	concat_summaries
+	2	summarise_indels
+	3
+Select jobs to execute...
+
+[Fri Jan 29 14:15:43 2021]
+rule summarise_indels:
+    input: grasp_results/4/BEP/1/tree.nwk, grasp_results/concatenated/4/BEP/1/GRASP_ancestors.fasta
+    output: summaries/4/BEP/1.csv
+    jobid: 1
+    wildcards: taxon=4, method=BEP, rep=1
+
+[Fri Jan 29 14:15:44 2021]
+Finished job 1.
+1 of 3 steps (33%) done
+Select jobs to execute...
+
+[Fri Jan 29 14:15:44 2021]
+rule summarise_indels:
+    input: grasp_results/4/BEP/2/tree.nwk, grasp_results/concatenated/4/BEP/2/GRASP_ancestors.fasta
+    output: summaries/4/BEP/2.csv
+    jobid: 7
+    wildcards: taxon=4, method=BEP, rep=2
+
+[Fri Jan 29 14:15:44 2021]
+Finished job 7.
+2 of 3 steps (67%) done
+Select jobs to execute...
+
+[Fri Jan 29 14:15:44 2021]
+rule concat_summaries:
+    input: summaries/4/BEP/1.csv, summaries/4/BEP/2.csv
+    output: concatenated_summaries/4_BEP.csv
+    jobid: 0
+    wildcards: taxon=4, method=BEP
+

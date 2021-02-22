@@ -1,0 +1,65 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	2	create_control_files
+	4	run_indelible
+	4	split_trees
+	11
+Select jobs to execute...
+
+[Sun Jan 24 23:57:14 2021]
+rule create_control_files:
+    output: indelible/40_control.txt
+    jobid: 3
+    wildcards: taxon=40
+
+[Sun Jan 24 23:57:14 2021]
+Finished job 3.
+1 of 11 steps (9%) done
+Select jobs to execute...
+
+[Sun Jan 24 23:57:14 2021]
+rule create_control_files:
+    output: indelible/80_control.txt
+    jobid: 8
+    wildcards: taxon=80
+
+[Sun Jan 24 23:57:15 2021]
+Finished job 8.
+2 of 11 steps (18%) done
+Select jobs to execute...
+
+[Sun Jan 24 23:57:15 2021]
+rule run_indelible:
+    input: indelible/80_control.txt
+    output: indelible_output/80/80_TRUE_2.fasta
+    jobid: 10
+    wildcards: taxon=80, rep=2
+
+[Sun Jan 24 23:57:15 2021]
+Finished job 10.
+3 of 11 steps (27%) done
+Select jobs to execute...
+
+[Sun Jan 24 23:57:15 2021]
+rule split_trees:
+    input: indelible_output/80/80_TRUE_2.fasta
+    output: indelible_output/80/cleaned_trees/80_tree_2.nwk
+    jobid: 9
+    wildcards: taxon=80, rep=2
+
+Waiting at most 5 seconds for missing files.
+MissingOutputException in line 25 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Job Missing files after 5 seconds:
+indelible_output/80/cleaned_trees/80_tree_2.nwk
+This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait.
+Job id: 9 completed successfully, but some output files are missing. 9
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 583, in handle_job_success
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 252, in handle_job_success
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-24T235714.289874.snakemake.log

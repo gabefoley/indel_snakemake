@@ -1,0 +1,231 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	4	clean_fastml_ml
+	4	clean_fastml_parsimony
+	4	clean_indelible
+	1	compile_latex
+	20	concat_fasta
+	4	concat_fastml__ml_summaries
+	4	concat_fastml_summaries
+	4	concat_indelible
+	4	concat_indelible_summaries
+	20	concat_summaries
+	4	create_control_files
+	1	generate_latex
+	1	generate_output_dict
+	4	get_indelible_dict
+	4	run_fastml
+	20	run_grasp
+	4	run_indelible
+	4	summarise_fastml_ml_indels
+	4	summarise_fastml_parsimony_indels
+	4	summarise_indelible
+	20	summarise_indels
+	139
+Select jobs to execute...
+
+[Fri Feb  5 15:42:37 2021]
+rule create_control_files:
+    output: indelible/50_control.txt
+    jobid: 108
+    wildcards: taxon=50
+
+[Fri Feb  5 15:42:37 2021]
+rule create_control_files:
+    output: indelible/200_control.txt
+    jobid: 183
+    wildcards: taxon=200
+
+[Fri Feb  5 15:42:37 2021]
+Finished job 183.
+1 of 139 steps (0.72%) done
+[Fri Feb  5 15:42:37 2021]
+Finished job 108.
+2 of 139 steps (1%) done
+Select jobs to execute...
+
+[Fri Feb  5 15:42:37 2021]
+rule run_indelible:
+    input: indelible/200_control.txt
+    output: indelible_output/200/trees/1.nwk, indelible_output/200/200_TRUE_1.fasta, indelible_output/200/200_ANCESTRAL_1.fasta, indelible_output/200/N0_trees/1.nwk
+    jobid: 182
+    wildcards: taxon=200, rep=1
+
+[Fri Feb  5 15:42:37 2021]
+rule run_indelible:
+    input: indelible/50_control.txt
+    output: indelible_output/50/trees/1.nwk, indelible_output/50/50_TRUE_1.fasta, indelible_output/50/50_ANCESTRAL_1.fasta, indelible_output/50/N0_trees/1.nwk
+    jobid: 107
+    wildcards: taxon=50, rep=1
+
+Select jobs to execute...
+[Fri Feb  5 15:42:39 2021]
+Finished job 107.
+3 of 139 steps (2%) done
+Select jobs to execute...
+
+[Fri Feb  5 15:42:39 2021]
+rule create_control_files:
+    output: indelible/100_control.txt
+    jobid: 158
+    wildcards: taxon=100
+
+[Fri Feb  5 15:42:39 2021]
+Finished job 182.
+4 of 139 steps (3%) done
+Select jobs to execute...
+
+[Fri Feb  5 15:42:39 2021]
+rule concat_indelible:
+    input: indelible_output/200/200_TRUE_1.fasta, indelible_output/200/200_ANCESTRAL_1.fasta
+    output: indelible_output/200/concatenated/200_1.fasta
+    jobid: 184
+    wildcards: taxon=200, rep=1
+
+[Fri Feb  5 15:42:39 2021]
+Finished job 184.
+5 of 139 steps (4%) done
+Select jobs to execute...
+
+[Fri Feb  5 15:42:39 2021]
+rule create_control_files:
+    output: indelible/75_control.txt
+    jobid: 133
+    wildcards: taxon=75
+
+[Fri Feb  5 15:42:39 2021]
+Finished job 158.
+6 of 139 steps (4%) done
+Select jobs to execute...
+
+[Fri Feb  5 15:42:39 2021]
+rule run_indelible:
+    input: indelible/100_control.txt
+    output: indelible_output/100/trees/1.nwk, indelible_output/100/100_TRUE_1.fasta, indelible_output/100/100_ANCESTRAL_1.fasta, indelible_output/100/N0_trees/1.nwk
+    jobid: 157
+    wildcards: taxon=100, rep=1
+
+[Fri Feb  5 15:42:40 2021]
+Finished job 133.
+7 of 139 steps (5%) done
+Select jobs to execute...
+
+[Fri Feb  5 15:42:40 2021]
+rule concat_indelible:
+    input: indelible_output/50/50_TRUE_1.fasta, indelible_output/50/50_ANCESTRAL_1.fasta
+    output: indelible_output/50/concatenated/50_1.fasta
+    jobid: 109
+    wildcards: taxon=50, rep=1
+
+[Fri Feb  5 15:42:40 2021]
+Finished job 109.
+8 of 139 steps (6%) done
+Select jobs to execute...
+
+[Fri Feb  5 15:42:40 2021]
+rule clean_indelible:
+    input: indelible_output/200/N0_trees/1.nwk, indelible_output/200/concatenated/200_1.fasta
+    output: indelible_output/200/cleaned_aln/1.fasta, indelible_output/200/concatenated/1.fasta, indelible_output/200/cleaned_trees/1.nwk, indelible_output/200/cleaned_N0_trees/1.nwk, indelible_output/200/cleaned_no_internal_trees/1.nwk
+    jobid: 181
+    wildcards: taxon=200, rep=1
+
+[Fri Feb  5 15:42:41 2021]
+Finished job 157.
+9 of 139 steps (6%) done
+Select jobs to execute...
+
+[Fri Feb  5 15:42:41 2021]
+rule concat_indelible:
+    input: indelible_output/100/100_TRUE_1.fasta, indelible_output/100/100_ANCESTRAL_1.fasta
+    output: indelible_output/100/concatenated/100_1.fasta
+    jobid: 159
+    wildcards: taxon=100, rep=1
+
+[Fri Feb  5 15:42:41 2021]
+Finished job 159.
+10 of 139 steps (7%) done
+Select jobs to execute...
+
+[Fri Feb  5 15:42:41 2021]
+rule clean_indelible:
+    input: indelible_output/100/N0_trees/1.nwk, indelible_output/100/concatenated/100_1.fasta
+    output: indelible_output/100/cleaned_aln/1.fasta, indelible_output/100/concatenated/1.fasta, indelible_output/100/cleaned_trees/1.nwk, indelible_output/100/cleaned_N0_trees/1.nwk, indelible_output/100/cleaned_no_internal_trees/1.nwk
+    jobid: 156
+    wildcards: taxon=100, rep=1
+
+[Fri Feb  5 15:42:41 2021]
+Finished job 181.
+11 of 139 steps (8%) done
+Select jobs to execute...
+
+[Fri Feb  5 15:42:41 2021]
+rule run_fastml:
+    input: indelible_output/200/cleaned_aln/1.fasta, indelible_output/200/cleaned_no_internal_trees/1.nwk
+    output: fastml_results/200/1/seq.marginal_Chars_ParsimonyIndels.txt, fastml_results/200/1/seq.marginal_IndelAndChars.txt, fastml_results/200/1/tree.newick.txt, fastml_results/200/1
+    jobid: 234
+    wildcards: taxon=200, rep=1
+
+[Fri Feb  5 15:42:43 2021]
+Finished job 156.
+12 of 139 steps (9%) done
+Select jobs to execute...
+
+[Fri Feb  5 15:42:43 2021]
+rule clean_indelible:
+    input: indelible_output/50/N0_trees/1.nwk, indelible_output/50/concatenated/50_1.fasta
+    output: indelible_output/50/cleaned_aln/1.fasta, indelible_output/50/concatenated/1.fasta, indelible_output/50/cleaned_trees/1.nwk, indelible_output/50/cleaned_N0_trees/1.nwk, indelible_output/50/cleaned_no_internal_trees/1.nwk
+    jobid: 106
+    wildcards: taxon=50, rep=1
+
+[Fri Feb  5 15:42:44 2021]
+Finished job 106.
+13 of 139 steps (9%) done
+Select jobs to execute...
+
+[Fri Feb  5 15:42:44 2021]
+rule run_grasp:
+    input: indelible_output/100/cleaned_aln/1.fasta, indelible_output/100/cleaned_N0_trees/1.nwk
+    output: grasp_results/100/SICML/1, grasp_results/100/SICML/1/GRASP_ancestors.fasta, grasp_results/100/SICML/1/tree.nwk
+    jobid: 168
+    wildcards: taxon=100, method=SICML, rep=1
+
+[Fri Feb  5 15:42:55 2021]
+Finished job 168.
+14 of 139 steps (10%) done
+Select jobs to execute...
+
+[Fri Feb  5 15:42:55 2021]
+rule run_grasp:
+    input: indelible_output/100/cleaned_aln/1.fasta, indelible_output/100/cleaned_N0_trees/1.nwk
+    output: grasp_results/100/PSP/1, grasp_results/100/PSP/1/GRASP_ancestors.fasta, grasp_results/100/PSP/1/tree.nwk
+    jobid: 176
+    wildcards: taxon=100, method=PSP, rep=1
+
+[Fri Feb  5 15:43:03 2021]
+Error in rule run_grasp:
+    jobid: 176
+    output: grasp_results/100/PSP/1, grasp_results/100/PSP/1/GRASP_ancestors.fasta, grasp_results/100/PSP/1/tree.nwk
+    shell:
+        grasp -aln indelible_output/100/cleaned_aln/1.fasta -nwk indelible_output/100/cleaned_N0_trees/1.nwk -model LG -out grasp_results/100/PSP/1 -savetree grasp_results/100/PSP/1  -indel PSP -inf joint -gap
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job run_grasp since they might be corrupted:
+grasp_results/100/PSP/1
+Terminating processes on user request, this might take some time.
+Waiting at most 1 seconds for missing files.
+MissingOutputException in line 53 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Job Missing files after 1 seconds:
+fastml_results/200/1/seq.marginal_Chars_ParsimonyIndels.txt
+fastml_results/200/1/seq.marginal_IndelAndChars.txt
+fastml_results/200/1/tree.newick.txt
+This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait.
+Job id: 234 completed successfully, but some output files are missing. 234
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 583, in handle_job_success
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 252, in handle_job_success
+Removing output files of failed job run_fastml since they might be corrupted:
+fastml_results/200/1
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-02-05T154237.053400.snakemake.log

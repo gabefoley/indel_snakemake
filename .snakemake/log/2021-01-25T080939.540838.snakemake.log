@@ -1,0 +1,58 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	4	clean_fasta
+	2	create_control_files
+	4	dummy_rule
+	2	run_indelible
+	4	split_trees
+	17
+Select jobs to execute...
+
+[Mon Jan 25 08:09:39 2021]
+rule create_control_files:
+    output: indelible/40_control.txt
+    jobid: 3
+    wildcards: taxon=40
+
+[Mon Jan 25 08:09:39 2021]
+Finished job 3.
+1 of 17 steps (6%) done
+Select jobs to execute...
+
+[Mon Jan 25 08:09:39 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/trees.txt, indelible_output/40/LOG.txt
+    jobid: 2
+    wildcards: taxon=40
+
+[Mon Jan 25 08:09:40 2021]
+Finished job 2.
+2 of 17 steps (12%) done
+Select jobs to execute...
+
+[Mon Jan 25 08:09:40 2021]
+rule dummy_rule:
+    input: indelible_output/40/LOG.txt
+    output: indelible_output/40/40_TRUE_1.fasta
+    jobid: 10
+    wildcards: taxon=40, rep=1
+
+Warning: the following output files of rule dummy_rule were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_1.fasta'}
+Waiting at most 5 seconds for missing files.
+MissingOutputException in line 29 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Job Missing files after 5 seconds:
+indelible_output/40/40_TRUE_1.fasta
+This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait.
+Job id: 10 completed successfully, but some output files are missing. 10
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 583, in handle_job_success
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 252, in handle_job_success
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-25T080939.540838.snakemake.log

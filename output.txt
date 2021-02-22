@@ -1,0 +1,1197 @@
+Building DAG of jobs...
+Job counts:
+	count	jobs
+	8	clean_fastml
+	8	clean_indelible
+	1	compile_latex
+	24	concat_fasta
+	3	concat_fastml_summaries
+	8	concat_indelible
+	3	concat_indelible_summaries
+	9	concat_summaries
+	2	create_control_files
+	1	generate_latex
+	1	generate_output_dict
+	8	get_indelible_dict
+	8	run_fastml
+	24	run_grasp
+	6	run_indelible
+	8	summarise_fastml_indels
+	8	summarise_indelible
+	24	summarise_indels
+	154
+
+[Tue Feb  2 12:54:32 2021]
+rule create_control_files:
+    output: indelible/10_control.txt
+    jobid: 51
+    wildcards: taxon=10
+
+[Tue Feb  2 12:54:32 2021]
+rule create_control_files:
+    output: indelible/25_control.txt
+    jobid: 94
+    wildcards: taxon=25
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_indelible:
+    input: indelible_output/5/5_TRUE_1.fasta, indelible_output/5/5_ANCESTRAL_1.fasta
+    output: indelible_output/5/concatenated/5_1.fasta
+    jobid: 9
+    wildcards: taxon=5, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_indelible:
+    input: indelible_output/5/5_TRUE_3.fasta, indelible_output/5/5_ANCESTRAL_3.fasta
+    output: indelible_output/5/concatenated/5_3.fasta
+    jobid: 23
+    wildcards: taxon=5, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_indelible:
+    input: indelible/25_control.txt
+    output: indelible_output/25/trees/1.nwk, indelible_output/25/25_TRUE_1.fasta, indelible_output/25/25_ANCESTRAL_1.fasta, indelible_output/25/N0_trees/1.nwk
+    jobid: 93
+    wildcards: taxon=25, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule run_indelible:
+    input: indelible/25_control.txt
+    output: indelible_output/25/trees/3.nwk, indelible_output/25/25_TRUE_3.fasta, indelible_output/25/25_ANCESTRAL_3.fasta, indelible_output/25/N0_trees/3.nwk
+    jobid: 108
+    wildcards: taxon=25, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule run_indelible:
+    input: indelible/25_control.txt
+    output: indelible_output/25/trees/2.nwk, indelible_output/25/25_TRUE_2.fasta, indelible_output/25/25_ANCESTRAL_2.fasta, indelible_output/25/N0_trees/2.nwk
+    jobid: 101
+    wildcards: taxon=25, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule run_indelible:
+    input: indelible/10_control.txt
+    output: indelible_output/10/trees/2.nwk, indelible_output/10/10_TRUE_2.fasta, indelible_output/10/10_ANCESTRAL_2.fasta, indelible_output/10/N0_trees/2.nwk
+    jobid: 58
+    wildcards: taxon=10, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule run_indelible:
+    input: indelible/10_control.txt
+    output: indelible_output/10/trees/1.nwk, indelible_output/10/10_TRUE_1.fasta, indelible_output/10/10_ANCESTRAL_1.fasta, indelible_output/10/N0_trees/1.nwk
+    jobid: 50
+    wildcards: taxon=10, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule run_indelible:
+    input: indelible/10_control.txt
+    output: indelible_output/10/trees/3.nwk, indelible_output/10/10_TRUE_3.fasta, indelible_output/10/10_ANCESTRAL_3.fasta, indelible_output/10/N0_trees/3.nwk
+    jobid: 65
+    wildcards: taxon=10, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule clean_indelible:
+    input: indelible_output/5/N0_trees/1.nwk, indelible_output/5/concatenated/5_1.fasta
+    output: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/concatenated/1.fasta, indelible_output/5/cleaned_trees/1.nwk, indelible_output/5/cleaned_N0_trees/1.nwk, indelible_output/5/cleaned_no_internal_trees/1.nwk
+    jobid: 6
+    wildcards: taxon=5, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule clean_indelible:
+    input: indelible_output/5/N0_trees/3.nwk, indelible_output/5/concatenated/5_3.fasta
+    output: indelible_output/5/cleaned_aln/3.fasta, indelible_output/5/concatenated/3.fasta, indelible_output/5/cleaned_trees/3.nwk, indelible_output/5/cleaned_N0_trees/3.nwk, indelible_output/5/cleaned_no_internal_trees/3.nwk
+    jobid: 21
+    wildcards: taxon=5, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_indelible:
+    input: indelible_output/25/25_TRUE_2.fasta, indelible_output/25/25_ANCESTRAL_2.fasta
+    output: indelible_output/25/concatenated/25_2.fasta
+    jobid: 102
+    wildcards: taxon=25, rep=2
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_indelible:
+    input: indelible_output/25/25_TRUE_1.fasta, indelible_output/25/25_ANCESTRAL_1.fasta
+    output: indelible_output/25/concatenated/25_1.fasta
+    jobid: 95
+    wildcards: taxon=25, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_indelible:
+    input: indelible_output/25/25_TRUE_3.fasta, indelible_output/25/25_ANCESTRAL_3.fasta
+    output: indelible_output/25/concatenated/25_3.fasta
+    jobid: 109
+    wildcards: taxon=25, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/3.fasta, indelible_output/5/cleaned_N0_trees/3.nwk
+    output: grasp_results/5/SICML/3, grasp_results/5/SICML/3/GRASP_ancestors.fasta, grasp_results/5/SICML/3/tree.nwk
+    jobid: 44
+    wildcards: taxon=5, method=SICML, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/3.fasta, indelible_output/5/cleaned_N0_trees/3.nwk
+    output: grasp_results/5/SICP/3, grasp_results/5/SICP/3/GRASP_ancestors.fasta, grasp_results/5/SICP/3/tree.nwk
+    jobid: 34
+    wildcards: taxon=5, method=SICP, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_indelible:
+    input: indelible_output/10/10_TRUE_2.fasta, indelible_output/10/10_ANCESTRAL_2.fasta
+    output: indelible_output/10/concatenated/10_2.fasta
+    jobid: 59
+    wildcards: taxon=10, rep=2
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_indelible:
+    input: indelible_output/10/10_TRUE_1.fasta, indelible_output/10/10_ANCESTRAL_1.fasta
+    output: indelible_output/10/concatenated/10_1.fasta
+    jobid: 52
+    wildcards: taxon=10, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_indelible:
+    input: indelible_output/10/10_TRUE_3.fasta, indelible_output/10/10_ANCESTRAL_3.fasta
+    output: indelible_output/10/concatenated/10_3.fasta
+    jobid: 66
+    wildcards: taxon=10, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/cleaned_N0_trees/1.nwk
+    output: grasp_results/5/BEP/1, grasp_results/5/BEP/1/GRASP_ancestors.fasta, grasp_results/5/BEP/1/tree.nwk
+    jobid: 5
+    wildcards: taxon=5, method=BEP, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule get_indelible_dict:
+    input: indelible_output/5/concatenated/1.fasta, indelible_output/5/cleaned_N0_trees/1.nwk
+    output: indelible_dicts/5/leaves_1.p, indelible_dicts/5/gaps_1.p
+    jobid: 11
+    wildcards: taxon=5, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/cleaned_N0_trees/1.nwk
+    output: grasp_results/5/SICML/1, grasp_results/5/SICML/1/GRASP_ancestors.fasta, grasp_results/5/SICML/1/tree.nwk
+    jobid: 38
+    wildcards: taxon=5, method=SICML, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/3.fasta, indelible_output/5/cleaned_N0_trees/3.nwk
+    output: grasp_results/5/BEP/3, grasp_results/5/BEP/3/GRASP_ancestors.fasta, grasp_results/5/BEP/3/tree.nwk
+    jobid: 20
+    wildcards: taxon=5, method=BEP, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule get_indelible_dict:
+    input: indelible_output/5/concatenated/3.fasta, indelible_output/5/cleaned_N0_trees/3.nwk
+    output: indelible_dicts/5/leaves_3.p, indelible_dicts/5/gaps_3.p
+    jobid: 25
+    wildcards: taxon=5, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule run_fastml:
+    input: indelible_output/5/cleaned_aln/3.fasta, indelible_output/5/cleaned_no_internal_trees/3.nwk
+    output: fastml_results/5/3/seq.joint.txt, fastml_results/5/3/tree.newick.txt, fastml_results/5/3
+    jobid: 141
+    wildcards: taxon=5, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/cleaned_N0_trees/1.nwk
+    output: grasp_results/5/SICP/1, grasp_results/5/SICP/1/GRASP_ancestors.fasta, grasp_results/5/SICP/1/tree.nwk
+    jobid: 28
+    wildcards: taxon=5, method=SICP, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_fastml:
+    input: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/cleaned_no_internal_trees/1.nwk
+    output: fastml_results/5/1/seq.joint.txt, fastml_results/5/1/tree.newick.txt, fastml_results/5/1
+    jobid: 135
+    wildcards: taxon=5, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule clean_indelible:
+    input: indelible_output/25/N0_trees/3.nwk, indelible_output/25/concatenated/25_3.fasta
+    output: indelible_output/25/cleaned_aln/3.fasta, indelible_output/25/concatenated/3.fasta, indelible_output/25/cleaned_trees/3.nwk, indelible_output/25/cleaned_N0_trees/3.nwk, indelible_output/25/cleaned_no_internal_trees/3.nwk
+    jobid: 107
+    wildcards: taxon=25, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule clean_indelible:
+    input: indelible_output/25/N0_trees/1.nwk, indelible_output/25/concatenated/25_1.fasta
+    output: indelible_output/25/cleaned_aln/1.fasta, indelible_output/25/concatenated/1.fasta, indelible_output/25/cleaned_trees/1.nwk, indelible_output/25/cleaned_N0_trees/1.nwk, indelible_output/25/cleaned_no_internal_trees/1.nwk
+    jobid: 92
+    wildcards: taxon=25, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/1.fasta, grasp_results/5/BEP/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/BEP/1/GRASP_ancestors.fasta
+    jobid: 10
+    wildcards: taxon=5, method=BEP, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indelible:
+    input: indelible_output/5/cleaned_N0_trees/1.nwk, indelible_output/5/concatenated/1.fasta, indelible_output/5/cleaned_N0_trees/1.nwk, indelible_output/5/concatenated/1.fasta, indelible_dicts/5/leaves_1.p, indelible_dicts/5/gaps_1.p
+    output: indelible_summaries/5/1.csv
+    jobid: 163
+    wildcards: taxon=5, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/3.fasta, grasp_results/5/BEP/3/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/BEP/3/GRASP_ancestors.fasta
+    jobid: 24
+    wildcards: taxon=5, method=BEP, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule clean_fastml:
+    input: fastml_results/5/3/seq.joint.txt, fastml_results/5/3/tree.newick.txt
+    output: fastml_results/5/concatenated/3/FastML_ancestors.fasta, fastml_results/5/cleaned_N0_trees/3/tree.nwk
+    jobid: 140
+    wildcards: taxon=5, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/1.fasta, grasp_results/5/SICP/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/SICP/1/GRASP_ancestors.fasta
+    jobid: 29
+    wildcards: taxon=5, method=SICP, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/3.fasta, grasp_results/5/SICML/3/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/SICML/3/GRASP_ancestors.fasta
+    jobid: 45
+    wildcards: taxon=5, method=SICML, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule clean_indelible:
+    input: indelible_output/25/N0_trees/2.nwk, indelible_output/25/concatenated/25_2.fasta
+    output: indelible_output/25/cleaned_aln/2.fasta, indelible_output/25/concatenated/2.fasta, indelible_output/25/cleaned_trees/2.nwk, indelible_output/25/cleaned_N0_trees/2.nwk, indelible_output/25/cleaned_no_internal_trees/2.nwk
+    jobid: 100
+    wildcards: taxon=25, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule clean_fastml:
+    input: fastml_results/5/1/seq.joint.txt, fastml_results/5/1/tree.newick.txt
+    output: fastml_results/5/concatenated/1/FastML_ancestors.fasta, fastml_results/5/cleaned_N0_trees/1/tree.nwk
+    jobid: 134
+    wildcards: taxon=5, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/3.fasta, grasp_results/5/SICP/3/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/SICP/3/GRASP_ancestors.fasta
+    jobid: 35
+    wildcards: taxon=5, method=SICP, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule clean_indelible:
+    input: indelible_output/10/N0_trees/1.nwk, indelible_output/10/concatenated/10_1.fasta
+    output: indelible_output/10/cleaned_aln/1.fasta, indelible_output/10/concatenated/1.fasta, indelible_output/10/cleaned_trees/1.nwk, indelible_output/10/cleaned_N0_trees/1.nwk, indelible_output/10/cleaned_no_internal_trees/1.nwk
+    jobid: 49
+    wildcards: taxon=10, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule clean_indelible:
+    input: indelible_output/10/N0_trees/3.nwk, indelible_output/10/concatenated/10_3.fasta
+    output: indelible_output/10/cleaned_aln/3.fasta, indelible_output/10/concatenated/3.fasta, indelible_output/10/cleaned_trees/3.nwk, indelible_output/10/cleaned_N0_trees/3.nwk, indelible_output/10/cleaned_no_internal_trees/3.nwk
+    jobid: 64
+    wildcards: taxon=10, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indelible:
+    input: indelible_output/5/cleaned_N0_trees/3.nwk, indelible_output/5/concatenated/3.fasta, indelible_output/5/cleaned_N0_trees/3.nwk, indelible_output/5/concatenated/3.fasta, indelible_dicts/5/leaves_3.p, indelible_dicts/5/gaps_3.p
+    output: indelible_summaries/5/3.csv
+    jobid: 165
+    wildcards: taxon=5, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule clean_indelible:
+    input: indelible_output/10/N0_trees/2.nwk, indelible_output/10/concatenated/10_2.fasta
+    output: indelible_output/10/cleaned_aln/2.fasta, indelible_output/10/concatenated/2.fasta, indelible_output/10/cleaned_trees/2.nwk, indelible_output/10/cleaned_N0_trees/2.nwk, indelible_output/10/cleaned_no_internal_trees/2.nwk
+    jobid: 57
+    wildcards: taxon=10, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/1.fasta, grasp_results/5/SICML/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/SICML/1/GRASP_ancestors.fasta
+    jobid: 39
+    wildcards: taxon=5, method=SICML, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_fastml_indels:
+    input: fastml_results/5/concatenated/1/FastML_ancestors.fasta, fastml_results/5/cleaned_N0_trees/1/tree.nwk, indelible_output/5/cleaned_N0_trees/1.nwk, indelible_output/5/concatenated/1.fasta, indelible_dicts/5/leaves_1.p, indelible_dicts/5/gaps_1.p
+    output: fastml_summaries/5/fastml/1.csv
+    jobid: 133
+    wildcards: taxon=5, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule get_indelible_dict:
+    input: indelible_output/10/concatenated/1.fasta, indelible_output/10/cleaned_N0_trees/1.nwk
+    output: indelible_dicts/10/leaves_1.p, indelible_dicts/10/gaps_1.p
+    jobid: 54
+    wildcards: taxon=10, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/1.fasta, indelible_output/10/cleaned_N0_trees/1.nwk
+    output: grasp_results/10/SICML/1, grasp_results/10/SICML/1/GRASP_ancestors.fasta, grasp_results/10/SICML/1/tree.nwk
+    jobid: 81
+    wildcards: taxon=10, method=SICML, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule get_indelible_dict:
+    input: indelible_output/10/concatenated/3.fasta, indelible_output/10/cleaned_N0_trees/3.nwk
+    output: indelible_dicts/10/leaves_3.p, indelible_dicts/10/gaps_3.p
+    jobid: 68
+    wildcards: taxon=10, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule get_indelible_dict:
+    input: indelible_output/10/concatenated/2.fasta, indelible_output/10/cleaned_N0_trees/2.nwk
+    output: indelible_dicts/10/leaves_2.p, indelible_dicts/10/gaps_2.p
+    jobid: 61
+    wildcards: taxon=10, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/2.fasta, indelible_output/10/cleaned_N0_trees/2.nwk
+    output: grasp_results/10/SICP/2, grasp_results/10/SICP/2/GRASP_ancestors.fasta, grasp_results/10/SICP/2/tree.nwk
+    jobid: 74
+    wildcards: taxon=10, method=SICP, rep=2
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/25/cleaned_aln/3.fasta, indelible_output/25/cleaned_N0_trees/3.nwk
+    output: grasp_results/25/SICP/3, grasp_results/25/SICP/3/GRASP_ancestors.fasta, grasp_results/25/SICP/3/tree.nwk
+    jobid: 120
+    wildcards: taxon=25, method=SICP, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_fastml:
+    input: indelible_output/25/cleaned_aln/1.fasta, indelible_output/25/cleaned_no_internal_trees/1.nwk
+    output: fastml_results/25/1/seq.joint.txt, fastml_results/25/1/tree.newick.txt, fastml_results/25/1
+    jobid: 155
+    wildcards: taxon=25, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_fastml:
+    input: indelible_output/10/cleaned_aln/2.fasta, indelible_output/10/cleaned_no_internal_trees/2.nwk
+    output: fastml_results/10/2/seq.joint.txt, fastml_results/10/2/tree.newick.txt, fastml_results/10/2
+    jobid: 148
+    wildcards: taxon=10, rep=2
+
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/5/SICML/1/tree.nwk, grasp_results/concatenated/5/SICML/1/GRASP_ancestors.fasta, indelible_output/5/cleaned_N0_trees/1.nwk, indelible_output/5/concatenated/1.fasta, indelible_dicts/5/leaves_1.p, indelible_dicts/5/gaps_1.p
+    output: summaries/5/SICML/1.csv
+    jobid: 37
+    wildcards: taxon=5, method=SICML, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/25/cleaned_aln/3.fasta, indelible_output/25/cleaned_N0_trees/3.nwk
+    output: grasp_results/25/BEP/3, grasp_results/25/BEP/3/GRASP_ancestors.fasta, grasp_results/25/BEP/3/tree.nwk
+    jobid: 106
+    wildcards: taxon=25, method=BEP, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/25/cleaned_aln/1.fasta, indelible_output/25/cleaned_N0_trees/1.nwk
+    output: grasp_results/25/BEP/1, grasp_results/25/BEP/1/GRASP_ancestors.fasta, grasp_results/25/BEP/1/tree.nwk
+    jobid: 91
+    wildcards: taxon=25, method=BEP, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/25/cleaned_aln/2.fasta, indelible_output/25/cleaned_N0_trees/2.nwk
+    output: grasp_results/25/SICML/2, grasp_results/25/SICML/2/GRASP_ancestors.fasta, grasp_results/25/SICML/2/tree.nwk
+    jobid: 127
+    wildcards: taxon=25, method=SICML, rep=2
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/25/cleaned_aln/1.fasta, indelible_output/25/cleaned_N0_trees/1.nwk
+    output: grasp_results/25/SICP/1, grasp_results/25/SICP/1/GRASP_ancestors.fasta, grasp_results/25/SICP/1/tree.nwk
+    jobid: 114
+    wildcards: taxon=25, method=SICP, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/25/cleaned_aln/2.fasta, indelible_output/25/cleaned_N0_trees/2.nwk
+    output: grasp_results/25/BEP/2, grasp_results/25/BEP/2/GRASP_ancestors.fasta, grasp_results/25/BEP/2/tree.nwk
+    jobid: 99
+    wildcards: taxon=25, method=BEP, rep=2
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/3.fasta, indelible_output/10/cleaned_N0_trees/3.nwk
+    output: grasp_results/10/SICP/3, grasp_results/10/SICP/3/GRASP_ancestors.fasta, grasp_results/10/SICP/3/tree.nwk
+    jobid: 77
+    wildcards: taxon=10, method=SICP, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/2.fasta, indelible_output/10/cleaned_N0_trees/2.nwk
+    output: grasp_results/10/SICML/2, grasp_results/10/SICML/2/GRASP_ancestors.fasta, grasp_results/10/SICML/2/tree.nwk
+    jobid: 84
+    wildcards: taxon=10, method=SICML, rep=2
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_fastml:
+    input: indelible_output/25/cleaned_aln/2.fasta, indelible_output/25/cleaned_no_internal_trees/2.nwk
+    output: fastml_results/25/2/seq.joint.txt, fastml_results/25/2/tree.newick.txt, fastml_results/25/2
+    jobid: 158
+    wildcards: taxon=25, rep=2
+
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/5/SICP/3/tree.nwk, grasp_results/concatenated/5/SICP/3/GRASP_ancestors.fasta, indelible_output/5/cleaned_N0_trees/3.nwk, indelible_output/5/concatenated/3.fasta, indelible_dicts/5/leaves_3.p, indelible_dicts/5/gaps_3.p
+    output: summaries/5/SICP/3.csv
+    jobid: 33
+    wildcards: taxon=5, method=SICP, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/1.fasta, indelible_output/10/cleaned_N0_trees/1.nwk
+    output: grasp_results/10/BEP/1, grasp_results/10/BEP/1/GRASP_ancestors.fasta, grasp_results/10/BEP/1/tree.nwk
+    jobid: 48
+    wildcards: taxon=10, method=BEP, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/3.fasta, indelible_output/10/cleaned_N0_trees/3.nwk
+    output: grasp_results/10/BEP/3, grasp_results/10/BEP/3/GRASP_ancestors.fasta, grasp_results/10/BEP/3/tree.nwk
+    jobid: 63
+    wildcards: taxon=10, method=BEP, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_fastml:
+    input: indelible_output/10/cleaned_aln/3.fasta, indelible_output/10/cleaned_no_internal_trees/3.nwk
+    output: fastml_results/10/3/seq.joint.txt, fastml_results/10/3/tree.newick.txt, fastml_results/10/3
+    jobid: 151
+    wildcards: taxon=10, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_fastml_indels:
+    input: fastml_results/5/concatenated/3/FastML_ancestors.fasta, fastml_results/5/cleaned_N0_trees/3/tree.nwk, indelible_output/5/cleaned_N0_trees/3.nwk, indelible_output/5/concatenated/3.fasta, indelible_dicts/5/leaves_3.p, indelible_dicts/5/gaps_3.p
+    output: fastml_summaries/5/fastml/3.csv
+    jobid: 139
+    wildcards: taxon=5, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule get_indelible_dict:
+    input: indelible_output/25/concatenated/3.fasta, indelible_output/25/cleaned_N0_trees/3.nwk
+    output: indelible_dicts/25/leaves_3.p, indelible_dicts/25/gaps_3.p
+    jobid: 111
+    wildcards: taxon=25, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/25/cleaned_aln/3.fasta, indelible_output/25/cleaned_N0_trees/3.nwk
+    output: grasp_results/25/SICML/3, grasp_results/25/SICML/3/GRASP_ancestors.fasta, grasp_results/25/SICML/3/tree.nwk
+    jobid: 130
+    wildcards: taxon=25, method=SICML, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule get_indelible_dict:
+    input: indelible_output/25/concatenated/1.fasta, indelible_output/25/cleaned_N0_trees/1.nwk
+    output: indelible_dicts/25/leaves_1.p, indelible_dicts/25/gaps_1.p
+    jobid: 97
+    wildcards: taxon=25, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/25/cleaned_aln/1.fasta, indelible_output/25/cleaned_N0_trees/1.nwk
+    output: grasp_results/25/SICML/1, grasp_results/25/SICML/1/GRASP_ancestors.fasta, grasp_results/25/SICML/1/tree.nwk
+    jobid: 124
+    wildcards: taxon=25, method=SICML, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/5/BEP/1/tree.nwk, grasp_results/concatenated/5/BEP/1/GRASP_ancestors.fasta, indelible_output/5/cleaned_N0_trees/1.nwk, indelible_output/5/concatenated/1.fasta, indelible_dicts/5/leaves_1.p, indelible_dicts/5/gaps_1.p
+    output: summaries/5/BEP/1.csv
+    jobid: 4
+    wildcards: taxon=5, method=BEP, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/5/BEP/3/tree.nwk, grasp_results/concatenated/5/BEP/3/GRASP_ancestors.fasta, indelible_output/5/cleaned_N0_trees/3.nwk, indelible_output/5/concatenated/3.fasta, indelible_dicts/5/leaves_3.p, indelible_dicts/5/gaps_3.p
+    output: summaries/5/BEP/3.csv
+    jobid: 19
+    wildcards: taxon=5, method=BEP, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/1.fasta, indelible_output/10/cleaned_N0_trees/1.nwk
+    output: grasp_results/10/SICP/1, grasp_results/10/SICP/1/GRASP_ancestors.fasta, grasp_results/10/SICP/1/tree.nwk
+    jobid: 71
+    wildcards: taxon=10, method=SICP, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/2.fasta, indelible_output/10/cleaned_N0_trees/2.nwk
+    output: grasp_results/10/BEP/2, grasp_results/10/BEP/2/GRASP_ancestors.fasta, grasp_results/10/BEP/2/tree.nwk
+    jobid: 56
+    wildcards: taxon=10, method=BEP, rep=2
+
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/5/SICP/1/tree.nwk, grasp_results/concatenated/5/SICP/1/GRASP_ancestors.fasta, indelible_output/5/cleaned_N0_trees/1.nwk, indelible_output/5/concatenated/1.fasta, indelible_dicts/5/leaves_1.p, indelible_dicts/5/gaps_1.p
+    output: summaries/5/SICP/1.csv
+    jobid: 27
+    wildcards: taxon=5, method=SICP, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule get_indelible_dict:
+    input: indelible_output/25/concatenated/2.fasta, indelible_output/25/cleaned_N0_trees/2.nwk
+    output: indelible_dicts/25/leaves_2.p, indelible_dicts/25/gaps_2.p
+    jobid: 104
+    wildcards: taxon=25, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/25/cleaned_aln/2.fasta, indelible_output/25/cleaned_N0_trees/2.nwk
+    output: grasp_results/25/SICP/2, grasp_results/25/SICP/2/GRASP_ancestors.fasta, grasp_results/25/SICP/2/tree.nwk
+    jobid: 117
+    wildcards: taxon=25, method=SICP, rep=2
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_fastml:
+    input: indelible_output/10/cleaned_aln/1.fasta, indelible_output/10/cleaned_no_internal_trees/1.nwk
+    output: fastml_results/10/1/seq.joint.txt, fastml_results/10/1/tree.newick.txt, fastml_results/10/1
+    jobid: 145
+    wildcards: taxon=10, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/3.fasta, indelible_output/10/cleaned_N0_trees/3.nwk
+    output: grasp_results/10/SICML/3, grasp_results/10/SICML/3/GRASP_ancestors.fasta, grasp_results/10/SICML/3/tree.nwk
+    jobid: 87
+    wildcards: taxon=10, method=SICML, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_indelible_summaries:
+    input: indelible_summaries/5/1.csv, indelible_summaries/5/2.csv, indelible_summaries/5/3.csv
+    output: concatenated_indelible_summaries/5.csv
+    jobid: 162
+    wildcards: taxon=5
+
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/5/SICML/3/tree.nwk, grasp_results/concatenated/5/SICML/3/GRASP_ancestors.fasta, indelible_output/5/cleaned_N0_trees/3.nwk, indelible_output/5/concatenated/3.fasta, indelible_dicts/5/leaves_3.p, indelible_dicts/5/gaps_3.p
+    output: summaries/5/SICML/3.csv
+    jobid: 43
+    wildcards: taxon=5, method=SICML, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule run_fastml:
+    input: indelible_output/25/cleaned_aln/3.fasta, indelible_output/25/cleaned_no_internal_trees/3.nwk
+    output: fastml_results/25/3/seq.joint.txt, fastml_results/25/3/tree.newick.txt, fastml_results/25/3
+    jobid: 161
+    wildcards: taxon=25, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_summaries:
+    input: summaries/5/SICML/1.csv, summaries/5/SICML/2.csv, summaries/5/SICML/3.csv
+    output: concatenated_summaries/5_SICML.csv
+    jobid: 36
+    wildcards: taxon=5, method=SICML
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/10/cleaned_aln/2.fasta, grasp_results/10/SICP/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/10/SICP/2/GRASP_ancestors.fasta
+    jobid: 75
+    wildcards: taxon=10, method=SICP, rep=2
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/10/cleaned_aln/1.fasta, grasp_results/10/SICML/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/10/SICML/1/GRASP_ancestors.fasta
+    jobid: 82
+    wildcards: taxon=10, method=SICML, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indelible:
+    input: indelible_output/25/cleaned_N0_trees/1.nwk, indelible_output/25/concatenated/1.fasta, indelible_output/25/cleaned_N0_trees/1.nwk, indelible_output/25/concatenated/1.fasta, indelible_dicts/25/leaves_1.p, indelible_dicts/25/gaps_1.p
+    output: indelible_summaries/25/1.csv
+    jobid: 171
+    wildcards: taxon=25, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/25/cleaned_aln/3.fasta, grasp_results/25/SICP/3/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/25/SICP/3/GRASP_ancestors.fasta
+    jobid: 121
+    wildcards: taxon=25, method=SICP, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule clean_fastml:
+    input: fastml_results/25/2/seq.joint.txt, fastml_results/25/2/tree.newick.txt
+    output: fastml_results/25/concatenated/2/FastML_ancestors.fasta, fastml_results/25/cleaned_N0_trees/2/tree.nwk
+    jobid: 157
+    wildcards: taxon=25, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule clean_fastml:
+    input: fastml_results/10/3/seq.joint.txt, fastml_results/10/3/tree.newick.txt
+    output: fastml_results/10/concatenated/3/FastML_ancestors.fasta, fastml_results/10/cleaned_N0_trees/3/tree.nwk
+    jobid: 150
+    wildcards: taxon=10, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indelible:
+    input: indelible_output/25/cleaned_N0_trees/2.nwk, indelible_output/25/concatenated/2.fasta, indelible_output/25/cleaned_N0_trees/2.nwk, indelible_output/25/concatenated/2.fasta, indelible_dicts/25/leaves_2.p, indelible_dicts/25/gaps_2.p
+    output: indelible_summaries/25/2.csv
+    jobid: 172
+    wildcards: taxon=25, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/25/cleaned_aln/3.fasta, grasp_results/25/BEP/3/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/25/BEP/3/GRASP_ancestors.fasta
+    jobid: 110
+    wildcards: taxon=25, method=BEP, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/25/cleaned_aln/1.fasta, grasp_results/25/BEP/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/25/BEP/1/GRASP_ancestors.fasta
+    jobid: 96
+    wildcards: taxon=25, method=BEP, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/25/cleaned_aln/2.fasta, grasp_results/25/SICML/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/25/SICML/2/GRASP_ancestors.fasta
+    jobid: 128
+    wildcards: taxon=25, method=SICML, rep=2
+
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indelible:
+    input: indelible_output/25/cleaned_N0_trees/3.nwk, indelible_output/25/concatenated/3.fasta, indelible_output/25/cleaned_N0_trees/3.nwk, indelible_output/25/concatenated/3.fasta, indelible_dicts/25/leaves_3.p, indelible_dicts/25/gaps_3.p
+    output: indelible_summaries/25/3.csv
+    jobid: 173
+    wildcards: taxon=25, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indelible:
+    input: indelible_output/10/cleaned_N0_trees/1.nwk, indelible_output/10/concatenated/1.fasta, indelible_output/10/cleaned_N0_trees/1.nwk, indelible_output/10/concatenated/1.fasta, indelible_dicts/10/leaves_1.p, indelible_dicts/10/gaps_1.p
+    output: indelible_summaries/10/1.csv
+    jobid: 167
+    wildcards: taxon=10, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/25/cleaned_aln/1.fasta, grasp_results/25/SICP/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/25/SICP/1/GRASP_ancestors.fasta
+    jobid: 115
+    wildcards: taxon=25, method=SICP, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/25/cleaned_aln/2.fasta, grasp_results/25/BEP/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/25/BEP/2/GRASP_ancestors.fasta
+    jobid: 103
+    wildcards: taxon=25, method=BEP, rep=2
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/10/cleaned_aln/3.fasta, grasp_results/10/SICP/3/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/10/SICP/3/GRASP_ancestors.fasta
+    jobid: 78
+    wildcards: taxon=10, method=SICP, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/10/cleaned_aln/2.fasta, grasp_results/10/SICML/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/10/SICML/2/GRASP_ancestors.fasta
+    jobid: 85
+    wildcards: taxon=10, method=SICML, rep=2
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_summaries:
+    input: summaries/5/BEP/1.csv, summaries/5/BEP/2.csv, summaries/5/BEP/3.csv
+    output: concatenated_summaries/5_BEP.csv
+    jobid: 3
+    wildcards: taxon=5, method=BEP
+
+
+[Tue Feb  2 12:54:32 2021]
+rule clean_fastml:
+    input: fastml_results/10/1/seq.joint.txt, fastml_results/10/1/tree.newick.txt
+    output: fastml_results/10/concatenated/1/FastML_ancestors.fasta, fastml_results/10/cleaned_N0_trees/1/tree.nwk
+    jobid: 144
+    wildcards: taxon=10, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indelible:
+    input: indelible_output/10/cleaned_N0_trees/2.nwk, indelible_output/10/concatenated/2.fasta, indelible_output/10/cleaned_N0_trees/2.nwk, indelible_output/10/concatenated/2.fasta, indelible_dicts/10/leaves_2.p, indelible_dicts/10/gaps_2.p
+    output: indelible_summaries/10/2.csv
+    jobid: 168
+    wildcards: taxon=10, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/10/cleaned_aln/1.fasta, grasp_results/10/BEP/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/10/BEP/1/GRASP_ancestors.fasta
+    jobid: 53
+    wildcards: taxon=10, method=BEP, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/10/cleaned_aln/3.fasta, grasp_results/10/BEP/3/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/10/BEP/3/GRASP_ancestors.fasta
+    jobid: 67
+    wildcards: taxon=10, method=BEP, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_summaries:
+    input: summaries/5/SICP/1.csv, summaries/5/SICP/2.csv, summaries/5/SICP/3.csv
+    output: concatenated_summaries/5_SICP.csv
+    jobid: 26
+    wildcards: taxon=5, method=SICP
+
+
+[Tue Feb  2 12:54:32 2021]
+rule clean_fastml:
+    input: fastml_results/25/3/seq.joint.txt, fastml_results/25/3/tree.newick.txt
+    output: fastml_results/25/concatenated/3/FastML_ancestors.fasta, fastml_results/25/cleaned_N0_trees/3/tree.nwk
+    jobid: 160
+    wildcards: taxon=25, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indelible:
+    input: indelible_output/10/cleaned_N0_trees/3.nwk, indelible_output/10/concatenated/3.fasta, indelible_output/10/cleaned_N0_trees/3.nwk, indelible_output/10/concatenated/3.fasta, indelible_dicts/10/leaves_3.p, indelible_dicts/10/gaps_3.p
+    output: indelible_summaries/10/3.csv
+    jobid: 169
+    wildcards: taxon=10, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule clean_fastml:
+    input: fastml_results/25/1/seq.joint.txt, fastml_results/25/1/tree.newick.txt
+    output: fastml_results/25/concatenated/1/FastML_ancestors.fasta, fastml_results/25/cleaned_N0_trees/1/tree.nwk
+    jobid: 154
+    wildcards: taxon=25, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/25/cleaned_aln/3.fasta, grasp_results/25/SICML/3/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/25/SICML/3/GRASP_ancestors.fasta
+    jobid: 131
+    wildcards: taxon=25, method=SICML, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/25/cleaned_aln/1.fasta, grasp_results/25/SICML/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/25/SICML/1/GRASP_ancestors.fasta
+    jobid: 125
+    wildcards: taxon=25, method=SICML, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/10/cleaned_aln/1.fasta, grasp_results/10/SICP/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/10/SICP/1/GRASP_ancestors.fasta
+    jobid: 72
+    wildcards: taxon=10, method=SICP, rep=1
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/10/cleaned_aln/2.fasta, grasp_results/10/BEP/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/10/BEP/2/GRASP_ancestors.fasta
+    jobid: 60
+    wildcards: taxon=10, method=BEP, rep=2
+
+
+[Tue Feb  2 12:54:32 2021]
+rule clean_fastml:
+    input: fastml_results/10/2/seq.joint.txt, fastml_results/10/2/tree.newick.txt
+    output: fastml_results/10/concatenated/2/FastML_ancestors.fasta, fastml_results/10/cleaned_N0_trees/2/tree.nwk
+    jobid: 147
+    wildcards: taxon=10, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fastml_summaries:
+    input: fastml_summaries/5/fastml/1.csv, fastml_summaries/5/fastml/2.csv, fastml_summaries/5/fastml/3.csv
+    output: concatenated_fastml_summaries/5.csv
+    jobid: 132
+    wildcards: taxon=5
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/25/cleaned_aln/2.fasta, grasp_results/25/SICP/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/25/SICP/2/GRASP_ancestors.fasta
+    jobid: 118
+    wildcards: taxon=25, method=SICP, rep=2
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fasta:
+    input: indelible_output/10/cleaned_aln/3.fasta, grasp_results/10/SICML/3/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/10/SICML/3/GRASP_ancestors.fasta
+    jobid: 88
+    wildcards: taxon=10, method=SICML, rep=3
+
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/25/SICP/3/tree.nwk, grasp_results/concatenated/25/SICP/3/GRASP_ancestors.fasta, indelible_output/25/cleaned_N0_trees/3.nwk, indelible_output/25/concatenated/3.fasta, indelible_dicts/25/leaves_3.p, indelible_dicts/25/gaps_3.p
+    output: summaries/25/SICP/3.csv
+    jobid: 119
+    wildcards: taxon=25, method=SICP, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_fastml_indels:
+    input: fastml_results/25/concatenated/2/FastML_ancestors.fasta, fastml_results/25/cleaned_N0_trees/2/tree.nwk, indelible_output/25/cleaned_N0_trees/2.nwk, indelible_output/25/concatenated/2.fasta, indelible_dicts/25/leaves_2.p, indelible_dicts/25/gaps_2.p
+    output: fastml_summaries/25/fastml/2.csv
+    jobid: 156
+    wildcards: taxon=25, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_fastml_indels:
+    input: fastml_results/10/concatenated/3/FastML_ancestors.fasta, fastml_results/10/cleaned_N0_trees/3/tree.nwk, indelible_output/10/cleaned_N0_trees/3.nwk, indelible_output/10/concatenated/3.fasta, indelible_dicts/10/leaves_3.p, indelible_dicts/10/gaps_3.p
+    output: fastml_summaries/10/fastml/3.csv
+    jobid: 149
+    wildcards: taxon=10, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/25/SICML/2/tree.nwk, grasp_results/concatenated/25/SICML/2/GRASP_ancestors.fasta, indelible_output/25/cleaned_N0_trees/2.nwk, indelible_output/25/concatenated/2.fasta, indelible_dicts/25/leaves_2.p, indelible_dicts/25/gaps_2.p
+    output: summaries/25/SICML/2.csv
+    jobid: 126
+    wildcards: taxon=25, method=SICML, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_indelible_summaries:
+    input: indelible_summaries/25/1.csv, indelible_summaries/25/2.csv, indelible_summaries/25/3.csv
+    output: concatenated_indelible_summaries/25.csv
+    jobid: 170
+    wildcards: taxon=25
+
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/25/SICML/3/tree.nwk, grasp_results/concatenated/25/SICML/3/GRASP_ancestors.fasta, indelible_output/25/cleaned_N0_trees/3.nwk, indelible_output/25/concatenated/3.fasta, indelible_dicts/25/leaves_3.p, indelible_dicts/25/gaps_3.p
+    output: summaries/25/SICML/3.csv
+    jobid: 129
+    wildcards: taxon=25, method=SICML, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/25/SICML/1/tree.nwk, grasp_results/concatenated/25/SICML/1/GRASP_ancestors.fasta, indelible_output/25/cleaned_N0_trees/1.nwk, indelible_output/25/concatenated/1.fasta, indelible_dicts/25/leaves_1.p, indelible_dicts/25/gaps_1.p
+    output: summaries/25/SICML/1.csv
+    jobid: 123
+    wildcards: taxon=25, method=SICML, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/10/SICP/1/tree.nwk, grasp_results/concatenated/10/SICP/1/GRASP_ancestors.fasta, indelible_output/10/cleaned_N0_trees/1.nwk, indelible_output/10/concatenated/1.fasta, indelible_dicts/10/leaves_1.p, indelible_dicts/10/gaps_1.p
+    output: summaries/10/SICP/1.csv
+    jobid: 70
+    wildcards: taxon=10, method=SICP, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/10/BEP/2/tree.nwk, grasp_results/concatenated/10/BEP/2/GRASP_ancestors.fasta, indelible_output/10/cleaned_N0_trees/2.nwk, indelible_output/10/concatenated/2.fasta, indelible_dicts/10/leaves_2.p, indelible_dicts/10/gaps_2.p
+    output: summaries/10/BEP/2.csv
+    jobid: 55
+    wildcards: taxon=10, method=BEP, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/25/BEP/3/tree.nwk, grasp_results/concatenated/25/BEP/3/GRASP_ancestors.fasta, indelible_output/25/cleaned_N0_trees/3.nwk, indelible_output/25/concatenated/3.fasta, indelible_dicts/25/leaves_3.p, indelible_dicts/25/gaps_3.p
+    output: summaries/25/BEP/3.csv
+    jobid: 105
+    wildcards: taxon=25, method=BEP, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/25/BEP/1/tree.nwk, grasp_results/concatenated/25/BEP/1/GRASP_ancestors.fasta, indelible_output/25/cleaned_N0_trees/1.nwk, indelible_output/25/concatenated/1.fasta, indelible_dicts/25/leaves_1.p, indelible_dicts/25/gaps_1.p
+    output: summaries/25/BEP/1.csv
+    jobid: 90
+    wildcards: taxon=25, method=BEP, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_fastml_indels:
+    input: fastml_results/25/concatenated/1/FastML_ancestors.fasta, fastml_results/25/cleaned_N0_trees/1/tree.nwk, indelible_output/25/cleaned_N0_trees/1.nwk, indelible_output/25/concatenated/1.fasta, indelible_dicts/25/leaves_1.p, indelible_dicts/25/gaps_1.p
+    output: fastml_summaries/25/fastml/1.csv
+    jobid: 153
+    wildcards: taxon=25, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_fastml_indels:
+    input: fastml_results/10/concatenated/2/FastML_ancestors.fasta, fastml_results/10/cleaned_N0_trees/2/tree.nwk, indelible_output/10/cleaned_N0_trees/2.nwk, indelible_output/10/concatenated/2.fasta, indelible_dicts/10/leaves_2.p, indelible_dicts/10/gaps_2.p
+    output: fastml_summaries/10/fastml/2.csv
+    jobid: 146
+    wildcards: taxon=10, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/25/SICP/2/tree.nwk, grasp_results/concatenated/25/SICP/2/GRASP_ancestors.fasta, indelible_output/25/cleaned_N0_trees/2.nwk, indelible_output/25/concatenated/2.fasta, indelible_dicts/25/leaves_2.p, indelible_dicts/25/gaps_2.p
+    output: summaries/25/SICP/2.csv
+    jobid: 116
+    wildcards: taxon=25, method=SICP, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/10/SICML/3/tree.nwk, grasp_results/concatenated/10/SICML/3/GRASP_ancestors.fasta, indelible_output/10/cleaned_N0_trees/3.nwk, indelible_output/10/concatenated/3.fasta, indelible_dicts/10/leaves_3.p, indelible_dicts/10/gaps_3.p
+    output: summaries/10/SICML/3.csv
+    jobid: 86
+    wildcards: taxon=10, method=SICML, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/25/SICP/1/tree.nwk, grasp_results/concatenated/25/SICP/1/GRASP_ancestors.fasta, indelible_output/25/cleaned_N0_trees/1.nwk, indelible_output/25/concatenated/1.fasta, indelible_dicts/25/leaves_1.p, indelible_dicts/25/gaps_1.p
+    output: summaries/25/SICP/1.csv
+    jobid: 113
+    wildcards: taxon=25, method=SICP, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/25/BEP/2/tree.nwk, grasp_results/concatenated/25/BEP/2/GRASP_ancestors.fasta, indelible_output/25/cleaned_N0_trees/2.nwk, indelible_output/25/concatenated/2.fasta, indelible_dicts/25/leaves_2.p, indelible_dicts/25/gaps_2.p
+    output: summaries/25/BEP/2.csv
+    jobid: 98
+    wildcards: taxon=25, method=BEP, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/10/SICP/3/tree.nwk, grasp_results/concatenated/10/SICP/3/GRASP_ancestors.fasta, indelible_output/10/cleaned_N0_trees/3.nwk, indelible_output/10/concatenated/3.fasta, indelible_dicts/10/leaves_3.p, indelible_dicts/10/gaps_3.p
+    output: summaries/10/SICP/3.csv
+    jobid: 76
+    wildcards: taxon=10, method=SICP, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/10/SICML/2/tree.nwk, grasp_results/concatenated/10/SICML/2/GRASP_ancestors.fasta, indelible_output/10/cleaned_N0_trees/2.nwk, indelible_output/10/concatenated/2.fasta, indelible_dicts/10/leaves_2.p, indelible_dicts/10/gaps_2.p
+    output: summaries/10/SICML/2.csv
+    jobid: 83
+    wildcards: taxon=10, method=SICML, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/10/SICML/1/tree.nwk, grasp_results/concatenated/10/SICML/1/GRASP_ancestors.fasta, indelible_output/10/cleaned_N0_trees/1.nwk, indelible_output/10/concatenated/1.fasta, indelible_dicts/10/leaves_1.p, indelible_dicts/10/gaps_1.p
+    output: summaries/10/SICML/1.csv
+    jobid: 80
+    wildcards: taxon=10, method=SICML, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_fastml_indels:
+    input: fastml_results/10/concatenated/1/FastML_ancestors.fasta, fastml_results/10/cleaned_N0_trees/1/tree.nwk, indelible_output/10/cleaned_N0_trees/1.nwk, indelible_output/10/concatenated/1.fasta, indelible_dicts/10/leaves_1.p, indelible_dicts/10/gaps_1.p
+    output: fastml_summaries/10/fastml/1.csv
+    jobid: 143
+    wildcards: taxon=10, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/10/BEP/1/tree.nwk, grasp_results/concatenated/10/BEP/1/GRASP_ancestors.fasta, indelible_output/10/cleaned_N0_trees/1.nwk, indelible_output/10/concatenated/1.fasta, indelible_dicts/10/leaves_1.p, indelible_dicts/10/gaps_1.p
+    output: summaries/10/BEP/1.csv
+    jobid: 47
+    wildcards: taxon=10, method=BEP, rep=1
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/10/BEP/3/tree.nwk, grasp_results/concatenated/10/BEP/3/GRASP_ancestors.fasta, indelible_output/10/cleaned_N0_trees/3.nwk, indelible_output/10/concatenated/3.fasta, indelible_dicts/10/leaves_3.p, indelible_dicts/10/gaps_3.p
+    output: summaries/10/BEP/3.csv
+    jobid: 62
+    wildcards: taxon=10, method=BEP, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_fastml_indels:
+    input: fastml_results/25/concatenated/3/FastML_ancestors.fasta, fastml_results/25/cleaned_N0_trees/3/tree.nwk, indelible_output/25/cleaned_N0_trees/3.nwk, indelible_output/25/concatenated/3.fasta, indelible_dicts/25/leaves_3.p, indelible_dicts/25/gaps_3.p
+    output: fastml_summaries/25/fastml/3.csv
+    jobid: 159
+    wildcards: taxon=25, rep=3
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_indelible_summaries:
+    input: indelible_summaries/10/1.csv, indelible_summaries/10/2.csv, indelible_summaries/10/3.csv
+    output: concatenated_indelible_summaries/10.csv
+    jobid: 166
+    wildcards: taxon=10
+
+
+[Tue Feb  2 12:54:32 2021]
+rule summarise_indels:
+    input: grasp_results/10/SICP/2/tree.nwk, grasp_results/concatenated/10/SICP/2/GRASP_ancestors.fasta, indelible_output/10/cleaned_N0_trees/2.nwk, indelible_output/10/concatenated/2.fasta, indelible_dicts/10/leaves_2.p, indelible_dicts/10/gaps_2.p
+    output: summaries/10/SICP/2.csv
+    jobid: 73
+    wildcards: taxon=10, method=SICP, rep=2
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_summaries:
+    input: summaries/25/BEP/1.csv, summaries/25/BEP/2.csv, summaries/25/BEP/3.csv
+    output: concatenated_summaries/25_BEP.csv
+    jobid: 89
+    wildcards: taxon=25, method=BEP
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_summaries:
+    input: summaries/10/BEP/1.csv, summaries/10/BEP/2.csv, summaries/10/BEP/3.csv
+    output: concatenated_summaries/10_BEP.csv
+    jobid: 46
+    wildcards: taxon=10, method=BEP
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_summaries:
+    input: summaries/25/SICP/1.csv, summaries/25/SICP/2.csv, summaries/25/SICP/3.csv
+    output: concatenated_summaries/25_SICP.csv
+    jobid: 112
+    wildcards: taxon=25, method=SICP
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fastml_summaries:
+    input: fastml_summaries/10/fastml/1.csv, fastml_summaries/10/fastml/2.csv, fastml_summaries/10/fastml/3.csv
+    output: concatenated_fastml_summaries/10.csv
+    jobid: 142
+    wildcards: taxon=10
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_summaries:
+    input: summaries/25/SICML/1.csv, summaries/25/SICML/2.csv, summaries/25/SICML/3.csv
+    output: concatenated_summaries/25_SICML.csv
+    jobid: 122
+    wildcards: taxon=25, method=SICML
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_fastml_summaries:
+    input: fastml_summaries/25/fastml/1.csv, fastml_summaries/25/fastml/2.csv, fastml_summaries/25/fastml/3.csv
+    output: concatenated_fastml_summaries/25.csv
+    jobid: 152
+    wildcards: taxon=25
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_summaries:
+    input: summaries/10/SICP/1.csv, summaries/10/SICP/2.csv, summaries/10/SICP/3.csv
+    output: concatenated_summaries/10_SICP.csv
+    jobid: 69
+    wildcards: taxon=10, method=SICP
+
+
+[Tue Feb  2 12:54:32 2021]
+rule concat_summaries:
+    input: summaries/10/SICML/1.csv, summaries/10/SICML/2.csv, summaries/10/SICML/3.csv
+    output: concatenated_summaries/10_SICML.csv
+    jobid: 79
+    wildcards: taxon=10, method=SICML
+
+
+[Tue Feb  2 12:54:32 2021]
+rule generate_output_dict:
+    input: concatenated_summaries/5_BEP.csv, concatenated_summaries/5_SICP.csv, concatenated_summaries/5_SICML.csv, concatenated_summaries/10_BEP.csv, concatenated_summaries/10_SICP.csv, concatenated_summaries/10_SICML.csv, concatenated_summaries/25_BEP.csv, concatenated_summaries/25_SICP.csv, concatenated_summaries/25_SICML.csv, concatenated_fastml_summaries/5.csv, concatenated_fastml_summaries/10.csv, concatenated_fastml_summaries/25.csv, concatenated_indelible_summaries/5.csv, concatenated_indelible_summaries/10.csv, concatenated_indelible_summaries/25.csv
+    output: output_dicts/output.p
+    jobid: 2
+
+[Tue Feb  2 12:54:32 2021]
+rule generate_latex:
+    input: output_dicts/output.p
+    output: plots/plot.tex
+    jobid: 1
+
+[Tue Feb  2 12:54:32 2021]
+rule compile_latex:
+    input: plots/plot.tex
+    output: plots/plot.pdf
+    jobid: 0
+
+Job counts:
+	count	jobs
+	8	clean_fastml
+	8	clean_indelible
+	1	compile_latex
+	24	concat_fasta
+	3	concat_fastml_summaries
+	8	concat_indelible
+	3	concat_indelible_summaries
+	9	concat_summaries
+	2	create_control_files
+	1	generate_latex
+	1	generate_output_dict
+	8	get_indelible_dict
+	8	run_fastml
+	24	run_grasp
+	6	run_indelible
+	8	summarise_fastml_indels
+	8	summarise_indelible
+	24	summarise_indels
+	154
+This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.

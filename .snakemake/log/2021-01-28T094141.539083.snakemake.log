@@ -1,0 +1,23 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	clean_fasta
+	1	concat_fasta
+	1	run_grasp
+	1	run_indelible
+	4
+Select jobs to execute...
+
+[Thu Jan 28 09:41:41 2021]
+rule run_indelible:
+    input: indelible/5_control.txt
+    output: indelible_output/5/cleaned_trees/5_tree_1.aln.nwk, indelible_output/5/5_TRUE_1.aln.fasta
+    jobid: 6
+    wildcards: taxon=5, rep=1.aln
+
+Waiting at most 100 seconds for missing files.
+Terminating processes on user request, this might take some time.
+Cancelling snakemake on user request.

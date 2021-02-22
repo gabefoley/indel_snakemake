@@ -1,0 +1,26 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	compile_latex
+	1
+Select jobs to execute...
+
+[Mon Feb  1 16:02:29 2021]
+rule compile_latex:
+    input: plots/plot.tex
+    output: plots/plot.pdf
+    jobid: 0
+
+Terminating processes on user request, this might take some time.
+[Mon Feb  1 16:02:35 2021]
+Error in rule compile_latex:
+    jobid: 0
+    output: plots/plot.pdf
+    shell:
+        pdflatex -output-directory plots plots/plot.tex
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-02-01T160229.220055.snakemake.log

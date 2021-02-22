@@ -1,0 +1,12 @@
+Building DAG of jobs...
+AmbiguousRuleException:
+Rules concat_summaries and concat_fastml_summaries are ambiguous for the file concatenated_summaries/6_BEP.csv.
+Consider starting rule output with a unique prefix, constrain your wildcards, or use the ruleorder directive.
+Wildcards:
+	concat_summaries: method=BEP,taxon=6
+	concat_fastml_summaries: method=BEP,taxon=6
+Expected input files:
+	concat_summaries: summaries/6/BEP/1.csv summaries/6/BEP/2.csv
+	concat_fastml_summaries: summaries/6/BEP/1.csv summaries/6/BEP/2.csvExpected output files:
+	concat_summaries: concatenated_summaries/6_BEP.csv
+	concat_fastml_summaries: concatenated_summaries/6_BEP.csv

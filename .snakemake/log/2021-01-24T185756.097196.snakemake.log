@@ -1,0 +1,573 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job counts:
+	count	jobs
+	1	all
+	2	create_control_files
+	200	run_indelible
+	203
+Select jobs to execute...
+
+[Sun Jan 24 18:57:56 2021]
+rule create_control_files:
+    output: indelible/40_control.txt
+    jobid: 2
+    wildcards: taxon=40
+
+[Sun Jan 24 18:57:56 2021]
+Finished job 2.
+1 of 203 steps (0.49%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:57:56 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_50.fas
+    jobid: 52
+    wildcards: taxon=40, rep=50
+
+[Sun Jan 24 18:58:00 2021]
+Finished job 52.
+2 of 203 steps (0.99%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:00 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_65.fas
+    jobid: 67
+    wildcards: taxon=40, rep=65
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_65.fas'}
+[Sun Jan 24 18:58:03 2021]
+Finished job 67.
+3 of 203 steps (1%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:03 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_21.fas
+    jobid: 23
+    wildcards: taxon=40, rep=21
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_21.fas'}
+[Sun Jan 24 18:58:07 2021]
+Finished job 23.
+4 of 203 steps (2%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:07 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_20.fas
+    jobid: 22
+    wildcards: taxon=40, rep=20
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_20.fas'}
+[Sun Jan 24 18:58:10 2021]
+Finished job 22.
+5 of 203 steps (2%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:10 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_66.fas
+    jobid: 68
+    wildcards: taxon=40, rep=66
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_66.fas'}
+[Sun Jan 24 18:58:14 2021]
+Finished job 68.
+6 of 203 steps (3%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:14 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_5.fas
+    jobid: 7
+    wildcards: taxon=40, rep=5
+
+[Sun Jan 24 18:58:17 2021]
+Finished job 7.
+7 of 203 steps (3%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:17 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_81.fas
+    jobid: 83
+    wildcards: taxon=40, rep=81
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_81.fas'}
+[Sun Jan 24 18:58:21 2021]
+Finished job 83.
+8 of 203 steps (4%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:21 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_64.fas
+    jobid: 66
+    wildcards: taxon=40, rep=64
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_64.fas'}
+[Sun Jan 24 18:58:25 2021]
+Finished job 66.
+9 of 203 steps (4%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:25 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_22.fas
+    jobid: 24
+    wildcards: taxon=40, rep=22
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_22.fas'}
+[Sun Jan 24 18:58:29 2021]
+Finished job 24.
+10 of 203 steps (5%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:29 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_49.fas
+    jobid: 51
+    wildcards: taxon=40, rep=49
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_49.fas'}
+[Sun Jan 24 18:58:33 2021]
+Finished job 51.
+11 of 203 steps (5%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:33 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_67.fas
+    jobid: 69
+    wildcards: taxon=40, rep=67
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_67.fas'}
+[Sun Jan 24 18:58:36 2021]
+Finished job 69.
+12 of 203 steps (6%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:36 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_37.fas
+    jobid: 39
+    wildcards: taxon=40, rep=37
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_37.fas'}
+[Sun Jan 24 18:58:40 2021]
+Finished job 39.
+13 of 203 steps (6%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:40 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_52.fas
+    jobid: 54
+    wildcards: taxon=40, rep=52
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_52.fas'}
+[Sun Jan 24 18:58:43 2021]
+Finished job 54.
+14 of 203 steps (7%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:43 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_23.fas
+    jobid: 25
+    wildcards: taxon=40, rep=23
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_23.fas'}
+[Sun Jan 24 18:58:47 2021]
+Finished job 25.
+15 of 203 steps (7%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:47 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_68.fas
+    jobid: 70
+    wildcards: taxon=40, rep=68
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_68.fas'}
+[Sun Jan 24 18:58:51 2021]
+Finished job 70.
+16 of 203 steps (8%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:51 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_82.fas
+    jobid: 84
+    wildcards: taxon=40, rep=82
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_82.fas'}
+[Sun Jan 24 18:58:55 2021]
+Finished job 84.
+17 of 203 steps (8%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:55 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_83.fas
+    jobid: 85
+    wildcards: taxon=40, rep=83
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_83.fas'}
+[Sun Jan 24 18:58:58 2021]
+Finished job 85.
+18 of 203 steps (9%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:58:58 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_19.fas
+    jobid: 21
+    wildcards: taxon=40, rep=19
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_19.fas'}
+[Sun Jan 24 18:59:02 2021]
+Finished job 21.
+19 of 203 steps (9%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:59:02 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_24.fas
+    jobid: 26
+    wildcards: taxon=40, rep=24
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_24.fas'}
+[Sun Jan 24 18:59:06 2021]
+Finished job 26.
+20 of 203 steps (10%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:59:06 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_4.fas
+    jobid: 6
+    wildcards: taxon=40, rep=4
+
+[Sun Jan 24 18:59:09 2021]
+Finished job 6.
+21 of 203 steps (10%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:59:09 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_69.fas
+    jobid: 71
+    wildcards: taxon=40, rep=69
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_69.fas'}
+[Sun Jan 24 18:59:13 2021]
+Finished job 71.
+22 of 203 steps (11%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:59:13 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_63.fas
+    jobid: 65
+    wildcards: taxon=40, rep=63
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_63.fas'}
+[Sun Jan 24 18:59:17 2021]
+Finished job 65.
+23 of 203 steps (11%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:59:17 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_84.fas
+    jobid: 86
+    wildcards: taxon=40, rep=84
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_84.fas'}
+[Sun Jan 24 18:59:20 2021]
+Finished job 86.
+24 of 203 steps (12%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:59:20 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_48.fas
+    jobid: 50
+    wildcards: taxon=40, rep=48
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_48.fas'}
+[Sun Jan 24 18:59:24 2021]
+Finished job 50.
+25 of 203 steps (12%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:59:24 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_25.fas
+    jobid: 27
+    wildcards: taxon=40, rep=25
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_25.fas'}
+[Sun Jan 24 18:59:28 2021]
+Finished job 27.
+26 of 203 steps (13%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:59:28 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_3.fas
+    jobid: 5
+    wildcards: taxon=40, rep=3
+
+[Sun Jan 24 18:59:31 2021]
+Finished job 5.
+27 of 203 steps (13%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:59:31 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_18.fas
+    jobid: 20
+    wildcards: taxon=40, rep=18
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_18.fas'}
+[Sun Jan 24 18:59:35 2021]
+Finished job 20.
+28 of 203 steps (14%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:59:35 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_55.fas
+    jobid: 57
+    wildcards: taxon=40, rep=55
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_55.fas'}
+[Sun Jan 24 18:59:39 2021]
+Finished job 57.
+29 of 203 steps (14%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:59:39 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_70.fas
+    jobid: 72
+    wildcards: taxon=40, rep=70
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_70.fas'}
+[Sun Jan 24 18:59:42 2021]
+Finished job 72.
+30 of 203 steps (15%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:59:42 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_40.fas
+    jobid: 42
+    wildcards: taxon=40, rep=40
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_40.fas'}
+[Sun Jan 24 18:59:46 2021]
+Finished job 42.
+31 of 203 steps (15%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:59:46 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_85.fas
+    jobid: 87
+    wildcards: taxon=40, rep=85
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_85.fas'}
+[Sun Jan 24 18:59:50 2021]
+Finished job 87.
+32 of 203 steps (16%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:59:50 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_10.fas
+    jobid: 12
+    wildcards: taxon=40, rep=10
+
+[Sun Jan 24 18:59:53 2021]
+Finished job 12.
+33 of 203 steps (16%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:59:53 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_33.fas
+    jobid: 35
+    wildcards: taxon=40, rep=33
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_33.fas'}
+[Sun Jan 24 18:59:57 2021]
+Finished job 35.
+34 of 203 steps (17%) done
+Select jobs to execute...
+
+[Sun Jan 24 18:59:57 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_51.fas
+    jobid: 53
+    wildcards: taxon=40, rep=51
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_51.fas'}
+[Sun Jan 24 19:00:01 2021]
+Finished job 53.
+35 of 203 steps (17%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:00:01 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_14.fas
+    jobid: 16
+    wildcards: taxon=40, rep=14
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_14.fas'}
+[Sun Jan 24 19:00:04 2021]
+Finished job 16.
+36 of 203 steps (18%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:00:04 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_93.fas
+    jobid: 95
+    wildcards: taxon=40, rep=93
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_93.fas'}
+[Sun Jan 24 19:00:08 2021]
+Finished job 95.
+37 of 203 steps (18%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:00:08 2021]
+rule create_control_files:
+    output: indelible/80_control.txt
+    jobid: 103
+    wildcards: taxon=80
+
+[Sun Jan 24 19:00:08 2021]
+Finished job 103.
+38 of 203 steps (19%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:00:08 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_56.fas
+    jobid: 58
+    wildcards: taxon=40, rep=56
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/40/40_TRUE_56.fas'}
+[Sun Jan 24 19:00:12 2021]
+Finished job 58.
+39 of 203 steps (19%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:00:12 2021]
+rule run_indelible:
+    input: indelible/80_control.txt
+    output: indelible_output/80/80_TRUE_73.fas
+    jobid: 176
+    wildcards: taxon=80, rep=73
+
+[Sun Jan 24 19:00:20 2021]
+Finished job 176.
+40 of 203 steps (20%) done
+Select jobs to execute...
+
+[Sun Jan 24 19:00:20 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/40_TRUE_0.fas
+    jobid: 1
+    wildcards: taxon=40, rep=0
+
+Waiting at most 5 seconds for missing files.
+MissingOutputException in line 17 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+Job Missing files after 5 seconds:
+indelible_output/40/40_TRUE_0.fas
+This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait.
+Job id: 1 completed successfully, but some output files are missing. 1
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 583, in handle_job_success
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 252, in handle_job_success
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-24T185756.097196.snakemake.log

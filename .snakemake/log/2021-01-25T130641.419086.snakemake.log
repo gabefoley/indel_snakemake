@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	run_grasp
+	1
+Select jobs to execute...
+
+[Mon Jan 25 13:06:41 2021]
+rule run_grasp:
+    input: indelible_output/40/cleaned_aln/40_TRUE_1.fasta, indelible_output/40/cleaned_trees/40_tree_1.nwk
+    output: grasp_results/40/40_output_1.txt
+    jobid: 0
+    wildcards: taxon=40, rep=1
+
+Waiting at most 100 seconds for missing files.
+Terminating processes on user request, this might take some time.
+Cancelling snakemake on user request.

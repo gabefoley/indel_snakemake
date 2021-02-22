@@ -1,0 +1,578 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	5	clean_indelible
+	1	compile_latex
+	5	concat_fasta
+	5	concat_indelible
+	1	concat_indelible_summaries
+	1	concat_summaries
+	1	create_control_files
+	1	generate_latex
+	1	generate_output_dict
+	5	get_indelible_dict
+	5	run_grasp
+	5	run_indelible
+	5	summarise_indelible
+	5	summarise_indels
+	46
+Select jobs to execute...
+
+[Thu Feb 18 08:58:16 2021]
+rule create_control_files:
+    output: indelible/5_control.txt
+    jobid: 8
+    wildcards: taxon=5
+
+[Thu Feb 18 08:58:16 2021]
+Finished job 8.
+1 of 46 steps (2%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:16 2021]
+rule run_indelible:
+    input: indelible/5_control.txt
+    output: indelible_output/5/trees/3.nwk, indelible_output/5/5_TRUE_3.fasta, indelible_output/5/5_ANCESTRAL_3.fasta, indelible_output/5/N0_trees/3.nwk
+    jobid: 22
+    wildcards: taxon=5, rep=3
+
+[Thu Feb 18 08:58:18 2021]
+Finished job 22.
+2 of 46 steps (4%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:18 2021]
+rule run_indelible:
+    input: indelible/5_control.txt
+    output: indelible_output/5/trees/1.nwk, indelible_output/5/5_TRUE_1.fasta, indelible_output/5/5_ANCESTRAL_1.fasta, indelible_output/5/N0_trees/1.nwk
+    jobid: 7
+    wildcards: taxon=5, rep=1
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/5/N0_trees/1.nwk', 'indelible_output/5/5_ANCESTRAL_1.fasta', 'indelible_output/5/5_TRUE_1.fasta'}
+[Thu Feb 18 08:58:19 2021]
+Finished job 7.
+3 of 46 steps (7%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:19 2021]
+rule run_indelible:
+    input: indelible/5_control.txt
+    output: indelible_output/5/trees/2.nwk, indelible_output/5/5_TRUE_2.fasta, indelible_output/5/5_ANCESTRAL_2.fasta, indelible_output/5/N0_trees/2.nwk
+    jobid: 15
+    wildcards: taxon=5, rep=2
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/5/5_ANCESTRAL_2.fasta', 'indelible_output/5/N0_trees/2.nwk', 'indelible_output/5/5_TRUE_2.fasta'}
+[Thu Feb 18 08:58:20 2021]
+Finished job 15.
+4 of 46 steps (9%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:20 2021]
+rule concat_indelible:
+    input: indelible_output/5/5_TRUE_3.fasta, indelible_output/5/5_ANCESTRAL_3.fasta
+    output: indelible_output/5/concatenated/5_3.fasta
+    jobid: 23
+    wildcards: taxon=5, rep=3
+
+[Thu Feb 18 08:58:20 2021]
+Finished job 23.
+5 of 46 steps (11%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:20 2021]
+rule concat_indelible:
+    input: indelible_output/5/5_TRUE_1.fasta, indelible_output/5/5_ANCESTRAL_1.fasta
+    output: indelible_output/5/concatenated/5_1.fasta
+    jobid: 9
+    wildcards: taxon=5, rep=1
+
+[Thu Feb 18 08:58:20 2021]
+Finished job 9.
+6 of 46 steps (13%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:20 2021]
+rule clean_indelible:
+    input: indelible_output/5/N0_trees/3.nwk, indelible_output/5/concatenated/5_3.fasta
+    output: indelible_output/5/cleaned_aln/3.fasta, indelible_output/5/concatenated/3.fasta, indelible_output/5/cleaned_trees/3.nwk, indelible_output/5/cleaned_N0_trees/3.nwk, indelible_output/5/cleaned_no_internal_trees/3.nwk
+    jobid: 21
+    wildcards: taxon=5, rep=3
+
+[Thu Feb 18 08:58:21 2021]
+Finished job 21.
+7 of 46 steps (15%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:21 2021]
+rule get_indelible_dict:
+    input: indelible_output/5/concatenated/3.fasta, indelible_output/5/cleaned_N0_trees/3.nwk
+    output: indelible_dicts/5/leaves_3.p, indelible_dicts/5/gaps_3.p
+    jobid: 25
+    wildcards: taxon=5, rep=3
+
+[Thu Feb 18 08:58:22 2021]
+Finished job 25.
+8 of 46 steps (17%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:22 2021]
+rule summarise_indelible:
+    input: indelible_output/5/cleaned_N0_trees/3.nwk, indelible_output/5/concatenated/3.fasta, indelible_output/5/cleaned_N0_trees/3.nwk, indelible_output/5/concatenated/3.fasta, indelible_dicts/5/leaves_3.p, indelible_dicts/5/gaps_3.p
+    output: indelible_summaries/5/3.csv
+    jobid: 43
+    wildcards: taxon=5, rep=3
+
+[Thu Feb 18 08:58:23 2021]
+Finished job 43.
+9 of 46 steps (20%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:23 2021]
+rule clean_indelible:
+    input: indelible_output/5/N0_trees/1.nwk, indelible_output/5/concatenated/5_1.fasta
+    output: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/concatenated/1.fasta, indelible_output/5/cleaned_trees/1.nwk, indelible_output/5/cleaned_N0_trees/1.nwk, indelible_output/5/cleaned_no_internal_trees/1.nwk
+    jobid: 6
+    wildcards: taxon=5, rep=1
+
+[Thu Feb 18 08:58:24 2021]
+Finished job 6.
+10 of 46 steps (22%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:24 2021]
+rule get_indelible_dict:
+    input: indelible_output/5/concatenated/1.fasta, indelible_output/5/cleaned_N0_trees/1.nwk
+    output: indelible_dicts/5/leaves_1.p, indelible_dicts/5/gaps_1.p
+    jobid: 11
+    wildcards: taxon=5, rep=1
+
+[Thu Feb 18 08:58:25 2021]
+Finished job 11.
+11 of 46 steps (24%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:25 2021]
+rule summarise_indelible:
+    input: indelible_output/5/cleaned_N0_trees/1.nwk, indelible_output/5/concatenated/1.fasta, indelible_output/5/cleaned_N0_trees/1.nwk, indelible_output/5/concatenated/1.fasta, indelible_dicts/5/leaves_1.p, indelible_dicts/5/gaps_1.p
+    output: indelible_summaries/5/1.csv
+    jobid: 41
+    wildcards: taxon=5, rep=1
+
+[Thu Feb 18 08:58:26 2021]
+Finished job 41.
+12 of 46 steps (26%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:26 2021]
+rule run_indelible:
+    input: indelible/5_control.txt
+    output: indelible_output/5/trees/5.nwk, indelible_output/5/5_TRUE_5.fasta, indelible_output/5/5_ANCESTRAL_5.fasta, indelible_output/5/N0_trees/5.nwk
+    jobid: 36
+    wildcards: taxon=5, rep=5
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/5/5_TRUE_5.fasta', 'indelible_output/5/N0_trees/5.nwk', 'indelible_output/5/5_ANCESTRAL_5.fasta'}
+[Thu Feb 18 08:58:27 2021]
+Finished job 36.
+13 of 46 steps (28%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:27 2021]
+rule concat_indelible:
+    input: indelible_output/5/5_TRUE_5.fasta, indelible_output/5/5_ANCESTRAL_5.fasta
+    output: indelible_output/5/concatenated/5_5.fasta
+    jobid: 37
+    wildcards: taxon=5, rep=5
+
+[Thu Feb 18 08:58:27 2021]
+Finished job 37.
+14 of 46 steps (30%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:27 2021]
+rule clean_indelible:
+    input: indelible_output/5/N0_trees/5.nwk, indelible_output/5/concatenated/5_5.fasta
+    output: indelible_output/5/cleaned_aln/5.fasta, indelible_output/5/concatenated/5.fasta, indelible_output/5/cleaned_trees/5.nwk, indelible_output/5/cleaned_N0_trees/5.nwk, indelible_output/5/cleaned_no_internal_trees/5.nwk
+    jobid: 35
+    wildcards: taxon=5, rep=5
+
+[Thu Feb 18 08:58:28 2021]
+Finished job 35.
+15 of 46 steps (33%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:28 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/5.fasta, indelible_output/5/cleaned_N0_trees/5.nwk
+    output: grasp_results/5/SICML/5, grasp_results/5/SICML/5/GRASP_ancestors.fasta, grasp_results/5/SICML/5/GRASP_ancestors.nwk
+    jobid: 34
+    wildcards: taxon=5, method=SICML, rep=5
+
+[Thu Feb 18 08:58:28 2021]
+Finished job 34.
+16 of 46 steps (35%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:28 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/5.fasta, grasp_results/5/SICML/5/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/SICML/5/GRASP_ancestors.fasta
+    jobid: 38
+    wildcards: taxon=5, method=SICML, rep=5
+
+[Thu Feb 18 08:58:28 2021]
+Finished job 38.
+17 of 46 steps (37%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:28 2021]
+rule get_indelible_dict:
+    input: indelible_output/5/concatenated/5.fasta, indelible_output/5/cleaned_N0_trees/5.nwk
+    output: indelible_dicts/5/leaves_5.p, indelible_dicts/5/gaps_5.p
+    jobid: 39
+    wildcards: taxon=5, rep=5
+
+[Thu Feb 18 08:58:29 2021]
+Finished job 39.
+18 of 46 steps (39%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:29 2021]
+rule summarise_indelible:
+    input: indelible_output/5/cleaned_N0_trees/5.nwk, indelible_output/5/concatenated/5.fasta, indelible_output/5/cleaned_N0_trees/5.nwk, indelible_output/5/concatenated/5.fasta, indelible_dicts/5/leaves_5.p, indelible_dicts/5/gaps_5.p
+    output: indelible_summaries/5/5.csv
+    jobid: 45
+    wildcards: taxon=5, rep=5
+
+[Thu Feb 18 08:58:30 2021]
+Finished job 45.
+19 of 46 steps (41%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:30 2021]
+rule summarise_indels:
+    input: grasp_results/5/SICML/5/GRASP_ancestors.nwk, grasp_results/concatenated/5/SICML/5/GRASP_ancestors.fasta, indelible_output/5/cleaned_N0_trees/5.nwk, indelible_output/5/concatenated/5.fasta, indelible_dicts/5/leaves_5.p, indelible_dicts/5/gaps_5.p
+    output: summaries/5/SICML/5.csv
+    jobid: 33
+    wildcards: taxon=5, method=SICML, rep=5
+
+[Thu Feb 18 08:58:31 2021]
+Finished job 33.
+20 of 46 steps (43%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:31 2021]
+rule run_indelible:
+    input: indelible/5_control.txt
+    output: indelible_output/5/trees/4.nwk, indelible_output/5/5_TRUE_4.fasta, indelible_output/5/5_ANCESTRAL_4.fasta, indelible_output/5/N0_trees/4.nwk
+    jobid: 29
+    wildcards: taxon=5, rep=4
+
+Warning: the following output files of rule run_indelible were not present when the DAG was created:
+{'indelible_output/5/5_ANCESTRAL_4.fasta', 'indelible_output/5/N0_trees/4.nwk', 'indelible_output/5/5_TRUE_4.fasta'}
+[Thu Feb 18 08:58:32 2021]
+Finished job 29.
+21 of 46 steps (46%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:32 2021]
+rule concat_indelible:
+    input: indelible_output/5/5_TRUE_2.fasta, indelible_output/5/5_ANCESTRAL_2.fasta
+    output: indelible_output/5/concatenated/5_2.fasta
+    jobid: 16
+    wildcards: taxon=5, rep=2
+
+[Thu Feb 18 08:58:32 2021]
+Finished job 16.
+22 of 46 steps (48%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:32 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/3.fasta, indelible_output/5/cleaned_N0_trees/3.nwk
+    output: grasp_results/5/SICML/3, grasp_results/5/SICML/3/GRASP_ancestors.fasta, grasp_results/5/SICML/3/GRASP_ancestors.nwk
+    jobid: 20
+    wildcards: taxon=5, method=SICML, rep=3
+
+[Thu Feb 18 08:58:32 2021]
+Finished job 20.
+23 of 46 steps (50%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:32 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/cleaned_N0_trees/1.nwk
+    output: grasp_results/5/SICML/1, grasp_results/5/SICML/1/GRASP_ancestors.fasta, grasp_results/5/SICML/1/GRASP_ancestors.nwk
+    jobid: 5
+    wildcards: taxon=5, method=SICML, rep=1
+
+[Thu Feb 18 08:58:32 2021]
+Finished job 5.
+24 of 46 steps (52%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:33 2021]
+rule concat_indelible:
+    input: indelible_output/5/5_TRUE_4.fasta, indelible_output/5/5_ANCESTRAL_4.fasta
+    output: indelible_output/5/concatenated/5_4.fasta
+    jobid: 30
+    wildcards: taxon=5, rep=4
+
+[Thu Feb 18 08:58:33 2021]
+Finished job 30.
+25 of 46 steps (54%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:33 2021]
+rule clean_indelible:
+    input: indelible_output/5/N0_trees/2.nwk, indelible_output/5/concatenated/5_2.fasta
+    output: indelible_output/5/cleaned_aln/2.fasta, indelible_output/5/concatenated/2.fasta, indelible_output/5/cleaned_trees/2.nwk, indelible_output/5/cleaned_N0_trees/2.nwk, indelible_output/5/cleaned_no_internal_trees/2.nwk
+    jobid: 14
+    wildcards: taxon=5, rep=2
+
+[Thu Feb 18 08:58:33 2021]
+Finished job 14.
+26 of 46 steps (57%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:33 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/2.fasta, indelible_output/5/cleaned_N0_trees/2.nwk
+    output: grasp_results/5/SICML/2, grasp_results/5/SICML/2/GRASP_ancestors.fasta, grasp_results/5/SICML/2/GRASP_ancestors.nwk
+    jobid: 13
+    wildcards: taxon=5, method=SICML, rep=2
+
+[Thu Feb 18 08:58:34 2021]
+Finished job 13.
+27 of 46 steps (59%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:34 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/3.fasta, grasp_results/5/SICML/3/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/SICML/3/GRASP_ancestors.fasta
+    jobid: 24
+    wildcards: taxon=5, method=SICML, rep=3
+
+[Thu Feb 18 08:58:34 2021]
+Finished job 24.
+28 of 46 steps (61%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:34 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/1.fasta, grasp_results/5/SICML/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/SICML/1/GRASP_ancestors.fasta
+    jobid: 10
+    wildcards: taxon=5, method=SICML, rep=1
+
+[Thu Feb 18 08:58:34 2021]
+Finished job 10.
+29 of 46 steps (63%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:34 2021]
+rule summarise_indels:
+    input: grasp_results/5/SICML/1/GRASP_ancestors.nwk, grasp_results/concatenated/5/SICML/1/GRASP_ancestors.fasta, indelible_output/5/cleaned_N0_trees/1.nwk, indelible_output/5/concatenated/1.fasta, indelible_dicts/5/leaves_1.p, indelible_dicts/5/gaps_1.p
+    output: summaries/5/SICML/1.csv
+    jobid: 4
+    wildcards: taxon=5, method=SICML, rep=1
+
+[Thu Feb 18 08:58:35 2021]
+Finished job 4.
+30 of 46 steps (65%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:35 2021]
+rule clean_indelible:
+    input: indelible_output/5/N0_trees/4.nwk, indelible_output/5/concatenated/5_4.fasta
+    output: indelible_output/5/cleaned_aln/4.fasta, indelible_output/5/concatenated/4.fasta, indelible_output/5/cleaned_trees/4.nwk, indelible_output/5/cleaned_N0_trees/4.nwk, indelible_output/5/cleaned_no_internal_trees/4.nwk
+    jobid: 28
+    wildcards: taxon=5, rep=4
+
+[Thu Feb 18 08:58:36 2021]
+Finished job 28.
+31 of 46 steps (67%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:36 2021]
+rule get_indelible_dict:
+    input: indelible_output/5/concatenated/4.fasta, indelible_output/5/cleaned_N0_trees/4.nwk
+    output: indelible_dicts/5/leaves_4.p, indelible_dicts/5/gaps_4.p
+    jobid: 32
+    wildcards: taxon=5, rep=4
+
+[Thu Feb 18 08:58:37 2021]
+Finished job 32.
+32 of 46 steps (70%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:37 2021]
+rule summarise_indels:
+    input: grasp_results/5/SICML/3/GRASP_ancestors.nwk, grasp_results/concatenated/5/SICML/3/GRASP_ancestors.fasta, indelible_output/5/cleaned_N0_trees/3.nwk, indelible_output/5/concatenated/3.fasta, indelible_dicts/5/leaves_3.p, indelible_dicts/5/gaps_3.p
+    output: summaries/5/SICML/3.csv
+    jobid: 19
+    wildcards: taxon=5, method=SICML, rep=3
+
+[Thu Feb 18 08:58:37 2021]
+Finished job 19.
+33 of 46 steps (72%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:37 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/4.fasta, indelible_output/5/cleaned_N0_trees/4.nwk
+    output: grasp_results/5/SICML/4, grasp_results/5/SICML/4/GRASP_ancestors.fasta, grasp_results/5/SICML/4/GRASP_ancestors.nwk
+    jobid: 27
+    wildcards: taxon=5, method=SICML, rep=4
+
+[Thu Feb 18 08:58:38 2021]
+Finished job 27.
+34 of 46 steps (74%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:38 2021]
+rule summarise_indelible:
+    input: indelible_output/5/cleaned_N0_trees/4.nwk, indelible_output/5/concatenated/4.fasta, indelible_output/5/cleaned_N0_trees/4.nwk, indelible_output/5/concatenated/4.fasta, indelible_dicts/5/leaves_4.p, indelible_dicts/5/gaps_4.p
+    output: indelible_summaries/5/4.csv
+    jobid: 44
+    wildcards: taxon=5, rep=4
+
+[Thu Feb 18 08:58:39 2021]
+Finished job 44.
+35 of 46 steps (76%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:39 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/4.fasta, grasp_results/5/SICML/4/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/SICML/4/GRASP_ancestors.fasta
+    jobid: 31
+    wildcards: taxon=5, method=SICML, rep=4
+
+[Thu Feb 18 08:58:39 2021]
+Finished job 31.
+36 of 46 steps (78%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:39 2021]
+rule summarise_indels:
+    input: grasp_results/5/SICML/4/GRASP_ancestors.nwk, grasp_results/concatenated/5/SICML/4/GRASP_ancestors.fasta, indelible_output/5/cleaned_N0_trees/4.nwk, indelible_output/5/concatenated/4.fasta, indelible_dicts/5/leaves_4.p, indelible_dicts/5/gaps_4.p
+    output: summaries/5/SICML/4.csv
+    jobid: 26
+    wildcards: taxon=5, method=SICML, rep=4
+
+[Thu Feb 18 08:58:40 2021]
+Finished job 26.
+37 of 46 steps (80%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:40 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/2.fasta, grasp_results/5/SICML/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/SICML/2/GRASP_ancestors.fasta
+    jobid: 17
+    wildcards: taxon=5, method=SICML, rep=2
+
+[Thu Feb 18 08:58:40 2021]
+Finished job 17.
+38 of 46 steps (83%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:40 2021]
+rule get_indelible_dict:
+    input: indelible_output/5/concatenated/2.fasta, indelible_output/5/cleaned_N0_trees/2.nwk
+    output: indelible_dicts/5/leaves_2.p, indelible_dicts/5/gaps_2.p
+    jobid: 18
+    wildcards: taxon=5, rep=2
+
+[Thu Feb 18 08:58:40 2021]
+Finished job 18.
+39 of 46 steps (85%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:40 2021]
+rule summarise_indels:
+    input: grasp_results/5/SICML/2/GRASP_ancestors.nwk, grasp_results/concatenated/5/SICML/2/GRASP_ancestors.fasta, indelible_output/5/cleaned_N0_trees/2.nwk, indelible_output/5/concatenated/2.fasta, indelible_dicts/5/leaves_2.p, indelible_dicts/5/gaps_2.p
+    output: summaries/5/SICML/2.csv
+    jobid: 12
+    wildcards: taxon=5, method=SICML, rep=2
+
+[Thu Feb 18 08:58:41 2021]
+Finished job 12.
+40 of 46 steps (87%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:41 2021]
+rule concat_summaries:
+    input: summaries/5/SICML/1.csv, summaries/5/SICML/2.csv, summaries/5/SICML/3.csv, summaries/5/SICML/4.csv, summaries/5/SICML/5.csv
+    output: concatenated_summaries/5_SICML.csv
+    jobid: 3
+    wildcards: taxon=5, method=SICML
+
+[Thu Feb 18 08:58:41 2021]
+Finished job 3.
+41 of 46 steps (89%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:41 2021]
+rule summarise_indelible:
+    input: indelible_output/5/cleaned_N0_trees/2.nwk, indelible_output/5/concatenated/2.fasta, indelible_output/5/cleaned_N0_trees/2.nwk, indelible_output/5/concatenated/2.fasta, indelible_dicts/5/leaves_2.p, indelible_dicts/5/gaps_2.p
+    output: indelible_summaries/5/2.csv
+    jobid: 42
+    wildcards: taxon=5, rep=2
+
+[Thu Feb 18 08:58:42 2021]
+Finished job 42.
+42 of 46 steps (91%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:42 2021]
+rule concat_indelible_summaries:
+    input: indelible_summaries/5/1.csv, indelible_summaries/5/2.csv, indelible_summaries/5/3.csv, indelible_summaries/5/4.csv, indelible_summaries/5/5.csv
+    output: concatenated_indelible_summaries/5.csv
+    jobid: 40
+    wildcards: taxon=5
+
+[Thu Feb 18 08:58:42 2021]
+Finished job 40.
+43 of 46 steps (93%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:42 2021]
+rule generate_output_dict:
+    input: concatenated_summaries/5_SICML.csv, concatenated_indelible_summaries/5.csv
+    output: output_dicts/output.p
+    jobid: 2
+
+[Thu Feb 18 08:58:45 2021]
+Finished job 2.
+44 of 46 steps (96%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:45 2021]
+rule generate_latex:
+    input: output_dicts/output.p
+    output: plots/plot.tex
+    jobid: 1
+
+[Thu Feb 18 08:58:45 2021]
+Finished job 1.
+45 of 46 steps (98%) done
+Select jobs to execute...
+
+[Thu Feb 18 08:58:45 2021]
+rule compile_latex:
+    input: plots/plot.tex
+    output: plots/plot.pdf
+    jobid: 0
+
+[Thu Feb 18 08:58:46 2021]
+Finished job 0.
+46 of 46 steps (100%) done
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-02-18T085816.015974.snakemake.log

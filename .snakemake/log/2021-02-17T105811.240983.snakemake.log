@@ -1,0 +1,605 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	3	clean_indelible
+	1	compile_latex
+	20	concat_fasta
+	3	concat_indelible
+	2	concat_indelible_summaries
+	10	concat_summaries
+	1	generate_latex
+	1	generate_output_dict
+	4	get_indelible_dict
+	20	run_grasp
+	4	summarise_indelible
+	20	summarise_indels
+	89
+Select jobs to execute...
+
+[Wed Feb 17 10:58:11 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/cleaned_N0_trees/1.nwk
+    output: grasp_results/5/BEML/1, grasp_results/5/BEML/1/GRASP_ancestors.fasta, grasp_results/5/BEML/1/GRASP_ancestors.nwk
+    jobid: 21
+    wildcards: taxon=5, method=BEML, rep=1
+
+[Wed Feb 17 10:58:11 2021]
+Finished job 21.
+1 of 89 steps (1%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:11 2021]
+rule concat_indelible:
+    input: indelible_output/10/10_TRUE_1.fasta, indelible_output/10/10_ANCESTRAL_1.fasta
+    output: indelible_output/10/concatenated/10_1.fasta
+    jobid: 53
+    wildcards: taxon=10, rep=1
+
+[Wed Feb 17 10:58:11 2021]
+Finished job 53.
+2 of 89 steps (2%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:11 2021]
+rule clean_indelible:
+    input: indelible_output/10/N0_trees/1.nwk, indelible_output/10/concatenated/10_1.fasta
+    output: indelible_output/10/cleaned_aln/1.fasta, indelible_output/10/concatenated/1.fasta, indelible_output/10/cleaned_trees/1.nwk, indelible_output/10/cleaned_N0_trees/1.nwk, indelible_output/10/cleaned_no_internal_trees/1.nwk
+    jobid: 50
+    wildcards: taxon=10, rep=1
+
+[Wed Feb 17 10:58:12 2021]
+Finished job 50.
+3 of 89 steps (3%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:12 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/1.fasta, indelible_output/5/cleaned_N0_trees/1.nwk
+    output: grasp_results/5/SICP/1, grasp_results/5/SICP/1/GRASP_ancestors.fasta, grasp_results/5/SICP/1/GRASP_ancestors.nwk
+    jobid: 28
+    wildcards: taxon=5, method=SICP, rep=1
+
+[Wed Feb 17 10:58:13 2021]
+Finished job 28.
+4 of 89 steps (4%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:13 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/1.fasta, grasp_results/5/SICP/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/SICP/1/GRASP_ancestors.fasta
+    jobid: 29
+    wildcards: taxon=5, method=SICP, rep=1
+
+[Wed Feb 17 10:58:13 2021]
+Finished job 29.
+5 of 89 steps (6%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:13 2021]
+rule concat_indelible:
+    input: indelible_output/10/10_TRUE_2.fasta, indelible_output/10/10_ANCESTRAL_2.fasta
+    output: indelible_output/10/concatenated/10_2.fasta
+    jobid: 60
+    wildcards: taxon=10, rep=2
+
+[Wed Feb 17 10:58:13 2021]
+Finished job 60.
+6 of 89 steps (7%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:13 2021]
+rule get_indelible_dict:
+    input: indelible_output/10/concatenated/1.fasta, indelible_output/10/cleaned_N0_trees/1.nwk
+    output: indelible_dicts/10/leaves_1.p, indelible_dicts/10/gaps_1.p
+    jobid: 55
+    wildcards: taxon=10, rep=1
+
+[Wed Feb 17 10:58:14 2021]
+Finished job 55.
+7 of 89 steps (8%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:14 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/1.fasta, grasp_results/5/BEML/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/BEML/1/GRASP_ancestors.fasta
+    jobid: 22
+    wildcards: taxon=5, method=BEML, rep=1
+
+[Wed Feb 17 10:58:14 2021]
+Finished job 22.
+8 of 89 steps (9%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:14 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/1.fasta, indelible_output/10/cleaned_N0_trees/1.nwk
+    output: grasp_results/10/BEP/1, grasp_results/10/BEP/1/GRASP_ancestors.fasta, grasp_results/10/BEP/1/GRASP_ancestors.nwk
+    jobid: 49
+    wildcards: taxon=10, method=BEP, rep=1
+
+[Wed Feb 17 10:58:15 2021]
+Finished job 49.
+9 of 89 steps (10%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:15 2021]
+rule concat_indelible:
+    input: indelible_output/5/5_TRUE_2.fasta, indelible_output/5/5_ANCESTRAL_2.fasta
+    output: indelible_output/5/concatenated/5_2.fasta
+    jobid: 16
+    wildcards: taxon=5, rep=2
+
+[Wed Feb 17 10:58:15 2021]
+Finished job 16.
+10 of 89 steps (11%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:15 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/1.fasta, indelible_output/10/cleaned_N0_trees/1.nwk
+    output: grasp_results/10/SICML/1, grasp_results/10/SICML/1/GRASP_ancestors.fasta, grasp_results/10/SICML/1/GRASP_ancestors.nwk
+    jobid: 79
+    wildcards: taxon=10, method=SICML, rep=1
+
+[Wed Feb 17 10:58:15 2021]
+Finished job 79.
+11 of 89 steps (12%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:15 2021]
+rule clean_indelible:
+    input: indelible_output/10/N0_trees/2.nwk, indelible_output/10/concatenated/10_2.fasta
+    output: indelible_output/10/cleaned_aln/2.fasta, indelible_output/10/concatenated/2.fasta, indelible_output/10/cleaned_trees/2.nwk, indelible_output/10/cleaned_N0_trees/2.nwk, indelible_output/10/cleaned_no_internal_trees/2.nwk
+    jobid: 58
+    wildcards: taxon=10, rep=2
+
+[Wed Feb 17 10:58:16 2021]
+Finished job 58.
+12 of 89 steps (13%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:16 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/2.fasta, indelible_output/10/cleaned_N0_trees/2.nwk
+    output: grasp_results/10/BEP/2, grasp_results/10/BEP/2/GRASP_ancestors.fasta, grasp_results/10/BEP/2/GRASP_ancestors.nwk
+    jobid: 57
+    wildcards: taxon=10, method=BEP, rep=2
+
+[Wed Feb 17 10:58:17 2021]
+Finished job 57.
+13 of 89 steps (15%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:17 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/2.fasta, indelible_output/10/cleaned_N0_trees/2.nwk
+    output: grasp_results/10/BEML/2, grasp_results/10/BEML/2/GRASP_ancestors.fasta, grasp_results/10/BEML/2/GRASP_ancestors.nwk
+    jobid: 68
+    wildcards: taxon=10, method=BEML, rep=2
+
+[Wed Feb 17 10:58:17 2021]
+Finished job 68.
+14 of 89 steps (16%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:17 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/2.fasta, indelible_output/10/cleaned_N0_trees/2.nwk
+    output: grasp_results/10/SICML/2, grasp_results/10/SICML/2/GRASP_ancestors.fasta, grasp_results/10/SICML/2/GRASP_ancestors.nwk
+    jobid: 82
+    wildcards: taxon=10, method=SICML, rep=2
+
+[Wed Feb 17 10:58:18 2021]
+Finished job 82.
+15 of 89 steps (17%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:18 2021]
+rule concat_fasta:
+    input: indelible_output/10/cleaned_aln/2.fasta, grasp_results/10/SICML/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/10/SICML/2/GRASP_ancestors.fasta
+    jobid: 83
+    wildcards: taxon=10, method=SICML, rep=2
+
+[Wed Feb 17 10:58:18 2021]
+Finished job 83.
+16 of 89 steps (18%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:18 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/2.fasta, indelible_output/10/cleaned_N0_trees/2.nwk
+    output: grasp_results/10/PSP/2, grasp_results/10/PSP/2/GRASP_ancestors.fasta, grasp_results/10/PSP/2/GRASP_ancestors.nwk
+    jobid: 89
+    wildcards: taxon=10, method=PSP, rep=2
+
+[Wed Feb 17 10:58:18 2021]
+Finished job 89.
+17 of 89 steps (19%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:18 2021]
+rule concat_fasta:
+    input: indelible_output/10/cleaned_aln/2.fasta, grasp_results/10/BEP/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/10/BEP/2/GRASP_ancestors.fasta
+    jobid: 61
+    wildcards: taxon=10, method=BEP, rep=2
+
+[Wed Feb 17 10:58:18 2021]
+Finished job 61.
+18 of 89 steps (20%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:18 2021]
+rule concat_fasta:
+    input: indelible_output/10/cleaned_aln/2.fasta, grasp_results/10/BEML/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/10/BEML/2/GRASP_ancestors.fasta
+    jobid: 69
+    wildcards: taxon=10, method=BEML, rep=2
+
+[Wed Feb 17 10:58:18 2021]
+Finished job 69.
+19 of 89 steps (21%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:18 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/1.fasta, indelible_output/10/cleaned_N0_trees/1.nwk
+    output: grasp_results/10/PSP/1, grasp_results/10/PSP/1/GRASP_ancestors.fasta, grasp_results/10/PSP/1/GRASP_ancestors.nwk
+    jobid: 86
+    wildcards: taxon=10, method=PSP, rep=1
+
+[Wed Feb 17 10:58:19 2021]
+Finished job 86.
+20 of 89 steps (22%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:19 2021]
+rule concat_fasta:
+    input: indelible_output/10/cleaned_aln/1.fasta, grasp_results/10/PSP/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/10/PSP/1/GRASP_ancestors.fasta
+    jobid: 87
+    wildcards: taxon=10, method=PSP, rep=1
+
+[Wed Feb 17 10:58:19 2021]
+Finished job 87.
+21 of 89 steps (24%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:19 2021]
+rule summarise_indels:
+    input: grasp_results/10/PSP/1/GRASP_ancestors.nwk, grasp_results/concatenated/10/PSP/1/GRASP_ancestors.fasta, indelible_output/10/cleaned_N0_trees/1.nwk, indelible_output/10/concatenated/1.fasta, indelible_dicts/10/leaves_1.p, indelible_dicts/10/gaps_1.p
+    output: summaries/10/PSP/1.csv
+    jobid: 85
+    wildcards: taxon=10, method=PSP, rep=1
+
+[Wed Feb 17 10:58:20 2021]
+Finished job 85.
+22 of 89 steps (25%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:20 2021]
+rule clean_indelible:
+    input: indelible_output/5/N0_trees/2.nwk, indelible_output/5/concatenated/5_2.fasta
+    output: indelible_output/5/cleaned_aln/2.fasta, indelible_output/5/concatenated/2.fasta, indelible_output/5/cleaned_trees/2.nwk, indelible_output/5/cleaned_N0_trees/2.nwk, indelible_output/5/cleaned_no_internal_trees/2.nwk
+    jobid: 14
+    wildcards: taxon=5, rep=2
+
+[Wed Feb 17 10:58:21 2021]
+Finished job 14.
+23 of 89 steps (26%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:21 2021]
+rule concat_fasta:
+    input: indelible_output/10/cleaned_aln/1.fasta, grasp_results/10/SICML/1/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/10/SICML/1/GRASP_ancestors.fasta
+    jobid: 80
+    wildcards: taxon=10, method=SICML, rep=1
+
+[Wed Feb 17 10:58:21 2021]
+Finished job 80.
+24 of 89 steps (27%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:21 2021]
+rule get_indelible_dict:
+    input: indelible_output/5/concatenated/2.fasta, indelible_output/5/cleaned_N0_trees/2.nwk
+    output: indelible_dicts/5/leaves_2.p, indelible_dicts/5/gaps_2.p
+    jobid: 18
+    wildcards: taxon=5, rep=2
+
+[Wed Feb 17 10:58:22 2021]
+Finished job 18.
+25 of 89 steps (28%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:22 2021]
+rule summarise_indels:
+    input: grasp_results/10/SICML/1/GRASP_ancestors.nwk, grasp_results/concatenated/10/SICML/1/GRASP_ancestors.fasta, indelible_output/10/cleaned_N0_trees/1.nwk, indelible_output/10/concatenated/1.fasta, indelible_dicts/10/leaves_1.p, indelible_dicts/10/gaps_1.p
+    output: summaries/10/SICML/1.csv
+    jobid: 78
+    wildcards: taxon=10, method=SICML, rep=1
+
+[Wed Feb 17 10:58:23 2021]
+Finished job 78.
+26 of 89 steps (29%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:23 2021]
+rule summarise_indelible:
+    input: indelible_output/5/cleaned_N0_trees/2.nwk, indelible_output/5/concatenated/2.fasta, indelible_output/5/cleaned_N0_trees/2.nwk, indelible_output/5/concatenated/2.fasta, indelible_dicts/5/leaves_2.p, indelible_dicts/5/gaps_2.p
+    output: indelible_summaries/5/2.csv
+    jobid: 93
+    wildcards: taxon=5, rep=2
+
+[Wed Feb 17 10:58:24 2021]
+Finished job 93.
+27 of 89 steps (30%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:24 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/2.fasta, indelible_output/5/cleaned_N0_trees/2.nwk
+    output: grasp_results/5/SICML/2, grasp_results/5/SICML/2/GRASP_ancestors.fasta, grasp_results/5/SICML/2/GRASP_ancestors.nwk
+    jobid: 38
+    wildcards: taxon=5, method=SICML, rep=2
+
+[Wed Feb 17 10:58:24 2021]
+Finished job 38.
+28 of 89 steps (31%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:24 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/2.fasta, indelible_output/5/cleaned_N0_trees/2.nwk
+    output: grasp_results/5/BEP/2, grasp_results/5/BEP/2/GRASP_ancestors.fasta, grasp_results/5/BEP/2/GRASP_ancestors.nwk
+    jobid: 13
+    wildcards: taxon=5, method=BEP, rep=2
+
+[Wed Feb 17 10:58:25 2021]
+Finished job 13.
+29 of 89 steps (33%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:25 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/2.fasta, grasp_results/5/BEP/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/BEP/2/GRASP_ancestors.fasta
+    jobid: 17
+    wildcards: taxon=5, method=BEP, rep=2
+
+[Wed Feb 17 10:58:25 2021]
+Finished job 17.
+30 of 89 steps (34%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:25 2021]
+rule summarise_indels:
+    input: grasp_results/5/BEP/2/GRASP_ancestors.nwk, grasp_results/concatenated/5/BEP/2/GRASP_ancestors.fasta, indelible_output/5/cleaned_N0_trees/2.nwk, indelible_output/5/concatenated/2.fasta, indelible_dicts/5/leaves_2.p, indelible_dicts/5/gaps_2.p
+    output: summaries/5/BEP/2.csv
+    jobid: 12
+    wildcards: taxon=5, method=BEP, rep=2
+
+[Wed Feb 17 10:58:26 2021]
+Finished job 12.
+31 of 89 steps (35%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:26 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/2.fasta, indelible_output/5/cleaned_N0_trees/2.nwk
+    output: grasp_results/5/BEML/2, grasp_results/5/BEML/2/GRASP_ancestors.fasta, grasp_results/5/BEML/2/GRASP_ancestors.nwk
+    jobid: 24
+    wildcards: taxon=5, method=BEML, rep=2
+
+[Wed Feb 17 10:58:26 2021]
+Finished job 24.
+32 of 89 steps (36%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:26 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/2.fasta, grasp_results/5/BEML/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/BEML/2/GRASP_ancestors.fasta
+    jobid: 25
+    wildcards: taxon=5, method=BEML, rep=2
+
+[Wed Feb 17 10:58:26 2021]
+Finished job 25.
+33 of 89 steps (37%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:26 2021]
+rule summarise_indels:
+    input: grasp_results/5/BEML/2/GRASP_ancestors.nwk, grasp_results/concatenated/5/BEML/2/GRASP_ancestors.fasta, indelible_output/5/cleaned_N0_trees/2.nwk, indelible_output/5/concatenated/2.fasta, indelible_dicts/5/leaves_2.p, indelible_dicts/5/gaps_2.p
+    output: summaries/5/BEML/2.csv
+    jobid: 23
+    wildcards: taxon=5, method=BEML, rep=2
+
+[Wed Feb 17 10:58:27 2021]
+Finished job 23.
+34 of 89 steps (38%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:27 2021]
+rule concat_fasta:
+    input: indelible_output/5/cleaned_aln/2.fasta, grasp_results/5/SICML/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/5/SICML/2/GRASP_ancestors.fasta
+    jobid: 39
+    wildcards: taxon=5, method=SICML, rep=2
+
+[Wed Feb 17 10:58:27 2021]
+Finished job 39.
+35 of 89 steps (39%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:27 2021]
+rule summarise_indels:
+    input: grasp_results/5/SICML/2/GRASP_ancestors.nwk, grasp_results/concatenated/5/SICML/2/GRASP_ancestors.fasta, indelible_output/5/cleaned_N0_trees/2.nwk, indelible_output/5/concatenated/2.fasta, indelible_dicts/5/leaves_2.p, indelible_dicts/5/gaps_2.p
+    output: summaries/5/SICML/2.csv
+    jobid: 37
+    wildcards: taxon=5, method=SICML, rep=2
+
+[Wed Feb 17 10:58:28 2021]
+Finished job 37.
+36 of 89 steps (40%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:28 2021]
+rule get_indelible_dict:
+    input: indelible_output/10/concatenated/2.fasta, indelible_output/10/cleaned_N0_trees/2.nwk
+    output: indelible_dicts/10/leaves_2.p, indelible_dicts/10/gaps_2.p
+    jobid: 62
+    wildcards: taxon=10, rep=2
+
+[Wed Feb 17 10:58:29 2021]
+Finished job 62.
+37 of 89 steps (42%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:29 2021]
+rule summarise_indels:
+    input: grasp_results/10/BEML/2/GRASP_ancestors.nwk, grasp_results/concatenated/10/BEML/2/GRASP_ancestors.fasta, indelible_output/10/cleaned_N0_trees/2.nwk, indelible_output/10/concatenated/2.fasta, indelible_dicts/10/leaves_2.p, indelible_dicts/10/gaps_2.p
+    output: summaries/10/BEML/2.csv
+    jobid: 67
+    wildcards: taxon=10, method=BEML, rep=2
+
+[Wed Feb 17 10:58:30 2021]
+Finished job 67.
+38 of 89 steps (43%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:30 2021]
+rule summarise_indels:
+    input: grasp_results/10/SICML/2/GRASP_ancestors.nwk, grasp_results/concatenated/10/SICML/2/GRASP_ancestors.fasta, indelible_output/10/cleaned_N0_trees/2.nwk, indelible_output/10/concatenated/2.fasta, indelible_dicts/10/leaves_2.p, indelible_dicts/10/gaps_2.p
+    output: summaries/10/SICML/2.csv
+    jobid: 81
+    wildcards: taxon=10, method=SICML, rep=2
+
+[Wed Feb 17 10:58:31 2021]
+Finished job 81.
+39 of 89 steps (44%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:31 2021]
+rule summarise_indelible:
+    input: indelible_output/10/cleaned_N0_trees/2.nwk, indelible_output/10/concatenated/2.fasta, indelible_output/10/cleaned_N0_trees/2.nwk, indelible_output/10/concatenated/2.fasta, indelible_dicts/10/leaves_2.p, indelible_dicts/10/gaps_2.p
+    output: indelible_summaries/10/2.csv
+    jobid: 96
+    wildcards: taxon=10, rep=2
+
+[Wed Feb 17 10:58:32 2021]
+Finished job 96.
+40 of 89 steps (45%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:32 2021]
+rule concat_summaries:
+    input: summaries/10/SICML/1.csv, summaries/10/SICML/2.csv
+    output: concatenated_summaries/10_SICML.csv
+    jobid: 77
+    wildcards: taxon=10, method=SICML
+
+[Wed Feb 17 10:58:32 2021]
+Finished job 77.
+41 of 89 steps (46%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:32 2021]
+rule run_grasp:
+    input: indelible_output/10/cleaned_aln/2.fasta, indelible_output/10/cleaned_N0_trees/2.nwk
+    output: grasp_results/10/SICP/2, grasp_results/10/SICP/2/GRASP_ancestors.fasta, grasp_results/10/SICP/2/GRASP_ancestors.nwk
+    jobid: 75
+    wildcards: taxon=10, method=SICP, rep=2
+
+[Wed Feb 17 10:58:33 2021]
+Finished job 75.
+42 of 89 steps (47%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:33 2021]
+rule concat_fasta:
+    input: indelible_output/10/cleaned_aln/2.fasta, grasp_results/10/SICP/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/10/SICP/2/GRASP_ancestors.fasta
+    jobid: 76
+    wildcards: taxon=10, method=SICP, rep=2
+
+[Wed Feb 17 10:58:33 2021]
+Finished job 76.
+43 of 89 steps (48%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:33 2021]
+rule summarise_indels:
+    input: grasp_results/10/SICP/2/GRASP_ancestors.nwk, grasp_results/concatenated/10/SICP/2/GRASP_ancestors.fasta, indelible_output/10/cleaned_N0_trees/2.nwk, indelible_output/10/concatenated/2.fasta, indelible_dicts/10/leaves_2.p, indelible_dicts/10/gaps_2.p
+    output: summaries/10/SICP/2.csv
+    jobid: 74
+    wildcards: taxon=10, method=SICP, rep=2
+
+[Wed Feb 17 10:58:34 2021]
+Finished job 74.
+44 of 89 steps (49%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:34 2021]
+rule concat_fasta:
+    input: indelible_output/10/cleaned_aln/2.fasta, grasp_results/10/PSP/2/GRASP_ancestors.fasta
+    output: grasp_results/concatenated/10/PSP/2/GRASP_ancestors.fasta
+    jobid: 90
+    wildcards: taxon=10, method=PSP, rep=2
+
+[Wed Feb 17 10:58:34 2021]
+Finished job 90.
+45 of 89 steps (51%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:34 2021]
+rule summarise_indels:
+    input: grasp_results/10/PSP/2/GRASP_ancestors.nwk, grasp_results/concatenated/10/PSP/2/GRASP_ancestors.fasta, indelible_output/10/cleaned_N0_trees/2.nwk, indelible_output/10/concatenated/2.fasta, indelible_dicts/10/leaves_2.p, indelible_dicts/10/gaps_2.p
+    output: summaries/10/PSP/2.csv
+    jobid: 88
+    wildcards: taxon=10, method=PSP, rep=2
+
+[Wed Feb 17 10:58:35 2021]
+Finished job 88.
+46 of 89 steps (52%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:35 2021]
+rule concat_summaries:
+    input: summaries/10/PSP/1.csv, summaries/10/PSP/2.csv
+    output: concatenated_summaries/10_PSP.csv
+    jobid: 84
+    wildcards: taxon=10, method=PSP
+
+[Wed Feb 17 10:58:35 2021]
+Finished job 84.
+47 of 89 steps (53%) done
+Select jobs to execute...
+
+[Wed Feb 17 10:58:35 2021]
+rule run_grasp:
+    input: indelible_output/5/cleaned_aln/2.fasta, indelible_output/5/cleaned_N0_trees/2.nwk
+    output: grasp_results/5/PSP/2, grasp_results/5/PSP/2/GRASP_ancestors.fasta, grasp_results/5/PSP/2/GRASP_ancestors.nwk
+    jobid: 45
+    wildcards: taxon=5, method=PSP, rep=2
+
+[Wed Feb 17 10:58:35 2021]
+Error in rule run_grasp:
+    jobid: 45
+    output: grasp_results/5/PSP/2, grasp_results/5/PSP/2/GRASP_ancestors.fasta, grasp_results/5/PSP/2/GRASP_ancestors.nwk
+    shell:
+        grasp -aln indelible_output/5/cleaned_aln/2.fasta -nwk indelible_output/5/cleaned_N0_trees/2.nwk -model LG -out grasp_results/5/PSP/2 -savetree  -indel PSP -inf joint -gap
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job run_grasp since they might be corrupted:
+grasp_results/5/PSP/2
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-02-17T105811.240983.snakemake.log

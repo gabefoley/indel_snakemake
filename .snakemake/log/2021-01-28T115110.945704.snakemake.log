@@ -1,0 +1,100 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	4	clean_fasta
+	4	concat_fasta
+	2	create_control_files
+	4	run_grasp
+	4	run_indelible
+	24	summarise_indels
+	43
+Select jobs to execute...
+
+[Thu Jan 28 11:51:11 2021]
+rule create_control_files:
+    output: indelible/40_control.txt
+    jobid: 5
+    wildcards: taxon=40
+
+[Thu Jan 28 11:51:11 2021]
+Finished job 5.
+1 of 43 steps (2%) done
+Select jobs to execute...
+
+[Thu Jan 28 11:51:11 2021]
+rule create_control_files:
+    output: indelible/80_control.txt
+    jobid: 26
+    wildcards: taxon=80
+
+[Thu Jan 28 11:51:11 2021]
+Finished job 26.
+2 of 43 steps (5%) done
+Select jobs to execute...
+
+[Thu Jan 28 11:51:11 2021]
+rule run_indelible:
+    input: indelible/80_control.txt
+    output: indelible_output/80/cleaned_trees/80_tree_1.nwk, indelible_output/80/80_TRUE_1.fasta
+    jobid: 25
+    wildcards: taxon=80, rep=1
+
+[Thu Jan 28 11:51:12 2021]
+Finished job 25.
+3 of 43 steps (7%) done
+Select jobs to execute...
+
+[Thu Jan 28 11:51:12 2021]
+rule run_indelible:
+    input: indelible/40_control.txt
+    output: indelible_output/40/cleaned_trees/40_tree_2.nwk, indelible_output/40/40_TRUE_2.fasta
+    jobid: 10
+    wildcards: taxon=40, rep=2
+
+[Thu Jan 28 11:51:12 2021]
+Finished job 10.
+4 of 43 steps (9%) done
+Select jobs to execute...
+
+[Thu Jan 28 11:51:12 2021]
+rule clean_fasta:
+    input: indelible_output/80/80_TRUE_1.fasta
+    output: indelible_output/80/cleaned_aln/80_TRUE_1.fasta
+    jobid: 24
+    wildcards: taxon=80, rep=1
+
+[Thu Jan 28 11:51:13 2021]
+Finished job 24.
+5 of 43 steps (12%) done
+Select jobs to execute...
+
+[Thu Jan 28 11:51:13 2021]
+rule clean_fasta:
+    input: indelible_output/40/40_TRUE_2.fasta
+    output: indelible_output/40/cleaned_aln/40_TRUE_2.fasta
+    jobid: 9
+    wildcards: taxon=40, rep=2
+
+[Thu Jan 28 11:51:13 2021]
+Finished job 9.
+6 of 43 steps (14%) done
+Select jobs to execute...
+
+[Thu Jan 28 11:51:13 2021]
+rule run_grasp:
+    input: indelible_output/80/cleaned_aln/80_TRUE_1.fasta, indelible_output/80/cleaned_trees/80_tree_1.nwk
+    output: grasp_results/80/ancestors/{wildcards.method}/{wildcards.method}_80_output_1, grasp_results/80/ancestors/{wildcards.method}/{wildcards.method}_80_output_1/80_output_1.nwk
+    jobid: 23
+    wildcards: taxon=80, rep=1
+
+RuleException in line 43 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+'Wildcards' object has no attribute 'method'
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 136, in run_jobs
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 441, in run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 230, in _run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 156, in _run
+  File "/Users/gabefoley/miniconda3_latest/envs/indel_snakemake/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 162, in printjob

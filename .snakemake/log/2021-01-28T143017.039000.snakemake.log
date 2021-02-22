@@ -1,0 +1,82 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	2	clean_fasta
+	2	create_control_files
+	2	run_grasp
+	2	run_indelible
+	1	summarise_indels
+	9
+Select jobs to execute...
+
+[Thu Jan 28 14:30:17 2021]
+rule create_control_files:
+    output: indelible/5_control.txt
+    jobid: 4
+    wildcards: taxon=5
+
+[Thu Jan 28 14:30:17 2021]
+Finished job 4.
+1 of 9 steps (11%) done
+Select jobs to execute...
+
+[Thu Jan 28 14:30:17 2021]
+rule run_indelible:
+    input: indelible/5_control.txt
+    output: indelible_output/5/cleaned_trees/1.nwk, indelible_output/5/5_TRUE_1.fasta
+    jobid: 3
+    wildcards: taxon=5, rep=1
+
+[Thu Jan 28 14:30:17 2021]
+Finished job 3.
+2 of 9 steps (22%) done
+Select jobs to execute...
+
+[Thu Jan 28 14:30:17 2021]
+rule clean_fasta:
+    input: indelible_output/5/5_TRUE_1.fasta
+    output: indelible_output/cleaned_aln/5/1.fasta
+    jobid: 2
+    wildcards: taxon=5, rep=1
+
+[Thu Jan 28 14:30:18 2021]
+Finished job 2.
+3 of 9 steps (33%) done
+Select jobs to execute...
+
+[Thu Jan 28 14:30:18 2021]
+rule run_grasp:
+    input: indelible_output/cleaned_aln/5/1.fasta, indelible_output/5/cleaned_trees/1.nwk
+    output: grasp_results/5/BEP/1, grasp_results/5/BEP/1/GRASP_ancestors.fasta, grasp_results/5/BEP/1/tree.nwk
+    jobid: 1
+    wildcards: taxon=5, method=BEP, rep=1
+
+[Thu Jan 28 14:30:19 2021]
+Finished job 1.
+4 of 9 steps (44%) done
+Select jobs to execute...
+
+[Thu Jan 28 14:30:19 2021]
+rule create_control_files:
+    output: indelible/concatenated/5_control.txt
+    jobid: 8
+    wildcards: taxon=concatenated/5
+
+[Thu Jan 28 14:30:19 2021]
+Finished job 8.
+5 of 9 steps (56%) done
+Select jobs to execute...
+
+[Thu Jan 28 14:30:19 2021]
+rule run_indelible:
+    input: indelible/concatenated/5_control.txt
+    output: indelible_output/concatenated/5/cleaned_trees/1GRASP_ancestors.fasta.nwk, indelible_output/concatenated/5/concatenated/5_TRUE_1GRASP_ancestors.fasta.fasta
+    jobid: 7
+    wildcards: taxon=concatenated/5, rep=1GRASP_ancestors.fasta
+
+Waiting at most 100 seconds for missing files.
+Terminating processes on user request, this might take some time.
+Cancelling snakemake on user request.

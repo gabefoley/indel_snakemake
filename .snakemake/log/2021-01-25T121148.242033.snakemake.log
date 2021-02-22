@@ -1,0 +1,44 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	2	clean_fasta
+	3
+Select jobs to execute...
+
+[Mon Jan 25 12:11:48 2021]
+rule clean_fasta:
+    input: indelible_output/40/40_TRUE_1.fasta
+    output: indelible_output/40/cleaned_aln/40_TRUE_1.fasta
+    jobid: 7
+    wildcards: taxon=40, rep=1
+
+[Mon Jan 25 12:11:48 2021]
+Finished job 7.
+1 of 3 steps (33%) done
+Select jobs to execute...
+
+[Mon Jan 25 12:11:48 2021]
+rule clean_fasta:
+    input: indelible_output/80/80_TRUE_2.fasta
+    output: indelible_output/80/cleaned_aln/80_TRUE_2.fasta
+    jobid: 10
+    wildcards: taxon=80, rep=2
+
+[Mon Jan 25 12:11:49 2021]
+Finished job 10.
+2 of 3 steps (67%) done
+Select jobs to execute...
+
+[Mon Jan 25 12:11:49 2021]
+localrule all:
+    input: indelible_output/40/cleaned_trees/40_tree_1.nwk, indelible_output/40/cleaned_trees/40_tree_2.nwk, indelible_output/80/cleaned_trees/80_tree_1.nwk, indelible_output/80/cleaned_trees/80_tree_2.nwk, indelible_output/40/cleaned_aln/40_TRUE_1.fasta, indelible_output/40/cleaned_aln/40_TRUE_2.fasta, indelible_output/80/cleaned_aln/80_TRUE_1.fasta, indelible_output/80/cleaned_aln/80_TRUE_2.fasta
+    jobid: 0
+
+[Mon Jan 25 12:11:49 2021]
+Finished job 0.
+3 of 3 steps (100%) done
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-25T121148.242033.snakemake.log

@@ -1,0 +1,2 @@
+SyntaxError in line 77 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
+EOF in multi-line statement (Snakefile, line 77)

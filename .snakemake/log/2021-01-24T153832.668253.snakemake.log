@@ -1,0 +1,19 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job counts:
+	count	jobs
+	1	create_control_files
+	1
+Select jobs to execute...
+
+[Sun Jan 24 15:38:32 2021]
+rule create_control_files:
+    jobid: 0
+
+[Sun Jan 24 15:38:33 2021]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-24T153832.668253.snakemake.log

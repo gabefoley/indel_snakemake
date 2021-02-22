@@ -1,0 +1,45 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	3	clean_fasta
+	12	concat_fasta
+	11	run_grasp
+	12	summarise_indels
+	39
+Select jobs to execute...
+
+[Thu Jan 28 15:13:03 2021]
+rule clean_fasta:
+    input: indelible_output/40/40_TRUE_1.fasta
+    output: indelible_output/cleaned_aln/40/1.fasta
+    jobid: 26
+    wildcards: taxon=40, rep=1
+
+[Thu Jan 28 15:13:03 2021]
+Finished job 26.
+1 of 39 steps (3%) done
+Select jobs to execute...
+
+[Thu Jan 28 15:13:03 2021]
+rule run_grasp:
+    input: indelible_output/cleaned_aln/40/1.fasta, indelible_output/40/cleaned_trees/1.nwk
+    output: grasp_results/40/SICP/1, grasp_results/40/SICP/1/GRASP_ancestors.fasta, grasp_results/40/SICP/1/tree.nwk
+    jobid: 36
+    wildcards: taxon=40, method=SICP, rep=1
+
+Terminating processes on user request, this might take some time.
+[Thu Jan 28 15:13:29 2021]
+Error in rule run_grasp:
+    jobid: 36
+    output: grasp_results/40/SICP/1, grasp_results/40/SICP/1/GRASP_ancestors.fasta, grasp_results/40/SICP/1/tree.nwk
+    shell:
+        grasp -aln indelible_output/cleaned_aln/40/1.fasta -nwk indelible_output/40/cleaned_trees/1.nwk -model LG -out grasp_results/40/SICP/1 -savetree grasp_results/40/SICP/1  -indel SICP -inf joint -gap
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job run_grasp since they might be corrupted:
+grasp_results/40/SICP/1
+Complete log: /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/.snakemake/log/2021-01-28T151303.406811.snakemake.log
