@@ -107,7 +107,7 @@ rule run_grasp:
         tree = "grasp_results/{taxon}/{method}/{rep}/GRASP_ancestors.nwk"
 
     shell:
-        "grasp -aln {input.aln} -nwk {input.tree} -model LG -out {output.dir} -savetree  -indel {wildcards.method} -inf joint -gap"
+        "grasp_indel -aln {input.aln} -nwk {input.tree} -model LG -out {output.dir} -savetree  -indel {wildcards.method} -inf joint -gap"
 
 # Add the ancestors and extant sequences to one file
 rule concat_fasta:
