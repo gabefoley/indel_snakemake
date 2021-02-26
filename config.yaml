@@ -5,7 +5,7 @@ TAXA : ['200']
 
 REPS : 2
 
-GRASP_METHODS : ['SICML', 'BEP']
+GRASP_METHODS : ['SICML', 'BEP' 'BEML', 'SICP', 'PSP']
 
 
 #'BEML', 'PSP'
