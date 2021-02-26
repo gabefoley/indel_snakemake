@@ -85,14 +85,14 @@ rule clean_fastml_ml:
         "scripts/clean_fastml.py"
 
 
-# rule concat_fastml:
-#     input:
-#         extants="indelible_output/{taxon}/cleaned_aln/{rep}.fasta",
-#         ancestors="fastml_results/{taxon}/{rep}/GRASP_ancestors.fasta"
-#     output:
-#         "grasp_results/concatenated/{taxon}/{method}/{rep}/GRASP_ancestors.fasta"
-#     shell:
-#         "cat {input.extants} {input.ancestors} > {output}"
+rule concat_fastml:
+    input:
+        extants="indelible_output/{taxon}/cleaned_aln/{rep}.fasta",
+        ancestors="fastml_results/{taxon}/{rep}/GRASP_ancestors.fasta"
+    output:
+        "grasp_results/concatenated/{taxon}/{method}/{rep}/GRASP_ancestors.fasta"
+    shell:
+        "cat {input.extants} {input.ancestors} > {output}"
 
 
 rule run_grasp:
