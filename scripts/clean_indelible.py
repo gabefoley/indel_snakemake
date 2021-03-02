@@ -14,10 +14,21 @@ rep = snakemake.wildcards['rep']
 
 
 
+print (snakemake.input.aln)
+print (os.getcwd())
 
-# os.system(f"sed 's/>/>sequence/g; s/*/-/g' {snakemake.input} > {snakemake.output}")
+print (os.path.exists(snakemake.input.aln))
+
+
+# os.system(f"sed 's/>/>sequence/g; s/*/-/g' {snakemake.input.aln} >| {snakemake.input.aln}")
 # os.system (f"trimal -in {snakemake.output} -out {snakemake.output} -noallgaps")
-os.system (f"trimal -in {snakemake.input.aln} -out {snakemake.output.aln} -noallgaps")
+
+
+os.system(f"sed 's/\*/-/g;' ./{str(snakemake.input.aln)}")
+
+os.system (f"trimal -in {snakemake.input.aln} -out {snakemake.input.aln} -noallgaps")
+
+print ('cleaning apparently')
 
 
 # Add seq to the names of the tree (to help GRASP and FastML process the output)

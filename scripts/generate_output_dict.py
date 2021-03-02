@@ -7,6 +7,7 @@ import seaborn as sns
 from collections import defaultdict
 from ast import literal_eval
 import pickle
+import numpy as np
 import os
 
 # taxa = [6, 8]
@@ -86,7 +87,7 @@ for taxa_num in taxa:
 
 
 
-            root_lens.append(summary['root_len'].mean())
+            root_lens.append(np.around(summary['root_len'].mean(),2))
             ins_accs.append(summary['ins_acc'].mean())
             del_accs.append(summary['del_acc'].mean())
 

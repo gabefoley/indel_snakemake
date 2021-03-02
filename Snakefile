@@ -243,8 +243,8 @@ rule generate_output_dict:
         expand("concatenated_summaries/{taxon}_{method}.csv",
             taxon=config['TAXA'], 
             method=config['GRASP_METHODS']),
-        # fastml_parsimony_summary = expand('concatenated_fastml_parsimony_summaries/{taxon}.csv', taxon=config['TAXA']),
-        # fastml_ml_summary = expand('concatenated_fastml_ml_summaries/{taxon}.csv', taxon=config['TAXA']),
+        fastml_parsimony_summary = expand('concatenated_fastml_parsimony_summaries/{taxon}.csv', taxon=config['TAXA']),
+        fastml_ml_summary = expand('concatenated_fastml_ml_summaries/{taxon}.csv', taxon=config['TAXA']),
 
         indelible_summary = expand('concatenated_indelible_summaries/{taxon}.csv', taxon=config['TAXA'])
 
@@ -270,10 +270,11 @@ rule compile_latex:
     input:
         "plots/plot.tex"
     output:
-        "plots/plot.pdf"
+        dir=directory("plots_generated"),
+        pdf="plots_generated/plot.pdf"
 
-    shell:
-        "pdflatex -output-directory plots {input}"
+    run:
+        shell("pdflatex -output-directory={output.dir} ./{input}")
 
 
 # Constraints for rep and taxon wildcards are that they can only contain digits

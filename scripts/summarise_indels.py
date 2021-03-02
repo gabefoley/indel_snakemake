@@ -15,14 +15,16 @@ def get_kl_divergence(recon, true, pseudocount=1):
 
     # Get the highest length we need to consider. We need to consider cases where one or both of the reconstructions
     # don't actually contain content
-    if not true and not recon:
-        return 0
-    elif not true:
-        max_val = max(recon)
-    elif not recon:
-        max_val = max(true)
-    else:
-        max_val = max(max(true), max(recon))
+    # if not true and not recon:
+    #     return 0
+    # elif not true:
+    #     max_val = max(recon)
+    # elif not recon:
+    #     max_val = max(true)
+    # else:
+    #     max_val = max(max(true), max(recon))
+
+    max_val = max(recon)
 
     # Get a list of the possible event lengths
     total = [x for x in range(1, max_val + 1)]
