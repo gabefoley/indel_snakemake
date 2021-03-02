@@ -26,6 +26,8 @@ print (os.path.exists(snakemake.input.aln))
 
 os.system(f"sed 's/\*/-/g;' ./{str(snakemake.input.aln)}")
 
+print ('done')
+
 os.system (f"trimal -in {snakemake.input.aln} -out {snakemake.input.aln} -noallgaps")
 
 print ('cleaning apparently')
