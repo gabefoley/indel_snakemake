@@ -43,7 +43,7 @@ def get_kl_divergence(true, recon, pseudocount=1):
     true_probs = [x / sum(true_adjust) for x in true_adjust]
     recon_probs = [x / sum(recon_adjust) for x in recon_adjust]
 
-    recon_probs = recon_probs[:max(true)]
+    recon_probs = recon_probs[:max_true]
 
     print (f'True probs - {true_probs}\n')
     print (f'Reconstructed probs - {recon_probs}\n')
@@ -52,6 +52,7 @@ def get_kl_divergence(true, recon, pseudocount=1):
     print (len(recon_probs))
 
     return sum(true_probs[i] * log(true_probs[i]/recon_probs[i]) for i in range(len(true_probs)))
+
 
 
 
