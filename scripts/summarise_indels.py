@@ -11,7 +11,7 @@ from scipy.special import rel_entr
 
 # Use INDELible max
 
-def get_kl_divergence(recon, true, pseudocount=1):
+def get_kl_divergence(true, recon, pseudocount=1):
 
     # Get the highest length we need to consider. We need to consider cases where one or both of the reconstructions
     # don't actually contain content
@@ -24,15 +24,15 @@ def get_kl_divergence(recon, true, pseudocount=1):
     # else:
     #     max_val = max(max(true), max(recon))
 
-    max_val = max(recon)
-
     # Get a list of the possible event lengths
-    total = [x for x in range(1, max_val + 1)]
+    total = [x for x in range(1, max(true) + 1)]
+    recon_total = [x for x in range(1, max(true) + 1 if max(true) > max(recon) else max(recon) + 1)]
 
     print (f'Total possible insertion lengths {total}\n')
+    print (recon_total)
 
     true_adjust = [true.count(x) + pseudocount for x in total]
-    recon_adjust = [recon.count(x) + pseudocount for x in total]
+    recon_adjust = [recon.count(x) + pseudocount for x in recon_total]
 
     print(f'True with pseudocount {true_adjust}')
     print(f'Reconstructed with pseudocount {recon_adjust}\n')
@@ -40,10 +40,15 @@ def get_kl_divergence(recon, true, pseudocount=1):
     true_probs = [x / sum(true_adjust) for x in true_adjust]
     recon_probs = [x / sum(recon_adjust) for x in recon_adjust]
 
+    recon_probs = recon_probs[:max(true)]
+
     print (f'True probs - {true_probs}\n')
     print (f'Reconstructed probs - {recon_probs}\n')
 
-    return sum(recon_probs[i] * log(recon_probs[i]/true_probs[i]) for i in range(len(recon_probs)))
+    print (len(true_probs))
+    print (len(recon_probs))
+
+    return sum(true_probs[i] * log(true_probs[i]/recon_probs[i]) for i in range(len(true_probs)))
 
 
 
@@ -180,8 +185,8 @@ print (indelible_ins_len)
 print (indelible_del_len)
 
 
-ins_kl = get_kl_divergence(ins_len, indelible_ins_len)
-del_kl = get_kl_divergence(del_len, indelible_del_len)
+ins_kl = get_kl_divergence(indelible_ins_len, ins_len)
+del_kl = get_kl_divergence(indelible_del_len, del_len)
 
 
 with open(outpath, 'w', newline='') as csvfile:
