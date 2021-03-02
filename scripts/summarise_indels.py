@@ -25,8 +25,11 @@ def get_kl_divergence(true, recon, pseudocount=1):
     #     max_val = max(max(true), max(recon))
 
     # Get a list of the possible event lengths
-    total = [x for x in range(1, max(true) + 1)]
-    recon_total = [x for x in range(1, max(true) + 1 if max(true) > max(recon) else max(recon) + 1)]
+    
+    max_true = 0 if len(true) == 0 else max(true)
+    max_recon = 0 if len(recon) == 0 else max(recon)
+    total = [x for x in range(1, max_true + 1)]
+    recon_total = [x for x in range(1, max_true + 1 if max_true > max_recon else max_recon + 1)]
 
     print (f'Total possible insertion lengths {total}\n')
     print (recon_total)
@@ -49,6 +52,7 @@ def get_kl_divergence(true, recon, pseudocount=1):
     print (len(recon_probs))
 
     return sum(true_probs[i] * log(true_probs[i]/recon_probs[i]) for i in range(len(true_probs)))
+
 
 
 
