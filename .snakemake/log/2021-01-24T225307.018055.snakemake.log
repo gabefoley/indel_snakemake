@@ -1,7 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 2 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
-Missing input files for rule all:
-cleaned_output/40/40_TRUE_2_cols_removed.fasta
-cleaned_output/80/80_TRUE_1_cols_removed.fasta
-cleaned_output/40/40_TRUE_1_cols_removed.fasta
-cleaned_output/80/80_TRUE_2_cols_removed.fasta

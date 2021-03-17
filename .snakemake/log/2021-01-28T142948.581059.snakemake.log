@@ -1,4 +1,0 @@
-Building DAG of jobs...
-File path grasp_results/5/BEP/1//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
-File path grasp_results/5/BEP/1//GRASP_ancestors.fasta contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
-File path grasp_results/5/BEP/1//tree.nwk contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.

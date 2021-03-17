@@ -211,6 +211,55 @@ rule concat_fastml__ml_summaries:
         """awk "FNR==1 && NR!=1{{next;}}{{print}}" {input} > {output}"""
 
 
+rule run_ancestral_cost:
+    input:
+        aln="indelible_output/{taxon}/cleaned_aln/{rep}.fasta",
+        tree="indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
+
+    output:
+        dir=directory("ancestral_cost/{taxon}/{method}/{rep}"),
+        aln="ancestral_cost/{taxon}/{method}/{rep}/ancestral_cost.fasta",
+        tree = "ancestral_cost/{taxon}/{method}/{rep}/ancestral_cost.nwk"
+
+    shell:
+        "python3 scripts/ancestarl_cost.py -a {input.aln} -t {input.tree} -f {output.aln}"
+
+
+rule summarise_ancestral_cost:
+    input:
+        aln="ancestral_cost/{taxon}/{method}/{rep}/ancestral_cost.fasta",
+        tree = "ancestral_cost/{taxon}/{method}/{rep}/ancestral_cost.nwk"
+        indelible_tree = "indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
+        indelible_aln = "indelible_output/{taxon}/concatenated/{rep}.fasta",
+        leaves = "indelible_dicts/{taxon}/leaves_{rep}.p",
+        gaps = "indelible_dicts/{taxon}/gaps_{rep}.p",
+        
+    params:
+        method='ancestral_cost'
+
+    output:
+        "ancestral_cost_summaries/{taxon}/ac/{rep}.csv"
+
+    script:
+        "scripts/summarise_indels.py"
+
+rule concat_ancestral_cost_summaries:
+    input: 
+        expand("ancestral_cost_summaries/{{taxon}}/ac/{rep}.csv", rep = [x for x in range(1, config['REPS'] + 1)])
+    output:
+        "concatenated_ancestral_cost_summaries/{taxon}.csv"
+    shell:
+        """awk "FNR==1 && NR!=1{{next;}}{{print}}" {input} > {output}"""
+
+
+rule concat_fastml_summaries:
+    input: 
+        expand("fastml_parsimony_summaries/{{taxon}}/fastml/{rep}.csv", rep = [x for x in range(1, config['REPS'] + 1)])
+    output:
+        "concatenated_fastml_parsimony_summaries/{taxon}.csv"
+    shell:
+        """awk "FNR==1 && NR!=1{{next;}}{{print}}" {input} > {output}"""
+
 
 
 rule summarise_indelible:
@@ -246,7 +295,10 @@ rule generate_output_dict:
         fastml_parsimony_summary = expand('concatenated_fastml_parsimony_summaries/{taxon}.csv', taxon=config['TAXA']),
         fastml_ml_summary = expand('concatenated_fastml_ml_summaries/{taxon}.csv', taxon=config['TAXA']),
 
+        ancestral_cost_summary = expand('concatenated_ancestral_cost_summaries/{taxon}.csv', taxon=config['TAXA'])
+
         indelible_summary = expand('concatenated_indelible_summaries/{taxon}.csv', taxon=config['TAXA'])
+
 
     params:
             myparam=lambda wildcards: config["TAXA"]

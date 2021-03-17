@@ -1,8 +1,0 @@
-Building DAG of jobs...
-InputFunctionException in line 141 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
-Error:
-  AttributeError: 'Wildcards' object has no attribute 'taxa'
-Wildcards:
-
-Traceback:
-  File "/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile", line 146, in <lambda>

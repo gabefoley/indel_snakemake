@@ -1,3 +1,0 @@
-Building DAG of jobs...
-MissingRuleException:
-No rule to produce fastml_results/cleaned_N0_tree/10/1/tree.nwk (if you use input functions make sure that they don't raise unexpected exceptions).

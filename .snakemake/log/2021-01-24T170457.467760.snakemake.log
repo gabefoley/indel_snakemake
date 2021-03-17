@@ -1,5 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 3 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
-Missing input files for rule create_control_files:
-80
-40

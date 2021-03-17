@@ -1,5 +1,0 @@
-Building DAG of jobs...
-ChildIOException:
-File/directory is a child to another output:
-('/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/grasp_results/4/ancestors/BEP/4_output_1', run_grasp)
-('/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/grasp_results/4/ancestors/BEP/4_output_1/GRASP_ancestors.fasta', run_grasp)

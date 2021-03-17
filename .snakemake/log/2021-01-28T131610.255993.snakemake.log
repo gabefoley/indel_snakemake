@@ -1,3 +1,0 @@
-TypeError in line 49 of /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile:
-directory() got an unexpected keyword argument 'dir'
-  File "/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/Snakefile", line 49, in <module>
