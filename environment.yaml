@@ -7,5 +7,6 @@ dependencies:
   - networkx =2.5
   - matplotlib =3.3
   - graphviz =2.42
+  - biopython
 
 
