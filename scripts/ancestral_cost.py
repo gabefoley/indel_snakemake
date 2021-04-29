@@ -51,25 +51,35 @@ def get_found_positions(selected_node, aln_len, found_positions, skip_positions)
     child1_leaves = selected_node.children[0].get_leaves()
     child2_leaves = selected_node.children[1].get_leaves()
 
+
     for pos in range(aln_len):
         if pos not in found_positions and pos not in skip_positions:
-            found1 = False
-            found2 = False
-            for leaf in child1_leaves:
-                if leaf.sequence[pos] != "-":
-                    found1 = True
-                    break
-            for leaf in child2_leaves:
-                if leaf.sequence[pos] != "-":
-                    found2 = True
-                    break
+            found = False
+            found_multiple = False
+
+            for child in selected_node.children:
+
+                # # If a child is a leaf and has content, automatically elevate the content
+                # if child.is_leaf() and child.sequence[pos] != "-":
+                #     found_multiple = True
+                # else:
+
+                for leaf in child.get_leaves():
+                    if leaf.sequence[pos] != "-":
+                        if found:
+                            found_multiple = True
+                            break
+
+                        found = True
+                        break
+
 
             # Must appear (no need to search in higher nodes)
-            if found1 and found2:
+            if found_multiple:
                 found_positions.append(pos)
 
             # Doesn't appear (no need to search in higher nodes)
-            elif not found1 and not found2:
+            elif not found_multiple:
                 skip_positions.append(pos)
 
     if selected_node.is_root() or len(found_positions) + len(skip_positions) == aln_len:
@@ -117,6 +127,7 @@ if __name__ == "__main__":
     parser.add_argument("-n", "--node", help="Node to return cost for (default is root)")
     parser.add_argument("-p", "--positions", help="Just return the positions required to be there", action="store_true")
     parser.add_argument("-f", "--fasta_output", help="Return all ancestors as a FASTA file")
+    parser.add_argument("-to", "--tree_output", help="Write out the ancestor tree")
 
     args = parser.parse_args()
 
@@ -132,16 +143,26 @@ if __name__ == "__main__":
 
     if args.fasta_output:
         print ("Getting the positions required to be there for all ancestors")
-        with open(args.fasta_output) as fasta_output:
-            for node_name in tree.iterleaves():
-                print (node_name)
-                positions = get_positions_with_content(tree, alignment, node_of_interest)
-                print (positions)
+        with open(args.fasta_output, "w+") as fasta_output:
+            for node in tree.traverse():
+                if not node.is_leaf():
+                    print (node.name)
+                    positions = get_positions_with_content(tree, aln, node.name)
+                    print (positions)
 
-                ancestor_gaps = ["-" for x in range(len(aln[0]) if x not in positions else "A")]
 
-                print (ancestor_gaps)
-                fasta_output.write(f'>{node.name}\n{"".join(ancestor_gaps)}')
+
+                    ancestor_gaps = ["A" if x in positions else "-" for x in range(len(aln[0]))]
+
+                    fasta_output.write(f'>{node.name}\n{"".join(ancestor_gaps)}\n')
+
+
+
+        with open (args.tree_output, "w+") as tree_output:
+            print (tree.write(format=7))
+            tree_output.write(tree.write(format=1))
+
+
 
 
     else:

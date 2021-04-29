@@ -27,32 +27,32 @@ for control_file in snakemake.input:
 
 
 
-	while not os.path.exists("trees.txt"):
-		time.sleep(1)
-	for line in open(str("trees.txt")):
-		if line.startswith(taxa_num):
+while not os.path.exists("trees.txt"):
+	time.sleep(1)
+for line in open(str("trees.txt")):
+	if line.startswith(taxa_num):
 
-			print (line)
-			split = line.split("\t")
-			rep = split[3]
-			tree = ete3.PhyloTree(split[8], format=1)
-
-
-	
-
-			if not os.path.exists("trees"):
-				os.mkdir(f"./trees/")
+		print (line)
+		split = line.split("\t")
+		rep = split[3]
+		tree = ete3.PhyloTree(split[8], format=1)
 
 
 
-			tree.write(outfile=f"./trees/{rep}.nwk", format=3)
+
+		if not os.path.exists("trees"):
+			os.mkdir(f"./trees/")
 
 
-			# Add the N0 to the root of the tree
-			if not os.path.exists("N0_trees"):
-				os.mkdir(f"./N0_trees/")
+
+		tree.write(outfile=f"./trees/{rep}.nwk", format=3)
 
 
-			os.system(f"sed 's/;/ROOT;/g' ./trees/{rep}.nwk >| ./N0_trees/{rep}.nwk")
+		# Add the N0 to the root of the tree
+		if not os.path.exists("N0_trees"):
+			os.mkdir(f"./N0_trees/")
+
+
+		os.system(f"sed 's/;/ROOT;/g' ./trees/{rep}.nwk >| ./N0_trees/{rep}.nwk")
 
 

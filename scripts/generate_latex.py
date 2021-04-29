@@ -1,5 +1,7 @@
 import pickle
 import numpy as np
+import os
+import time
 
 output_dict_path = snakemake.input[0]
 
@@ -187,4 +189,5 @@ with open(snakemake.output[0], "w") as latex_file:
     latex_file.write('\n\\end{tabular}'
                      '\n\\end{table}'
                      '\n\end{document}')
+
 

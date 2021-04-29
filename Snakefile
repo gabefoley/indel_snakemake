@@ -20,15 +20,24 @@ rule run_indelible:
         "indelible_output/{taxon}/{taxon}_TRUE_{rep}.fasta",
         "indelible_output/{taxon}/{taxon}_ANCESTRAL_{rep}.fasta",
         "indelible_output/{taxon}/N0_trees/{rep}.nwk",
-
-
     script:
         "scripts/run_indelible.py"
 
-rule concat_indelible:
+rule remove_gap_only_columns_from_indelible:
     input:
         extants = "indelible_output/{taxon}/{taxon}_TRUE_{rep}.fasta",
         ancestors = "indelible_output/{taxon}/{taxon}_ANCESTRAL_{rep}.fasta"
+    output:
+        extants="indelible_output/{taxon}/no_gaps/{taxon}_TRUE_{rep}.fasta",
+        ancestors="indelible_output/{taxon}/no_gaps/{taxon}_ANCESTRAL_{rep}.fasta"
+
+    script:
+        "scripts/remove_gaps_from_indelible.py"
+
+rule concat_indelible:
+    input:
+        extants = "indelible_output/{taxon}/no_gaps/{taxon}_TRUE_{rep}.fasta",
+        ancestors = "indelible_output/{taxon}/no_gaps/{taxon}_ANCESTRAL_{rep}.fasta"
     output:
         "indelible_output/{taxon}/concatenated/{taxon}_{rep}.fasta"
     shell:
@@ -50,49 +59,94 @@ rule clean_indelible:
     script:
         "scripts/clean_indelible.py"
 
-rule run_fastml:
-    input:
-        aln="indelible_output/{taxon}/cleaned_aln/{rep}.fasta",
-        tree="indelible_output/{taxon}/cleaned_no_internal_trees/{rep}.nwk"
-    output:
-        parsimony="fastml_results/{taxon}/{rep}/seq.marginal_Chars_ParsimonyIndels.txt",
-        ml="fastml_results/{taxon}/{rep}/seq.marginal_IndelAndChars.txt",
-        tree="fastml_results/{taxon}/{rep}/tree.newick.txt",
-        dir=directory("fastml_results/{taxon}/{rep}/")
-    shell:
-        "perl FastML.v3.11/www/fastml/FastML_Wrapper.pl --MSA_File /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/{input.aln} --seqType AA --Tree /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/{input.tree} --outDir '/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/{output.dir}'"
+# rule run_fastml:
+#     input:
+#         aln="indelible_output/{taxon}/cleaned_aln/{rep}.fasta",
+#         tree="indelible_output/{taxon}/cleaned_no_internal_trees/{rep}.nwk"
+#     output:
+#         parsimony="fastml_results/{taxon}/{rep}/seq.marginal_Chars_ParsimonyIndels.txt",
+#         ml="fastml_results/{taxon}/{rep}/seq.marginal_IndelAndChars.txt",
+#         tree="fastml_results/{taxon}/{rep}/tree.newick.txt",
+#         dir=directory("fastml_results/{taxon}/{rep}/")
+#     shell:
+#         "perl FastML.v3.11/www/fastml/FastML_Wrapper.pl --MSA_File /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/{input.aln} --seqType AA --Tree /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/{input.tree} --outDir '/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/{output.dir}'"
 
-rule clean_fastml_parsimony:
-    input:
-        aln="fastml_results/{taxon}/{rep}/seq.marginal_Chars_ParsimonyIndels.txt",
-        tree="fastml_results/{taxon}/{rep}/tree.newick.txt"
-    output:
-        aln="fastml_results_parsimony/{taxon}/concatenated/{rep}/FastML_ancestors.fasta",
-        cleaned_tree="fastml_results_parsimony/{taxon}/cleaned_trees/{rep}/tree.nwk",
-        cleaned_N0_tree="fastml_results_parsimony/{taxon}/cleaned_N0_trees/{rep}/tree.nwk"
-    script:
-        "scripts/clean_fastml.py"
+# rule clean_fastml_parsimony:
+#     input:
+#         aln="fastml_results/{taxon}/{rep}/seq.marginal_Chars_ParsimonyIndels.txt",
+#         tree="fastml_results/{taxon}/{rep}/tree.newick.txt"
+#     output:
+#         aln="fastml_results_parsimony/{taxon}/concatenated/{rep}/FastML_ancestors.fasta",
+#         cleaned_tree="fastml_results_parsimony/{taxon}/cleaned_trees/{rep}/tree.nwk",
+#         cleaned_N0_tree="fastml_results_parsimony/{taxon}/cleaned_N0_trees/{rep}/tree.nwk"
+#     script:
+#         "scripts/clean_fastml.py"
 
-rule clean_fastml_ml:
-    input:
-        aln="fastml_results/{taxon}/{rep}/seq.marginal_IndelAndChars.txt",
-        tree="fastml_results/{taxon}/{rep}/tree.newick.txt"
-    output:
-        aln="fastml_results_ml/{taxon}/concatenated/{rep}/FastML_ancestors.fasta",
-        cleaned_tree="fastml_results_ml/{taxon}/cleaned_trees/{rep}/tree.nwk",
-        cleaned_N0_tree="fastml_results_ml/{taxon}/cleaned_N0_trees/{rep}/tree.nwk"
-    script:
-        "scripts/clean_fastml.py"
+# rule clean_fastml_ml:
+#     input:
+#         aln="fastml_results/{taxon}/{rep}/seq.marginal_IndelAndChars.txt",
+#         tree="fastml_results/{taxon}/{rep}/tree.newick.txt"
+#     output:
+#         aln="fastml_results_ml/{taxon}/concatenated/{rep}/FastML_ancestors.fasta",
+#         cleaned_tree="fastml_results_ml/{taxon}/cleaned_trees/{rep}/tree.nwk",
+#         cleaned_N0_tree="fastml_results_ml/{taxon}/cleaned_N0_trees/{rep}/tree.nwk"
+#     script:
+#         "scripts/clean_fastml.py"
+
+# rule summarise_fastml_parsimony_indels:
+#     input:
+#         aln="fastml_results_parsimony/{taxon}/concatenated/{rep}/FastML_ancestors.fasta",
+#         tree="fastml_results_parsimony/{taxon}/cleaned_N0_trees/{rep}/tree.nwk",
+#         indelible_tree = "indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
+#         indelible_aln = "indelible_output/{taxon}/concatenated/{rep}.fasta",
+#         leaves = "indelible_dicts/{taxon}/leaves_{rep}.p",
+#         gaps = "indelible_dicts/{taxon}/gaps_{rep}.p",
+        
+#     params:
+#         method='fastMLparsimony'
+
+#     output:
+#         "fastml_parsimony_summaries/{taxon}/fastml/{rep}.csv"
+
+#     script:
+#         "scripts/summarise_indels.py"
+
+# rule summarise_fastml_ml_indels:
+#     input:
+#         aln="fastml_results_ml/{taxon}/concatenated/{rep}/FastML_ancestors.fasta",
+#         tree="fastml_results_ml/{taxon}/cleaned_N0_trees/{rep}/tree.nwk",
+#         indelible_tree = "indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
+#         indelible_aln = "indelible_output/{taxon}/concatenated/{rep}.fasta",
+#         leaves = "indelible_dicts/{taxon}/leaves_{rep}.p",
+#         gaps = "indelible_dicts/{taxon}/gaps_{rep}.p",
+        
+#     params:
+#         method='fastMLml'
+
+#     output:
+#         "fastml_ml_summaries/{taxon}/fastml/{rep}.csv"
+
+#     script:
+#         "scripts/summarise_indels.py"
 
 
-rule concat_fastml:
-    input:
-        extants="indelible_output/{taxon}/cleaned_aln/{rep}.fasta",
-        ancestors="fastml_results/{taxon}/{rep}/GRASP_ancestors.fasta"
-    output:
-        "grasp_results/concatenated/{taxon}/{method}/{rep}/GRASP_ancestors.fasta"
-    shell:
-        "cat {input.extants} {input.ancestors} > {output}"
+# rule concat_fastml_summaries:
+#     input: 
+#         expand("fastml_parsimony_summaries/{{taxon}}/fastml/{rep}.csv", rep = [x for x in range(1, config['REPS'] + 1)])
+#     output:
+#         "concatenated_fastml_parsimony_summaries/{taxon}.csv"
+#     shell:
+#         """awk "FNR==1 && NR!=1{{next;}}{{print}}" {input} > {output}"""
+
+
+# rule concat_fastml__ml_summaries:
+#     input: 
+#         expand("fastml_ml_summaries/{{taxon}}/fastml/{rep}.csv", rep = [x for x in range(1, config['REPS'] + 1)])
+#     output:
+#         "concatenated_fastml_ml_summaries/{taxon}.csv"
+#     shell:
+#         """awk "FNR==1 && NR!=1{{next;}}{{print}}" {input} > {output}"""
+
 
 
 rule run_grasp:
@@ -156,111 +210,78 @@ rule summarise_indels:
     script:
         "scripts/summarise_indels.py"
 
-rule summarise_fastml_parsimony_indels:
-    input:
-        aln="fastml_results_parsimony/{taxon}/concatenated/{rep}/FastML_ancestors.fasta",
-        tree="fastml_results_parsimony/{taxon}/cleaned_N0_trees/{rep}/tree.nwk",
-        indelible_tree = "indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
-        indelible_aln = "indelible_output/{taxon}/concatenated/{rep}.fasta",
-        leaves = "indelible_dicts/{taxon}/leaves_{rep}.p",
-        gaps = "indelible_dicts/{taxon}/gaps_{rep}.p",
+
+# ANCESTRAL COST --------
+
+# rule run_ancestral_cost:
+#     input:
+#         aln="indelible_output/{taxon}/cleaned_aln/{rep}.fasta",
+#         tree="indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
+
+#     output:
+#         dir=directory("ancestral_cost/{taxon}/{rep}"),
+#         aln="ancestral_cost/{taxon}/{rep}/ancestral_cost.fasta",
+#         tree = "ancestral_cost/{taxon}/{rep}/ancestral_cost.nwk"
+
+#     shell:
+#         "python3 scripts/ancestral_cost.py -a {input.aln} -t {input.tree} -f {output.aln} -to {output.tree}"
+
+
+# # rule remove_gaps_ancestral_cost:
+# #     input:
+# #         aln="ancestral_cost/{taxon}/{rep}/ancestral_cost.fasta"
+# #     output:
+# #         aln="ancestral_cost/{taxon}/cleaned_aln/{rep}/ancestral_cost.fasta"
+
+# #     shell:
+# #         "trimal -in {input.aln} -out {output.aln} -noallgaps"
+
+
+# rule concat_ancestral_cost:
+#     input:
+#         extants="indelible_output/{taxon}/cleaned_aln/{rep}.fasta",
+#         # ancestors="ancestral_cost/{taxon}/cleaned_aln/{rep}/ancestral_cost.fasta"
+#         ancestors="ancestral_cost/{taxon}/{rep}/ancestral_cost.fasta"
+#     output:
+#         "ancestral_cost/concatenated/{taxon}/{rep}/ancestral_cost.fasta"
+#     shell:
+#         "cat {input.extants} {input.ancestors} > {output}"
+
+
+# rule clean_ancestral_cost:
+#     input:
+#         tree="ancestral_cost/{taxon}/{rep}/ancestral_cost.nwk"
+#     output:
+#         cleaned_N0_tree="ancestral_cost/{taxon}/cleaned_N0_trees/{rep}/ancestral_cost.nwk"
+#     shell:
+#         "sed 's/;/N0;/g' {input.tree} >| {output.cleaned_N0_tree}"
+
+
+# rule summarise_ancestral_cost:
+#     input:
+#         aln = "ancestral_cost/concatenated/{taxon}/{rep}/ancestral_cost.fasta",
+#         tree = "ancestral_cost/{taxon}/cleaned_N0_trees/{rep}/ancestral_cost.nwk",
+#         indelible_tree = "indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
+#         indelible_aln = "indelible_output/{taxon}/concatenated/{rep}.fasta",
+#         leaves = "indelible_dicts/{taxon}/leaves_{rep}.p",
+#         gaps = "indelible_dicts/{taxon}/gaps_{rep}.p",
         
-    params:
-        method='fastMLparsimony'
+#     params:
+#         method='ancestralcost'
 
-    output:
-        "fastml_parsimony_summaries/{taxon}/fastml/{rep}.csv"
+#     output:
+#         "ancestral_cost_summaries/{taxon}/ac/{rep}.csv"
 
-    script:
-        "scripts/summarise_indels.py"
+#     script:
+#         "scripts/summarise_indels.py"
 
-rule summarise_fastml_ml_indels:
-    input:
-        aln="fastml_results_ml/{taxon}/concatenated/{rep}/FastML_ancestors.fasta",
-        tree="fastml_results_ml/{taxon}/cleaned_N0_trees/{rep}/tree.nwk",
-        indelible_tree = "indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
-        indelible_aln = "indelible_output/{taxon}/concatenated/{rep}.fasta",
-        leaves = "indelible_dicts/{taxon}/leaves_{rep}.p",
-        gaps = "indelible_dicts/{taxon}/gaps_{rep}.p",
-        
-    params:
-        method='fastMLml'
-
-    output:
-        "fastml_ml_summaries/{taxon}/fastml/{rep}.csv"
-
-    script:
-        "scripts/summarise_indels.py"
-
-
-rule concat_fastml_summaries:
-    input: 
-        expand("fastml_parsimony_summaries/{{taxon}}/fastml/{rep}.csv", rep = [x for x in range(1, config['REPS'] + 1)])
-    output:
-        "concatenated_fastml_parsimony_summaries/{taxon}.csv"
-    shell:
-        """awk "FNR==1 && NR!=1{{next;}}{{print}}" {input} > {output}"""
-
-
-rule concat_fastml__ml_summaries:
-    input: 
-        expand("fastml_ml_summaries/{{taxon}}/fastml/{rep}.csv", rep = [x for x in range(1, config['REPS'] + 1)])
-    output:
-        "concatenated_fastml_ml_summaries/{taxon}.csv"
-    shell:
-        """awk "FNR==1 && NR!=1{{next;}}{{print}}" {input} > {output}"""
-
-
-rule run_ancestral_cost:
-    input:
-        aln="indelible_output/{taxon}/cleaned_aln/{rep}.fasta",
-        tree="indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
-
-    output:
-        dir=directory("ancestral_cost/{taxon}/{method}/{rep}"),
-        aln="ancestral_cost/{taxon}/{method}/{rep}/ancestral_cost.fasta",
-        tree = "ancestral_cost/{taxon}/{method}/{rep}/ancestral_cost.nwk"
-
-    shell:
-        "python3 scripts/ancestarl_cost.py -a {input.aln} -t {input.tree} -f {output.aln}"
-
-
-rule summarise_ancestral_cost:
-    input:
-        aln="ancestral_cost/{taxon}/{method}/{rep}/ancestral_cost.fasta",
-        tree = "ancestral_cost/{taxon}/{method}/{rep}/ancestral_cost.nwk"
-        indelible_tree = "indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
-        indelible_aln = "indelible_output/{taxon}/concatenated/{rep}.fasta",
-        leaves = "indelible_dicts/{taxon}/leaves_{rep}.p",
-        gaps = "indelible_dicts/{taxon}/gaps_{rep}.p",
-        
-    params:
-        method='ancestral_cost'
-
-    output:
-        "ancestral_cost_summaries/{taxon}/ac/{rep}.csv"
-
-    script:
-        "scripts/summarise_indels.py"
-
-rule concat_ancestral_cost_summaries:
-    input: 
-        expand("ancestral_cost_summaries/{{taxon}}/ac/{rep}.csv", rep = [x for x in range(1, config['REPS'] + 1)])
-    output:
-        "concatenated_ancestral_cost_summaries/{taxon}.csv"
-    shell:
-        """awk "FNR==1 && NR!=1{{next;}}{{print}}" {input} > {output}"""
-
-
-rule concat_fastml_summaries:
-    input: 
-        expand("fastml_parsimony_summaries/{{taxon}}/fastml/{rep}.csv", rep = [x for x in range(1, config['REPS'] + 1)])
-    output:
-        "concatenated_fastml_parsimony_summaries/{taxon}.csv"
-    shell:
-        """awk "FNR==1 && NR!=1{{next;}}{{print}}" {input} > {output}"""
-
-
+# rule concat_ancestral_cost_summaries:
+#     input: 
+#         expand("ancestral_cost_summaries/{{taxon}}/ac/{rep}.csv", rep = [x for x in range(1, config['REPS'] + 1)])
+#     output:
+#         "concatenated_ancestral_cost_summaries/{taxon}.csv"
+#     shell:
+#         """awk "FNR==1 && NR!=1{{next;}}{{print}}" {input} > {output}"""
 
 rule summarise_indelible:
     input:
@@ -292,10 +313,10 @@ rule generate_output_dict:
         expand("concatenated_summaries/{taxon}_{method}.csv",
             taxon=config['TAXA'], 
             method=config['GRASP_METHODS']),
-        fastml_parsimony_summary = expand('concatenated_fastml_parsimony_summaries/{taxon}.csv', taxon=config['TAXA']),
-        fastml_ml_summary = expand('concatenated_fastml_ml_summaries/{taxon}.csv', taxon=config['TAXA']),
+        # fastml_parsimony_summary = expand('concatenated_fastml_parsimony_summaries/{taxon}.csv', taxon=config['TAXA']),
+        # fastml_ml_summary = expand('concatenated_fastml_ml_summaries/{taxon}.csv', taxon=config['TAXA']),
 
-        ancestral_cost_summary = expand('concatenated_ancestral_cost_summaries/{taxon}.csv', taxon=config['TAXA'])
+        # ancestral_cost_summary = expand('concatenated_ancestral_cost_summaries/{taxon}.csv', taxon=config['TAXA']),
 
         indelible_summary = expand('concatenated_indelible_summaries/{taxon}.csv', taxon=config['TAXA'])
 
@@ -320,13 +341,15 @@ rule generate_latex:
 
 rule compile_latex:
     input:
-        "plots/plot.tex"
+        texfile="plots/plot.tex",
+
     output:
-        dir=directory("plots_generated"),
-        pdf="plots_generated/plot.pdf"
+        # pdf="plots_generated/plot.pdf"
+        "plots/plot.pdf"
 
     run:
-        shell("pdflatex -output-directory={output.dir} ./{input}")
+        shell("pdflatex -output-directory=plots  ./{input.texfile}")
+        # shell("pdflatex -output-directory={output.dir} ./{input}")
 
 
 # Constraints for rep and taxon wildcards are that they can only contain digits

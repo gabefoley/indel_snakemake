@@ -80,7 +80,6 @@ outpath = snakemake.output[0]
 
 
 taxa = snakemake.wildcards['taxon']
-print ('chocolate')
 print (snakemake.params)
 if 'method' in snakemake.wildcards.keys():
     method = snakemake.wildcards['method']
@@ -115,6 +114,8 @@ with open(indelible_gaps_path, 'rb') as handle:
 
 tree = ete3.PhyloTree(tree_path, aln_path, format=1)
 
+print (tree)
+
 # Get root length
 root_len = len(tree.get_tree_root().sequence.replace("-", ""))
 
@@ -127,25 +128,35 @@ gap_dict = {}
 ins_accs = []
 del_accs = []
 
+
+
 for node in tree.traverse():
 
-            if not node.is_leaf():
+    # children_are_leaves = False
 
-                leaves = "".join([x.name for x in node.get_descendants() if x.is_leaf()])
+    if not node.is_leaf():  
 
-                if indelible_leaves_dict[node.name] != leaves:
-                    raise RuntimeError(f'{node.name} is different')
+                # for child in node.children:
+                #     if child.is_leaf():
+                #         children_are_leaves = True
 
-                indelible_node = indelible_tree&node.name
-                ins_acc, del_acc = gap_checker.get_indel_errors(indelible_node.sequence, node.sequence)
-                ins_accs.append(ins_acc)
-                del_accs.append(del_acc)
+                    # if not children_are_leaves:
 
-            if not node.is_root():
+        leaves = "".join([x.name for x in node.get_descendants() if x.is_leaf()])
 
-                parent = node.get_ancestors()[0]
-                indels = gap_checker.collect_indels(parent.sequence, node.sequence)
-                gap_dict[parent.name + "_" + node.name] = indels
+        if indelible_leaves_dict[node.name] != leaves:
+            raise RuntimeError(f'{node.name} is different')
+
+        indelible_node = indelible_tree&node.name
+        ins_acc, del_acc = gap_checker.get_indel_errors(indelible_node.sequence, node.sequence)
+        ins_accs.append(ins_acc)
+        del_accs.append(del_acc)
+
+        if not node.is_root():
+
+            parent = node.get_ancestors()[0]
+            indels = gap_checker.collect_indels(parent.sequence, node.sequence)
+            gap_dict[parent.name + "_" + node.name] = indels
 
 
 
