@@ -152,23 +152,40 @@ for node in tree.traverse():
         ins_accs.append(ins_acc)
         del_accs.append(del_acc)
 
-        if not node.is_root():
+    if not node.is_root():
 
-            parent = node.get_ancestors()[0]
-            indels = gap_checker.collect_indels(parent.sequence, node.sequence)
-            gap_dict[parent.name + "_" + node.name] = indels
+        parent = node.get_ancestors()[0]
+        indels = gap_checker.collect_indels(parent.sequence, node.sequence)
+        gap_dict[parent.name + "_" + node.name] = indels
 
 
 
+print ('deletion innaccuracy')
+
+print (del_accs)
+
+print (len(del_accs))
 
 # Get insertion accuracy
 avg_ins_acc = sum(ins_accs) / len(ins_accs)
 # Get deletion accuracy
 avg_del_acc = sum (del_accs) / len(del_accs)
 
+print ('avg')
+
+print (avg_del_acc)
+
 # Get insertion distribution
 ins_len = []
 del_len = []
+
+print ('gap dict is ')
+
+print (gap_dict)
+
+print ('indelible gap dict is ')
+
+print (indelible_gaps_dict)
 
 for indel_list in gap_dict.values():
     for indel in indel_list:

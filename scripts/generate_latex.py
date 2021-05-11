@@ -159,7 +159,7 @@ with open(snakemake.output[0], "w") as latex_file:
 
             ins_acc_latex += '& \multicolumn{1}{l|}{'
             ins_acc_latex += '\\textbf{' if bold else ''
-            ins_acc_latex += str(np.round((entry * 100), decimals=5)) + '}'
+            ins_acc_latex += str(np.round(entry, decimals=5)) + '}'
             ins_acc_latex += '}' if bold else ''
 
         print(ins_acc_latex)
@@ -172,7 +172,7 @@ with open(snakemake.output[0], "w") as latex_file:
 
             del_acc_latex += '& \multicolumn{1}{l|}{'
             del_acc_latex += '\\textbf{' if bold else ''
-            del_acc_latex += str(np.round((entry * 100), decimals=5)) + '}'
+            del_acc_latex += str(np.round(entry, decimals=5)) + '}'
             del_acc_latex += '}' if bold else ''
 
         # Write out all the parts to the latex file

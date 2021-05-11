@@ -30,10 +30,10 @@ gap_pos = []
 for pos in range(len(extants[0])):
 
 
-	print (pos)
-	print (type(extants))
-	print(extants[:, pos])
-	print (type(extants[:, pos]))
+	# print (pos)
+	# print (type(extants))
+	# print(extants[:, pos])
+	# print (type(extants[:, pos]))
 
 	# Check to see if it is all gaps
 
@@ -43,13 +43,13 @@ for pos in range(len(extants[0])):
 			all_gaps = False 
 			break
 	if all_gaps:
-		print ('YYYYFDFFDFD34343')
+		# print ('YYYYFDFFDFD34343')
 		gap_pos.append(pos)
 
 
 # Remove this column
 
-print (gap_pos)
+# print (gap_pos)
 offset = 0
 for pos in gap_pos:
     pos = pos - offset
