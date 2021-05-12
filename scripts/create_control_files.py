@@ -24,10 +24,11 @@ for outpath in snakemake.output:
 
 		outfile.write(f"[TREE] tree1 \n [rooted] {taxa_num} [treedepth] {40 / int(taxa_num)} \n")
 		outfile.write("[PARTITIONS] partition1 \n [tree1 model1 500] \n")
+		outfile.write(f"[TREE] tree1 \n [rooted] {taxa_num} [treedepth] 0.4 \n")
+		outfile.write("[PARTITIONS] partition1 \n [tree1 model1 200] \n")
 		outfile.write(f"[EVOLVE] partition1 {reps} {taxa_num} \n")
 
 
-	
 
 	# [TYPE] AMINOACID 1	//  EVERY control file must begin with a [TYPE] command.
 	# 			//  The number after "AMINOACID" can be 1 or 2 and chooses the 

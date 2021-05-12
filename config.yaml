@@ -10,11 +10,10 @@
 TAXA : ['100', '200', '500', '1000']
 REPS : 1
 # 
-# GRASP_METHODS : ['SICP']
-
+GRASP_METHODS : ['BEP']
 
 #GRASP_METHODS : ['PSP', 'PSML', 'SICP', 'SICML', 'BEP', 'BEML']
-GRASP_METHODS : ['PSP', 'PSML', 'BEP', 'BEML']
+#GRASP_METHODS : ['PSP', 'PSML', 'BEML']
 
 # SICML', 'BEP', 'PSP', 'PSML', 'BEML'
 
