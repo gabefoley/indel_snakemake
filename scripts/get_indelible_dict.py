@@ -44,4 +44,4 @@ with open(leaves_path, 'wb') as handle:
     pickle.dump(leaves_to_name, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 with open(gaps_path, 'wb') as handle:
-    pickle.dump(gap_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    pickle.dump(gap_dict, handle, protocol=3)

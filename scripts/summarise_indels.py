@@ -75,7 +75,8 @@ indelible_leaves_path = snakemake.input.leaves
 indelible_gaps_path = snakemake.input.gaps
 
 
-outpath = snakemake.output[0]
+
+outpath = snakemake.output.summary
 
 
 
@@ -197,6 +198,9 @@ for indel_list in gap_dict.values():
 
 
 # Write the details to a summary file
+with open(snakemake.output.gaps_path, 'wb') as handle:
+    pickle.dump(gap_dict, handle, protocol=3)
+
 
 
 # Calculate KL divergnce

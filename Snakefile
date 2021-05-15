@@ -186,7 +186,7 @@ rule get_indelible_dict:
     input:
         indelible_aln_path = "indelible_output/{taxon}/concatenated/{rep}.fasta",
         # indelible_tree_path = "indelible_output/{taxon}/cleaned_trees/{rep}.nwk",
-        indelible_tree_path = "indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk"
+        indelible_tree_path = "indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
 
     output:
         leaves = "indelible_dicts/{taxon}/leaves_{rep}.p",
@@ -202,11 +202,10 @@ rule summarise_indels:
         indelible_tree = "indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
         indelible_aln = "indelible_output/{taxon}/concatenated/{rep}.fasta",
         leaves = "indelible_dicts/{taxon}/leaves_{rep}.p",
-        gaps = "indelible_dicts/{taxon}/gaps_{rep}.p"
-
+        gaps = "indelible_dicts/{taxon}/gaps_{rep}.p",
     output:
-        "summaries/{taxon}/{method}/{rep}.csv"
-
+        summary = "summaries/{taxon}/{method}/{rep}.csv",
+        gaps_path = "output_dicts/{taxon}/gaps_{method}_{rep}.p"
     script:
         "scripts/summarise_indels.py"
 
@@ -293,8 +292,8 @@ rule summarise_indelible:
         gaps = "indelible_dicts/{taxon}/gaps_{rep}.p"
 
     output:
-        "indelible_summaries/{taxon}/{rep}.csv"
-
+        summary = "indelible_summaries/{taxon}/{rep}.csv",
+        gaps_path = "output_dicts/{taxon}/gaps_indelible_{rep}.p"
     script:
         "scripts/summarise_indels.py"
 
