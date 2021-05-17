@@ -19,11 +19,11 @@ for outpath in snakemake.output:
 	with open (f"./{outpath}", "w") as outfile:
 		outfile.write("[TYPE] AMINOACID 1\n")
 		outfile.write("[SETTINGS] \n [ancestralprint] NEW \n [output] FASTA \n [fastaextension] fasta \n [randomseed] 5622324 \n [markdeletedinsertions] FALSE \n [insertaslowercase] TRUE \n [fileperrep] TRUE \n")
-		outfile.write("[MODEL] model1 \n [submodel] WAG \n [indelmodel] POW 1.7 4 \n [indelrate] 0.05 \n")
+		outfile.write("[MODEL] model1 \n [submodel] WAG \n [indelmodel] POW 1.7 4 \n [indelrate] 0.01 \n")
 		# outfile.write("[MODEL] model1 \n [submodel] WAG \n [indelmodel] POW 1.7 20 \n [insertrate] 0.05 [deleterate] 0.01 \n")
 
-		outfile.write(f"[TREE] tree1 \n [rooted] {taxa_num} [treedepth] {80 / int(taxa_num)} \n")
-		outfile.write("[PARTITIONS] partition1 \n [tree1 model1 40] \n")
+		outfile.write(f"[TREE] tree1 \n [rooted] {taxa_num} \n")
+		outfile.write("[PARTITIONS] partition1 \n [tree1 model1 200] \n")
 		outfile.write(f"[EVOLVE] partition1 {reps} {taxa_num} \n")
 
 
