@@ -59,93 +59,96 @@ rule clean_indelible:
     script:
         "scripts/clean_indelible.py"
 
-# rule run_fastml:
-#     input:
-#         aln="indelible_output/{taxon}/cleaned_aln/{rep}.fasta",
-#         tree="indelible_output/{taxon}/cleaned_no_internal_trees/{rep}.nwk"
-#     output:
-#         parsimony="fastml_results/{taxon}/{rep}/seq.marginal_Chars_ParsimonyIndels.txt",
-#         ml="fastml_results/{taxon}/{rep}/seq.marginal_IndelAndChars.txt",
-#         tree="fastml_results/{taxon}/{rep}/tree.newick.txt",
-#         dir=directory("fastml_results/{taxon}/{rep}/")
-#     shell:
-#         "perl FastML.v3.11/www/fastml/FastML_Wrapper.pl --MSA_File /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/{input.aln} --seqType AA --Tree /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/{input.tree} --outDir '/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/{output.dir}'"
+rule run_fastml:
+    input:
+        aln="indelible_output/{taxon}/cleaned_aln/{rep}.fasta",
+        tree="indelible_output/{taxon}/cleaned_no_internal_trees/{rep}.nwk"
+    output:
+        parsimony="fastml_results/{taxon}/{rep}/seq.marginal_Chars_ParsimonyIndels.txt",
+        ml="fastml_results/{taxon}/{rep}/seq.marginal_IndelAndChars.txt",
+        tree="fastml_results/{taxon}/{rep}/tree.newick.txt",
+        dir=directory("fastml_results/{taxon}/{rep}/")
+    shell:
+        "perl FastML.v3.11/www/fastml/FastML_Wrapper.pl --MSA_File /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/{input.aln} --seqType AA --Tree /Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/{input.tree} --outDir '/Users/gabefoley/Dropbox/PhD/20210121_Indel_Evaluation_Project/Indel_Evaluation_Snakemake/{output.dir}'"
 
-# rule clean_fastml_parsimony:
-#     input:
-#         aln="fastml_results/{taxon}/{rep}/seq.marginal_Chars_ParsimonyIndels.txt",
-#         tree="fastml_results/{taxon}/{rep}/tree.newick.txt"
-#     output:
-#         aln="fastml_results_parsimony/{taxon}/concatenated/{rep}/FastML_ancestors.fasta",
-#         cleaned_tree="fastml_results_parsimony/{taxon}/cleaned_trees/{rep}/tree.nwk",
-#         cleaned_N0_tree="fastml_results_parsimony/{taxon}/cleaned_N0_trees/{rep}/tree.nwk"
-#     script:
-#         "scripts/clean_fastml.py"
+rule clean_fastml_parsimony:
+    input:
+        aln="fastml_results/{taxon}/{rep}/seq.marginal_Chars_ParsimonyIndels.txt",
+        tree="fastml_results/{taxon}/{rep}/tree.newick.txt"
+    output:
+        aln="fastml_results_parsimony/{taxon}/concatenated/{rep}/FastML_ancestors.fasta",
+        cleaned_tree="fastml_results_parsimony/{taxon}/cleaned_trees/{rep}/tree.nwk",
+        cleaned_N0_tree="fastml_results_parsimony/{taxon}/cleaned_N0_trees/{rep}/tree.nwk"
+    script:
+        "scripts/clean_fastml.py"
 
-# rule clean_fastml_ml:
-#     input:
-#         aln="fastml_results/{taxon}/{rep}/seq.marginal_IndelAndChars.txt",
-#         tree="fastml_results/{taxon}/{rep}/tree.newick.txt"
-#     output:
-#         aln="fastml_results_ml/{taxon}/concatenated/{rep}/FastML_ancestors.fasta",
-#         cleaned_tree="fastml_results_ml/{taxon}/cleaned_trees/{rep}/tree.nwk",
-#         cleaned_N0_tree="fastml_results_ml/{taxon}/cleaned_N0_trees/{rep}/tree.nwk"
-#     script:
-#         "scripts/clean_fastml.py"
+rule clean_fastml_ml:
+    input:
+        aln="fastml_results/{taxon}/{rep}/seq.marginal_IndelAndChars.txt",
+        tree="fastml_results/{taxon}/{rep}/tree.newick.txt"
+    output:
+        aln="fastml_results_ml/{taxon}/concatenated/{rep}/FastML_ancestors.fasta",
+        cleaned_tree="fastml_results_ml/{taxon}/cleaned_trees/{rep}/tree.nwk",
+        cleaned_N0_tree="fastml_results_ml/{taxon}/cleaned_N0_trees/{rep}/tree.nwk"
+    script:
+        "scripts/clean_fastml.py"
 
-# rule summarise_fastml_parsimony_indels:
-#     input:
-#         aln="fastml_results_parsimony/{taxon}/concatenated/{rep}/FastML_ancestors.fasta",
-#         tree="fastml_results_parsimony/{taxon}/cleaned_N0_trees/{rep}/tree.nwk",
-#         indelible_tree = "indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
-#         indelible_aln = "indelible_output/{taxon}/concatenated/{rep}.fasta",
-#         leaves = "indelible_dicts/{taxon}/leaves_{rep}.p",
-#         gaps = "indelible_dicts/{taxon}/gaps_{rep}.p",
+rule summarise_fastml_parsimony_indels:
+    input:
+        aln="fastml_results_parsimony/{taxon}/concatenated/{rep}/FastML_ancestors.fasta",
+        tree="fastml_results_parsimony/{taxon}/cleaned_N0_trees/{rep}/tree.nwk",
+        indelible_tree = "indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
+        indelible_aln = "indelible_output/{taxon}/concatenated/{rep}.fasta",
+        leaves = "indelible_dicts/{taxon}/leaves_{rep}.p",
+        gaps = "indelible_dicts/{taxon}/gaps_{rep}.p",
         
-#     params:
-#         method='fastMLparsimony'
+    params:
+        method='fastMLparsimony'
 
-#     output:
-#         "fastml_parsimony_summaries/{taxon}/fastml/{rep}.csv"
+    output:
+        summary="fastml_parsimony_summaries/{taxon}/fastml/{rep}.csv",
+        gaps_path = "output_dicts/{taxon}/gaps_fastmlp_{rep}.p"
 
-#     script:
-#         "scripts/summarise_indels.py"
 
-# rule summarise_fastml_ml_indels:
-#     input:
-#         aln="fastml_results_ml/{taxon}/concatenated/{rep}/FastML_ancestors.fasta",
-#         tree="fastml_results_ml/{taxon}/cleaned_N0_trees/{rep}/tree.nwk",
-#         indelible_tree = "indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
-#         indelible_aln = "indelible_output/{taxon}/concatenated/{rep}.fasta",
-#         leaves = "indelible_dicts/{taxon}/leaves_{rep}.p",
-#         gaps = "indelible_dicts/{taxon}/gaps_{rep}.p",
+    script:
+        "scripts/summarise_indels.py"
+
+rule summarise_fastml_ml_indels:
+    input:
+        aln="fastml_results_ml/{taxon}/concatenated/{rep}/FastML_ancestors.fasta",
+        tree="fastml_results_ml/{taxon}/cleaned_N0_trees/{rep}/tree.nwk",
+        indelible_tree = "indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
+        indelible_aln = "indelible_output/{taxon}/concatenated/{rep}.fasta",
+        leaves = "indelible_dicts/{taxon}/leaves_{rep}.p",
+        gaps = "indelible_dicts/{taxon}/gaps_{rep}.p",
         
-#     params:
-#         method='fastMLml'
+    params:
+        method='fastMLml'
 
-#     output:
-#         "fastml_ml_summaries/{taxon}/fastml/{rep}.csv"
+    output:
+        summary="fastml_ml_summaries/{taxon}/fastml/{rep}.csv",
+        gaps_path = "output_dicts/{taxon}/gaps_fastmlml_{rep}.p"
 
-#     script:
-#         "scripts/summarise_indels.py"
-
-
-# rule concat_fastml_summaries:
-#     input: 
-#         expand("fastml_parsimony_summaries/{{taxon}}/fastml/{rep}.csv", rep = [x for x in range(1, config['REPS'] + 1)])
-#     output:
-#         "concatenated_fastml_parsimony_summaries/{taxon}.csv"
-#     shell:
-#         """awk "FNR==1 && NR!=1{{next;}}{{print}}" {input} > {output}"""
+    script:
+        "scripts/summarise_indels.py"
 
 
-# rule concat_fastml__ml_summaries:
-#     input: 
-#         expand("fastml_ml_summaries/{{taxon}}/fastml/{rep}.csv", rep = [x for x in range(1, config['REPS'] + 1)])
-#     output:
-#         "concatenated_fastml_ml_summaries/{taxon}.csv"
-#     shell:
-#         """awk "FNR==1 && NR!=1{{next;}}{{print}}" {input} > {output}"""
+rule concat_fastml_summaries:
+    input: 
+        expand("fastml_parsimony_summaries/{{taxon}}/fastml/{rep}.csv", rep = [x for x in range(1, config['REPS'] + 1)])
+    output:
+        "concatenated_fastml_parsimony_summaries/{taxon}.csv"
+    shell:
+        """awk "FNR==1 && NR!=1{{next;}}{{print}}" {input} > {output}"""
+
+
+rule concat_fastml__ml_summaries:
+    input: 
+        expand("fastml_ml_summaries/{{taxon}}/fastml/{rep}.csv", rep = [x for x in range(1, config['REPS'] + 1)])
+    output:
+        "concatenated_fastml_ml_summaries/{taxon}.csv"
+    shell:
+        """awk "FNR==1 && NR!=1{{next;}}{{print}}" {input} > {output}"""
 
 
 
@@ -210,7 +213,7 @@ rule summarise_indels:
         "scripts/summarise_indels.py"
 
 
-# ANCESTRAL COST --------
+# # ANCESTRAL COST --------
 
 # rule run_ancestral_cost:
 #     input:
@@ -226,14 +229,14 @@ rule summarise_indels:
 #         "python3 scripts/ancestral_cost.py -a {input.aln} -t {input.tree} -f {output.aln} -to {output.tree}"
 
 
-# # rule remove_gaps_ancestral_cost:
-# #     input:
-# #         aln="ancestral_cost/{taxon}/{rep}/ancestral_cost.fasta"
-# #     output:
-# #         aln="ancestral_cost/{taxon}/cleaned_aln/{rep}/ancestral_cost.fasta"
+# rule remove_gaps_ancestral_cost:
+#     input:
+#         aln="ancestral_cost/{taxon}/{rep}/ancestral_cost.fasta"
+#     output:
+#         aln="ancestral_cost/{taxon}/cleaned_aln/{rep}/ancestral_cost.fasta"
 
-# #     shell:
-# #         "trimal -in {input.aln} -out {output.aln} -noallgaps"
+#     shell:
+#         "trimal -in {input.aln} -out {output.aln} -noallgaps"
 
 
 # rule concat_ancestral_cost:
@@ -269,7 +272,8 @@ rule summarise_indels:
 #         method='ancestralcost'
 
 #     output:
-#         "ancestral_cost_summaries/{taxon}/ac/{rep}.csv"
+#         summary="ancestral_cost_summaries/{taxon}/ac/{rep}.csv",
+#         gaps_path = "output_dicts/{taxon}/gaps_ac_{rep}.p"
 
 #     script:
 #         "scripts/summarise_indels.py"
@@ -312,8 +316,8 @@ rule generate_output_dict:
         expand("concatenated_summaries/{taxon}_{method}.csv",
             taxon=config['TAXA'], 
             method=config['GRASP_METHODS']),
-        # fastml_parsimony_summary = expand('concatenated_fastml_parsimony_summaries/{taxon}.csv', taxon=config['TAXA']),
-        # fastml_ml_summary = expand('concatenated_fastml_ml_summaries/{taxon}.csv', taxon=config['TAXA']),
+        fastml_parsimony_summary = expand('concatenated_fastml_parsimony_summaries/{taxon}.csv', taxon=config['TAXA']),
+        fastml_ml_summary = expand('concatenated_fastml_ml_summaries/{taxon}.csv', taxon=config['TAXA']),
 
         # ancestral_cost_summary = expand('concatenated_ancestral_cost_summaries/{taxon}.csv', taxon=config['TAXA']),
 
