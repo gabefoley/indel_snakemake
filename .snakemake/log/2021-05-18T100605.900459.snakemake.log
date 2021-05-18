@@ -1,0 +1,55 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	6	summarise_indels
+	7
+
+[Tue May 18 10:06:05 2021]
+rule summarise_indels:
+    input: grasp_results/CYP2U_165/PSP/GRASP_ancestors.nwk, grasp_results/CYP2U_165/PSP/GRASP_ancestors.fasta
+    output: output_dicts/CYP2U_165/gaps_PSP.p
+    jobid: 1
+    wildcards: dataset=CYP2U_165, method=PSP
+
+[Tue May 18 10:06:05 2021]
+rule summarise_indels:
+    input: grasp_results/CYP2U_165/PSML/GRASP_ancestors.nwk, grasp_results/CYP2U_165/PSML/GRASP_ancestors.fasta
+    output: output_dicts/CYP2U_165/gaps_PSML.p
+    jobid: 3
+    wildcards: dataset=CYP2U_165, method=PSML
+
+[Tue May 18 10:06:06 2021]
+Error in rule summarise_indels:
+    jobid: 1
+    output: output_dicts/CYP2U_165/gaps_PSP.p
+
+[Tue May 18 10:06:06 2021]
+Error in rule summarise_indels:
+    jobid: 3
+RuleException:
+CalledProcessError in line 48 of /media/WorkingSpace/Gabe/indel_snakemake_2U1/indel_snakemake/Snakefile:
+Command 'set -euo pipefail;  /opt/miniconda/miniconda3/bin/python /media/WorkingSpace/Gabe/indel_snakemake_2U1/indel_snakemake/.snakemake/scripts/tmp7dvcrx_j.summarise_indels.py' returned non-zero exit status 1.
+  File "/home/uqgfoley/.local/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/media/WorkingSpace/Gabe/indel_snakemake_2U1/indel_snakemake/Snakefile", line 48, in __rule_summarise_indels
+  File "/home/uqgfoley/.local/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/opt/miniconda/miniconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/uqgfoley/.local/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/uqgfoley/.local/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+    output: output_dicts/CYP2U_165/gaps_PSML.p
+
+RuleException:
+CalledProcessError in line 48 of /media/WorkingSpace/Gabe/indel_snakemake_2U1/indel_snakemake/Snakefile:
+Command 'set -euo pipefail;  /opt/miniconda/miniconda3/bin/python /media/WorkingSpace/Gabe/indel_snakemake_2U1/indel_snakemake/.snakemake/scripts/tmpw632zvt3.summarise_indels.py' returned non-zero exit status 1.
+  File "/home/uqgfoley/.local/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/media/WorkingSpace/Gabe/indel_snakemake_2U1/indel_snakemake/Snakefile", line 48, in __rule_summarise_indels
+  File "/home/uqgfoley/.local/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/opt/miniconda/miniconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/uqgfoley/.local/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/uqgfoley/.local/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /media/WorkingSpace/Gabe/indel_snakemake_2U1/indel_snakemake/.snakemake/log/2021-05-18T100605.900459.snakemake.log

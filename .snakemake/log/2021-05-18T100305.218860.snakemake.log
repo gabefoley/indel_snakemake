@@ -1,0 +1,101 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	6	run_grasp
+	6	summarise_indels
+	13
+
+[Tue May 18 10:03:05 2021]
+rule run_grasp:
+    input: input/CYP2U_165.aln, input/CYP2U_165.nwk
+    output: grasp_results/CYP2U_165/PSP, grasp_results/CYP2U_165/PSP/GRASP_ancestors.fasta, grasp_results/CYP2U_165/PSP/GRASP_ancestors.nwk
+    jobid: 2
+    wildcards: dataset=CYP2U_165, method=PSP
+
+
+[Tue May 18 10:03:05 2021]
+rule run_grasp:
+    input: input/CYP2U_165.aln, input/CYP2U_165.nwk
+    output: grasp_results/CYP2U_165/PSML, grasp_results/CYP2U_165/PSML/GRASP_ancestors.fasta, grasp_results/CYP2U_165/PSML/GRASP_ancestors.nwk
+    jobid: 4
+    wildcards: dataset=CYP2U_165, method=PSML
+
+[Tue May 18 10:03:33 2021]
+Finished job 2.
+1 of 13 steps (8%) done
+
+[Tue May 18 10:03:33 2021]
+rule run_grasp:
+    input: input/CYP2U_165.aln, input/CYP2U_165.nwk
+    output: grasp_results/CYP2U_165/SICP, grasp_results/CYP2U_165/SICP/GRASP_ancestors.fasta, grasp_results/CYP2U_165/SICP/GRASP_ancestors.nwk
+    jobid: 6
+    wildcards: dataset=CYP2U_165, method=SICP
+
+[Tue May 18 10:03:37 2021]
+Finished job 4.
+2 of 13 steps (15%) done
+
+[Tue May 18 10:03:37 2021]
+rule run_grasp:
+    input: input/CYP2U_165.aln, input/CYP2U_165.nwk
+    output: grasp_results/CYP2U_165/SICML, grasp_results/CYP2U_165/SICML/GRASP_ancestors.fasta, grasp_results/CYP2U_165/SICML/GRASP_ancestors.nwk
+    jobid: 8
+    wildcards: dataset=CYP2U_165, method=SICML
+
+[Tue May 18 10:04:06 2021]
+Finished job 6.
+3 of 13 steps (23%) done
+
+[Tue May 18 10:04:06 2021]
+rule run_grasp:
+    input: input/CYP2U_165.aln, input/CYP2U_165.nwk
+    output: grasp_results/CYP2U_165/BEP, grasp_results/CYP2U_165/BEP/GRASP_ancestors.fasta, grasp_results/CYP2U_165/BEP/GRASP_ancestors.nwk
+    jobid: 10
+    wildcards: dataset=CYP2U_165, method=BEP
+
+[Tue May 18 10:04:12 2021]
+Finished job 8.
+4 of 13 steps (31%) done
+
+[Tue May 18 10:04:12 2021]
+rule run_grasp:
+    input: input/CYP2U_165.aln, input/CYP2U_165.nwk
+    output: grasp_results/CYP2U_165/BEML, grasp_results/CYP2U_165/BEML/GRASP_ancestors.fasta, grasp_results/CYP2U_165/BEML/GRASP_ancestors.nwk
+    jobid: 12
+    wildcards: dataset=CYP2U_165, method=BEML
+
+[Tue May 18 10:04:45 2021]
+Finished job 10.
+5 of 13 steps (38%) done
+
+[Tue May 18 10:04:45 2021]
+rule summarise_indels:
+    input: grasp_results/CYP2U_165/PSP/GRASP_ancestors.nwk, grasp_results/CYP2U_165/PSP/GRASP_ancestors.fasta
+    output: output_dicts/CYP2U_165/gaps_PSP.p
+    jobid: 1
+    wildcards: dataset=CYP2U_165, method=PSP
+
+[Tue May 18 10:04:45 2021]
+Error in rule summarise_indels:
+    jobid: 1
+    output: output_dicts/CYP2U_165/gaps_PSP.p
+
+RuleException:
+CalledProcessError in line 48 of /media/WorkingSpace/Gabe/indel_snakemake_2U1/indel_snakemake/Snakefile:
+Command 'set -euo pipefail;  /opt/miniconda/miniconda3/bin/python /media/WorkingSpace/Gabe/indel_snakemake_2U1/indel_snakemake/.snakemake/scripts/tmplpy0bvhk.summarise_indels.py' returned non-zero exit status 1.
+  File "/home/uqgfoley/.local/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/media/WorkingSpace/Gabe/indel_snakemake_2U1/indel_snakemake/Snakefile", line 48, in __rule_summarise_indels
+  File "/home/uqgfoley/.local/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/opt/miniconda/miniconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/uqgfoley/.local/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/uqgfoley/.local/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+[Tue May 18 10:04:54 2021]
+Finished job 12.
+6 of 13 steps (46%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /media/WorkingSpace/Gabe/indel_snakemake_2U1/indel_snakemake/.snakemake/log/2021-05-18T100305.218860.snakemake.log

@@ -1,0 +1,5 @@
+Building DAG of jobs...
+MissingInputException in line 8 of /media/WorkingSpace/Gabe/indel_snakemake_2U1/indel_snakemake/Snakefile:
+Missing input files for rule run_grasp:
+input/concatenated/CYP2U_165.nwk
+input/concatenated/CYP2U_165.aln

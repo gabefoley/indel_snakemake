@@ -41,7 +41,7 @@ rule concat_fasta:
 rule summarise_indels:
     input:
         tree = "grasp_results/{dataset}/{method}/GRASP_ancestors.nwk",
-        aln="grasp_results/{dataset}/{method}/GRASP_ancestors.fasta",
+        aln="grasp_results/concatenated/{dataset}/{method}/GRASP_ancestors.fasta",
     output:
         gaps_path = "output_dicts/{dataset}/gaps_{method}.p"
     script:
