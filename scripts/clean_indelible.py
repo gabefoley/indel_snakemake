@@ -62,6 +62,17 @@ for g in tree.traverse():
 leaves = {x.name : x.sequence for x in tree.traverse() if x.is_leaf()}
 renamed = {x.name : x.sequence for x in tree.traverse()}
 
+
+# Write the cleaned fasta
+if not os.path.isdir(f'indelible_output/{taxon_num}/cleaned_fasta'):
+	os.mkdir(f'indelible_output/{taxon_num}/cleaned_fasta')
+
+with open(f'indelible_output/{taxon_num}/cleaned_fasta/{rep}.fasta', 'w') as cleaned_fasta:
+	for name, seq in leaves.items():
+		cleaned_fasta.write(">" + name + "\n" + seq.replace("-", "") + "\n")
+
+
+
 # Write the cleaned sequence
 if not os.path.isdir(f'indelible_output/{taxon_num}/cleaned_aln'):
 	os.mkdir(f'indelible_output/{taxon_num}/cleaned_aln')
@@ -69,6 +80,8 @@ if not os.path.isdir(f'indelible_output/{taxon_num}/cleaned_aln'):
 with open(f'indelible_output/{taxon_num}/cleaned_aln/{rep}.fasta', 'w') as cleaned_aln:
 	for name, seq in leaves.items():
 		cleaned_aln.write(">" + name + "\n" + seq.replace("*", "-") + "\n")
+
+
 
 # Write the cleaned concatenated files
 if not os.path.isdir(f'indelible_output/{taxon_num}/concatenated'):

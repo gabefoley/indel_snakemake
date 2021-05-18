@@ -22,7 +22,7 @@ for outpath in snakemake.output:
 		outfile.write("[MODEL] model1 \n [submodel] WAG \n [indelmodel] POW 1.7 4 \n [indelrate] 0.05 \n")
 		# outfile.write("[MODEL] model1 \n [submodel] WAG \n [indelmodel] POW 1.7 20 \n [insertrate] 0.05 [deleterate] 0.01 \n")
 
-		outfile.write(f"[TREE] tree1 \n [rooted] {taxa_num} treedepth 0.99 \n")
+		outfile.write(f"[TREE] tree1 \n [rooted] {taxa_num} [treedepth] 1 \n")
 		outfile.write("[PARTITIONS] partition1 \n [tree1 model1 200] \n")
 		outfile.write(f"[EVOLVE] partition1 {reps} {taxa_num} \n")
 

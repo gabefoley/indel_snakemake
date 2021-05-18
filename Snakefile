@@ -47,9 +47,11 @@ rule concat_indelible:
 
 rule clean_indelible:
     input:
+        fasta="indelible_output/{taxon}/no_gaps/{taxon}_TRUE_{rep}.fasta",
         tree="indelible_output/{taxon}/N0_trees/{rep}.nwk", 
         aln="indelible_output/{taxon}/concatenated/{taxon}_{rep}.fasta"
     output:
+        fasta = "indelible_output/{taxon}/cleaned_fasta/{rep}.fasta",
         aln="indelible_output/{taxon}/cleaned_aln/{rep}.fasta",
         concat = "indelible_output/{taxon}/concatenated/{rep}.fasta",
         tree="indelible_output/{taxon}/cleaned_trees/{rep}.nwk",
@@ -150,11 +152,20 @@ rule clean_indelible:
 #     shell:
 #         """awk "FNR==1 && NR!=1{{next;}}{{print}}" {input} > {output}"""
 
+rule run_mafft:
+    input: 
+        "indelible_output/{taxon}/cleaned_fasta/{rep}.fasta",
+    output:
+        "mafft_aligned/{taxon}/{rep}.fasta"
+    shell:
+        "fftns {input} > {output}"
+
 
 
 rule run_grasp:
     input:
-        aln="indelible_output/{taxon}/cleaned_aln/{rep}.fasta",
+        aln="mafft_aligned/{taxon}/{rep}.fasta",
+        # aln="indelible_output/{taxon}/cleaned_aln/{rep}.fasta",
         tree="indelible_output/{taxon}/cleaned_N0_trees/{rep}.nwk",
         # method=expand(config["GRASP_METHODS"])
 

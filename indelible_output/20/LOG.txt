@@ -1,0 +1,44 @@
+********************************************************************************
+INDELible V1.03 by Will Fletcher : Simulation began at: Tue May 18 12:29:37 2021
+********************************************************************************
+
+  Actual Insertion : Deletion Ratio  0.463687 : 0.536313	(Total indel rate = 1)
+  Actual average insertion length    1.63855
+  Actual average deletion length     1.57292
+  Number of insertion events         83
+  Number of deletion events          96
+
+  * Block 1 was completed in 0.01667 seconds.
+
+********************************************************************************
+
+  * Simulation completed. Whole batch took: 0.018352 seconds.
+
+INDELible V1.03 Simulations completed at: Tue May 18 12:29:37 2021
+
+********************************************************************************
+
+
+ Original Control File 
+
+-----------------------
+
+
+[TYPE] AMINOACID 1
+[SETTINGS] 
+ [ancestralprint] NEW 
+ [output] FASTA 
+ [fastaextension] fasta 
+ [randomseed] 5622324 
+ [markdeletedinsertions] FALSE 
+ [insertaslowercase] TRUE 
+ [fileperrep] TRUE 
+[MODEL] model1 
+ [submodel] WAG 
+ [indelmodel] POW 1.7 4 
+ [indelrate] 0.05 
+[TREE] tree1 
+ [rooted] 20 [treedepth] 1 
+[PARTITIONS] partition1 
+ [tree1 model1 200] 
+[EVOLVE] partition1 1 20 

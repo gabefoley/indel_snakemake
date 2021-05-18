@@ -1,0 +1,26 @@
+\documentclass[11pt]{article}
+\usepackage[landscape, paperwidth=80cm, paperheight=50cm, left=0mm, top=0mm, bottom=0mm, right=0mm, margin=5mm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\begin{document}
+\begin{table}[]
+\begin{tabular}{@{}llll@{}}
+\toprule
+&  & indelible & BEP \\ \midrule
+\multicolumn{1}{|l|}{\multirow{6}{*}{10}} & \multicolumn{1}{l|}{Indel distribution}       & \multicolumn{1}{l|}{\includegraphics[width = 80pt, height = 80pt]{images/indelible_10.png}}& \multicolumn{1}{l|}{\includegraphics[width = 80pt, height = 80pt]{images/BEP_10.png}} \\ \cmidrule(l){2-4}
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{Mean root length}& \multicolumn{1}{l|}{\textbf{200.0}}& \multicolumn{1}{l|}{\textbf{168.0}} \\ \cmidrule(l){2-4}
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{Mean KL-divergence (insertions)}& \multicolumn{1}{l|}{\textbf{0.0}}& \multicolumn{1}{l|}{\textbf{0.30217}} \\ \cmidrule(l){2-4}
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{Mean KL-divergence (deletions)}& \multicolumn{1}{l|}{\textbf{0.0}}& \multicolumn{1}{l|}{\textbf{0.09154}} \\ \cmidrule(l){2-4}
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{Mean insertion inaccuracy}& \multicolumn{1}{l|}{\textbf{0.0}}& \multicolumn{1}{l|}{\textbf{0.14895}} \\ \cmidrule(l){2-4}
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{Mean deletion inaccuracy}& \multicolumn{1}{l|}{\textbf{0.0}}& \multicolumn{1}{l|}{\textbf{0.13314}} \\ \midrule
+\multicolumn{1}{|l|}{\multirow{6}{*}{20}} & \multicolumn{1}{l|}{Indel distribution}       & \multicolumn{1}{l|}{\includegraphics[width = 80pt, height = 80pt]{images/indelible_20.png}}& \multicolumn{1}{l|}{\includegraphics[width = 80pt, height = 80pt]{images/BEP_20.png}} \\ \cmidrule(l){2-4}
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{Mean root length}& \multicolumn{1}{l|}{\textbf{200.0}}& \multicolumn{1}{l|}{\textbf{210.0}} \\ \cmidrule(l){2-4}
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{Mean KL-divergence (insertions)}& \multicolumn{1}{l|}{\textbf{0.0}}& \multicolumn{1}{l|}{\textbf{0.07168}} \\ \cmidrule(l){2-4}
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{Mean KL-divergence (deletions)}& \multicolumn{1}{l|}{\textbf{0.0}}& \multicolumn{1}{l|}{\textbf{0.04172}} \\ \cmidrule(l){2-4}
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{Mean insertion inaccuracy}& \multicolumn{1}{l|}{\textbf{0.0}}& \multicolumn{1}{l|}{\textbf{0.16669}} \\ \cmidrule(l){2-4}
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{Mean deletion inaccuracy}& \multicolumn{1}{l|}{\textbf{0.0}}& \multicolumn{1}{l|}{\textbf{0.24226}} \\ \midrule
+
+\end{tabular}
+\end{table}
+\end{document}
